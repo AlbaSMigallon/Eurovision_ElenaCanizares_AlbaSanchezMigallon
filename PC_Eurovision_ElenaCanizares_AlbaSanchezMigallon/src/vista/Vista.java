@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import controlador.Controlador;
+
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -13,16 +16,16 @@ import java.awt.Font;
 public class Vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JPanel panelInicial, panelVotacionesNacionales, panelVotacionesEurovision, panelResultados, panelFinal;
-	JLabel lblLogoEurovisionInicio, lblBanderaInicio;
-	JLabel lblActuacionEspania, lblActuacionAlemania, lblActuacionFrancia, lblActuacionItalia, lblActuacionPortugal,
+	public JPanel contentPane;
+	public JPanel panelInicial, panelVotacionesNacionales, panelVotacionesEurovision, panelResultados, panelFinal;
+	public JLabel lblLogoEurovisionInicio, lblBanderaInicio;
+	public JLabel lblActuacionEspania, lblActuacionAlemania, lblActuacionFrancia, lblActuacionItalia, lblActuacionPortugal,
 			lblActuacionReinoUnido, lblActuacionPolonia, lblActuacionPaisesBajos, lblActuacionRumania,
 			lblActuacionGrecia;
-	JLabel lblTlfEspania, lblTlfAlemania, lblTlfFrancia, lblTlfItalia, lblTlfPortugal, lblTlfReinoUnido, lblTlfPolonia,
+	public JLabel lblTlfEspania, lblTlfAlemania, lblTlfFrancia, lblTlfItalia, lblTlfPortugal, lblTlfReinoUnido, lblTlfPolonia,
 			lblTlfPaisesBajos, lblTlfRumania, lblTlfGrecia;
-	JLabel lblTailorPaElena;
-	JButton btnComenzarInicio;
+	public JLabel lblTailorPaElena;
+	public JButton btnComenzarInicio, btnComenzarVotaciones;
 
 	/**
 	 * Launch the application.
@@ -32,6 +35,7 @@ public class Vista extends JFrame {
 			public void run() {
 				try {
 					Vista frame = new Vista();
+					Controlador controlador = new Controlador(frame);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -163,12 +167,19 @@ public class Vista extends JFrame {
 		lblTailorPaElena = new JLabel("");
 		lblTailorPaElena.setBounds(917, 230, 46, 14);
 		panelVotacionesNacionales.add(lblTailorPaElena);
+		
+		btnComenzarVotaciones = new JButton("COMENZAR");
+		btnComenzarVotaciones.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+		btnComenzarVotaciones.setBounds(931, 506, 89, 23);
+		btnComenzarVotaciones.setEnabled(true);
+		panelVotacionesNacionales.add(btnComenzarVotaciones);
 
 		// PANEL VOTOS POR PAISES EUROVISION
 		panelVotacionesEurovision = new JPanel();
 		panelVotacionesEurovision.setBounds(0, 0, 1685, 910);
 		contentPane.add(panelVotacionesEurovision);
 		panelVotacionesNacionales.setLayout(null);
+		
 
 	}
 }
