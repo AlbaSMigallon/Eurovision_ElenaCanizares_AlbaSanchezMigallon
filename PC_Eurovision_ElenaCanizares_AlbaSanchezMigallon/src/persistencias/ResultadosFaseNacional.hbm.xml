@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 23 ene 2024 21:37:29 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="censo_europa" name="persistencias.ResultadosFaseNacional" optimistic-lock="none" table="resultados_fase_nacional">
+        <id name="pais" type="string">
+            <column length="20" name="PAIS"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="paisTercero" type="string">
+            <column length="20" name="PAIS_TERCERO" not-null="true">
+                <comment>Nombre del pais que votan como tercero con 8 puntos</comment>
+            </column>
+        </property>
+        <property name="paisSegundo" type="string">
+            <column length="20" name="PAIS_SEGUNDO" not-null="true">
+                <comment>Nombre del pais que votan como segundo con 10 puntos</comment>
+            </column>
+        </property>
+        <property name="paisPrimero" type="string">
+            <column length="20" name="PAIS_PRIMERO" not-null="true">
+                <comment>Nombre del pais que votan como primero con 15 puntos</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

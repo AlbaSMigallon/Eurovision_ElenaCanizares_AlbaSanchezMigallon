@@ -5,11 +5,24 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.Font;
 
 public class Vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JPanel panelInicial, panelVotacionesNacionales, panelVotacionesEurovision, panelResultados, panelFinal;
+	JLabel lblLogoEurovisionInicio, lblBanderaInicio;
+	JLabel lblActuacionEspania, lblActuacionAlemania, lblActuacionFrancia, lblActuacionItalia, lblActuacionPortugal,
+			lblActuacionReinoUnido, lblActuacionPolonia, lblActuacionPaisesBajos, lblActuacionRumania,
+			lblActuacionGrecia;
+	JLabel lblTlfEspania, lblTlfAlemania, lblTlfFrancia, lblTlfItalia, lblTlfPortugal, lblTlfReinoUnido, lblTlfPolonia,
+			lblTlfPaisesBajos, lblTlfRumania, lblTlfGrecia;
+	JLabel lblTailorPaElena;
+	JButton btnComenzarInicio;
 
 	/**
 	 * Launch the application.
@@ -37,6 +50,125 @@ public class Vista extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-	}
+		contentPane.setLayout(null);
 
+		// PANEL INICIAL
+		panelInicial = new JPanel();
+		panelInicial.setBounds(0, 0, 1685, 910);
+		contentPane.add(panelInicial);
+		panelInicial.setLayout(null);
+
+		lblLogoEurovisionInicio = new JLabel("");
+		lblLogoEurovisionInicio.setBounds(917, 230, 46, 14);
+		panelInicial.add(lblLogoEurovisionInicio);
+
+		lblBanderaInicio = new JLabel("");
+		lblBanderaInicio.setBounds(948, 342, 46, 14);
+		panelInicial.add(lblBanderaInicio);
+
+		btnComenzarInicio = new JButton("COMENZAR");
+		btnComenzarInicio.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+		btnComenzarInicio.setBounds(931, 506, 89, 23);
+		panelInicial.add(btnComenzarInicio);
+
+		// PANEL VOTOS NACIONALES
+		panelVotacionesNacionales = new JPanel();
+		panelVotacionesNacionales.setBounds(0, 0, 1685, 910);
+		contentPane.add(panelVotacionesNacionales);
+		panelVotacionesNacionales.setLayout(null);
+
+		// label de fotos actuaciones
+
+		lblActuacionEspania = new JLabel("");
+		lblActuacionEspania.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionEspania);
+
+		lblActuacionAlemania = new JLabel("");
+		lblActuacionAlemania.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionAlemania);
+
+		lblActuacionFrancia = new JLabel("");
+		lblActuacionFrancia.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionFrancia);
+
+		lblActuacionItalia = new JLabel("");
+		lblActuacionItalia.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionItalia);
+
+		lblActuacionPortugal = new JLabel("");
+		lblActuacionPortugal.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionPortugal);
+
+		lblActuacionReinoUnido = new JLabel("");
+		lblActuacionReinoUnido.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionReinoUnido);
+
+		lblActuacionPolonia = new JLabel("");
+		lblActuacionPolonia.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionPolonia);
+
+		lblActuacionPaisesBajos = new JLabel("");
+		lblActuacionPaisesBajos.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionPaisesBajos);
+
+		lblActuacionRumania = new JLabel("");
+		lblActuacionRumania.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionRumania);
+
+		lblActuacionGrecia = new JLabel("");
+		lblActuacionGrecia.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblActuacionGrecia);
+
+		// labels de tlf para votar
+		lblTlfEspania = new JLabel("");
+		lblTlfEspania.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfEspania);
+
+		lblTlfAlemania = new JLabel("");
+		lblTlfAlemania.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfAlemania);
+
+		lblTlfFrancia = new JLabel("");
+		lblTlfFrancia.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfFrancia);
+
+		lblTlfItalia = new JLabel("");
+		lblTlfItalia.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfItalia);
+
+		lblTlfPortugal = new JLabel("");
+		lblTlfPortugal.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfPortugal);
+
+		lblTlfReinoUnido = new JLabel("");
+		lblTlfReinoUnido.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfReinoUnido);
+
+		lblTlfPolonia = new JLabel("");
+		lblTlfPolonia.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfPolonia);
+
+		lblTlfPaisesBajos = new JLabel("");
+		lblTlfPaisesBajos.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfPaisesBajos);
+
+		lblTlfRumania = new JLabel("");
+		lblTlfRumania.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfRumania);
+
+		lblTlfGrecia = new JLabel("");
+		lblTlfGrecia.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTlfGrecia);
+
+		lblTailorPaElena = new JLabel("");
+		lblTailorPaElena.setBounds(917, 230, 46, 14);
+		panelVotacionesNacionales.add(lblTailorPaElena);
+
+		// PANEL VOTOS POR PAISES EUROVISION
+		panelVotacionesEurovision = new JPanel();
+		panelVotacionesEurovision.setBounds(0, 0, 1685, 910);
+		contentPane.add(panelVotacionesEurovision);
+		panelVotacionesNacionales.setLayout(null);
+
+	}
 }

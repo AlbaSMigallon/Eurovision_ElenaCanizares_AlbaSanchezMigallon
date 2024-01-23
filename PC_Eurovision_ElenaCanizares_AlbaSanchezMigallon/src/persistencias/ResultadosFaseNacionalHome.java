@@ -1,5 +1,5 @@
 package persistencias;
-// Generated 18 ene 2024 10:15:52 by Hibernate Tools 5.4.33.Final
+// Generated 23 ene 2024 21:37:29 by Hibernate Tools 5.4.33.Final
 
 import java.util.List;
 import java.util.logging.Level;
@@ -10,13 +10,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 
 /**
- * Home object for domain model class Cantantes.
- * @see persistencias.Cantantes
+ * Home object for domain model class ResultadosFaseNacional.
+ * @see persistencias.ResultadosFaseNacional
  * @author Hibernate Tools
  */
-public class CantantesHome {
+public class ResultadosFaseNacionalHome {
 
-	private static final Logger logger = Logger.getLogger(CantantesHome.class.getName());
+	private static final Logger logger = Logger.getLogger(ResultadosFaseNacionalHome.class.getName());
 
 	private final SessionFactory sessionFactory = getSessionFactory();
 
@@ -29,8 +29,8 @@ public class CantantesHome {
 		}
 	}
 
-	public void persist(Cantantes transientInstance) {
-		logger.log(Level.INFO, "persisting Cantantes instance");
+	public void persist(ResultadosFaseNacional transientInstance) {
+		logger.log(Level.INFO, "persisting ResultadosFaseNacional instance");
 		try {
 			sessionFactory.getCurrentSession().persist(transientInstance);
 			logger.log(Level.INFO, "persist successful");
@@ -40,8 +40,8 @@ public class CantantesHome {
 		}
 	}
 
-	public void attachDirty(Cantantes instance) {
-		logger.log(Level.INFO, "attaching dirty Cantantes instance");
+	public void attachDirty(ResultadosFaseNacional instance) {
+		logger.log(Level.INFO, "attaching dirty ResultadosFaseNacional instance");
 		try {
 			sessionFactory.getCurrentSession().saveOrUpdate(instance);
 			logger.log(Level.INFO, "attach successful");
@@ -51,8 +51,8 @@ public class CantantesHome {
 		}
 	}
 
-	public void attachClean(Cantantes instance) {
-		logger.log(Level.INFO, "attaching clean Cantantes instance");
+	public void attachClean(ResultadosFaseNacional instance) {
+		logger.log(Level.INFO, "attaching clean ResultadosFaseNacional instance");
 		try {
 			sessionFactory.getCurrentSession().lock(instance, LockMode.NONE);
 			logger.log(Level.INFO, "attach successful");
@@ -62,8 +62,8 @@ public class CantantesHome {
 		}
 	}
 
-	public void delete(Cantantes persistentInstance) {
-		logger.log(Level.INFO, "deleting Cantantes instance");
+	public void delete(ResultadosFaseNacional persistentInstance) {
+		logger.log(Level.INFO, "deleting ResultadosFaseNacional instance");
 		try {
 			sessionFactory.getCurrentSession().delete(persistentInstance);
 			logger.log(Level.INFO, "delete successful");
@@ -73,10 +73,11 @@ public class CantantesHome {
 		}
 	}
 
-	public Cantantes merge(Cantantes detachedInstance) {
-		logger.log(Level.INFO, "merging Cantantes instance");
+	public ResultadosFaseNacional merge(ResultadosFaseNacional detachedInstance) {
+		logger.log(Level.INFO, "merging ResultadosFaseNacional instance");
 		try {
-			Cantantes result = (Cantantes) sessionFactory.getCurrentSession().merge(detachedInstance);
+			ResultadosFaseNacional result = (ResultadosFaseNacional) sessionFactory.getCurrentSession()
+					.merge(detachedInstance);
 			logger.log(Level.INFO, "merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -85,10 +86,11 @@ public class CantantesHome {
 		}
 	}
 
-	public Cantantes findById(java.lang.String id) {
-		logger.log(Level.INFO, "getting Cantantes instance with id: " + id);
+	public ResultadosFaseNacional findById(java.lang.String id) {
+		logger.log(Level.INFO, "getting ResultadosFaseNacional instance with id: " + id);
 		try {
-			Cantantes instance = (Cantantes) sessionFactory.getCurrentSession().get("persistencias.Cantantes", id);
+			ResultadosFaseNacional instance = (ResultadosFaseNacional) sessionFactory.getCurrentSession()
+					.get("persistencias.ResultadosFaseNacional", id);
 			if (instance == null) {
 				logger.log(Level.INFO, "get successful, no instance found");
 			} else {
@@ -101,10 +103,10 @@ public class CantantesHome {
 		}
 	}
 
-	public List findByExample(Cantantes instance) {
-		logger.log(Level.INFO, "finding Cantantes instance by example");
+	public List findByExample(ResultadosFaseNacional instance) {
+		logger.log(Level.INFO, "finding ResultadosFaseNacional instance by example");
 		try {
-			List results = sessionFactory.getCurrentSession().createCriteria("persistencias.Cantantes")
+			List results = sessionFactory.getCurrentSession().createCriteria("persistencias.ResultadosFaseNacional")
 					.add(Example.create(instance)).list();
 			logger.log(Level.INFO, "find by example successful, result size: " + results.size());
 			return results;

@@ -2,6 +2,10 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
+  <table-filter match-schema="censo_europa" match-name=".*"/>
+  <table-filter match-catalog="censo_europa" match-name="cantantes" exclude="true"/>
   <table-filter match-catalog="censo_europa" match-name="cantantes"/>
   <table-filter match-catalog="censo_europa" match-name="porcentajes_rangoedad"/>
+  <table-filter match-catalog="censo_europa" match-name="resultados_eurovision"/>
+  <table-filter match-catalog="censo_europa" match-name="resultados_fase_nacional"/>
 </hibernate-reverse-engineering>
