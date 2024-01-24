@@ -11,11 +11,12 @@ public class Controlador implements ActionListener{
 	public Controlador(Vista frame) {
 		// TODO Auto-generated constructor stub
 		this.vista= vista;
-		this.vista.btnComenzarInicio.addActionListener(this);
+		//this.vista.btnComenzarInicio.addActionListener(this);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		/*
 		if(e.getSource()==vista.btnComenzarInicio) {
 			//iniciamos proceso de votacion nacional
 			vista.panelInicial.setVisible(false);
@@ -31,7 +32,7 @@ public class Controlador implements ActionListener{
 			}
 			
 		}
-		
+		*/		
 	}
 
 }
