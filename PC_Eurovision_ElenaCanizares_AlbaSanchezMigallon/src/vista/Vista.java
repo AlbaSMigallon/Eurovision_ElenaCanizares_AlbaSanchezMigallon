@@ -21,7 +21,7 @@ public class Vista extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
 	public JPanel panelInicial, panelVotacionesNacionales, panelVotacionesEurovision, panelResultados, panelFinal;
-	public JLabel lblLogoEurovisionInicio, lblBanderaInicio, lblFondoInicio;
+	public JLabel lblFondoInicio, lblLogoInicio;
 	public JLabel lblActuacionEspania, lblActuacionAlemania, lblActuacionFrancia, lblActuacionItalia,
 			lblActuacionPortugal, lblActuacionReinoUnido, lblActuacionPolonia, lblActuacionPaisesBajos,
 			lblActuacionRumania, lblActuacionGrecia;
@@ -52,7 +52,7 @@ public class Vista extends JFrame {
 	 */
 	public Vista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1700, 950);
+		setBounds(100, 100, 1500, 900);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -61,32 +61,32 @@ public class Vista extends JFrame {
 
 		// PANEL INICIAL
 		panelInicial = new JPanel();
-		panelInicial.setBounds(0, 0, 1685, 910);
+		panelInicial.setBounds(0, 0, 1500, 900);
 		contentPane.add(panelInicial);
 		panelInicial.setLayout(null);
 
-		lblLogoEurovisionInicio = new JLabel("");
-		lblLogoEurovisionInicio.setBounds(917, 230, 46, 14);
-		panelInicial.add(lblLogoEurovisionInicio);
-
-		lblBanderaInicio = new JLabel("");
-		lblBanderaInicio.setBounds(948, 342, 46, 14);
-		panelInicial.add(lblBanderaInicio);
+		
 
 		btnComenzarInicio = new JButton("COMENZAR");
 		btnComenzarInicio.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
 		btnComenzarInicio.setBounds(872, 506, 111, 38);
 		panelInicial.add(btnComenzarInicio);
+		
+		lblLogoInicio = new JLabel("");
+		lblLogoInicio.setBounds(0, 0, 905, 466);
+		lblLogoInicio.setIcon(new ImageIcon(
+				"C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\logo_alemania.png"));
+		panelInicial.add(lblLogoInicio);
 
 		lblFondoInicio = new JLabel("");
 		lblFondoInicio.setBounds(0, 0, 1685, 910);
 		lblFondoInicio.setIcon(new ImageIcon(
-				"C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\fondo2.jpg"));
+				"C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\logos\\fondo2.jpg"));
 		panelInicial.add(lblFondoInicio);
-
+/*
 		// PANEL VOTOS NACIONALES
 		panelVotacionesNacionales = new JPanel();
-		panelVotacionesNacionales.setBounds(0, 0, 1685, 910);
+		panelVotacionesNacionales.setBounds(0, 0, 1500, 900);
 		contentPane.add(panelVotacionesNacionales);
 		panelVotacionesNacionales.setLayout(null);
 
@@ -191,7 +191,7 @@ public class Vista extends JFrame {
 
 		// PANEL VOTOS POR PAISES EUROVISION
 		panelVotacionesEurovision = new JPanel();
-		panelVotacionesEurovision.setBounds(0, 0, 1685, 910);
+		panelVotacionesEurovision.setBounds(0, 0, 1500, 900);
 		contentPane.add(panelVotacionesEurovision);
 		panelVotacionesNacionales.setLayout(null);
 
@@ -203,7 +203,7 @@ public class Vista extends JFrame {
 
 		// PANEL RESULTADOS FINALES EUROVISION
 		panelResultados = new JPanel();
-		panelResultados.setBounds(0, 0, 1685, 910);
+		panelResultados.setBounds(0, 0, 1500, 900);
 		contentPane.add(panelResultados);
 		panelResultados.setLayout(null);
 
@@ -215,15 +215,15 @@ public class Vista extends JFrame {
 
 		// PANEL FINAL
 		panelFinal = new JPanel();
-		panelFinal.setBounds(0, 0, 1685, 910);
+		panelFinal.setBounds(0, 0, 1500, 900);
 		contentPane.add(panelFinal);
 		panelFinal.setLayout(null);
 
 		lblFondoInicio = new JLabel("");
-		lblFondoInicio.setBounds(0, 0, 1685, 910);
+		lblFondoInicio.setBounds(0, 0, 1500, 900);
 		lblFondoInicio.setIcon(new ImageIcon(
 				"C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\fondo2.jpg"));
 		panelInicial.add(lblFondoInicio);
-
+*/
 	}
 }
