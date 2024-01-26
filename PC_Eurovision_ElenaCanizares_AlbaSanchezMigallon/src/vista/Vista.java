@@ -58,7 +58,7 @@ public class Vista extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		/*
+		
 		// PANEL INICIAL
 		panelInicial = new JPanel();
 		panelInicial.setBounds(0, 0, 1500, 900);
@@ -83,7 +83,7 @@ public class Vista extends JFrame {
 		lblFondoInicio.setIcon(new ImageIcon(
 				"C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\fondo2.jpg"));
 		panelInicial.add(lblFondoInicio);
-*/
+		/*
 		// PANEL VOTOS NACIONALES
 		panelVotacionesNacionales = new JPanel();
 		panelVotacionesNacionales.setBounds(0, 0, 1500, 900);
