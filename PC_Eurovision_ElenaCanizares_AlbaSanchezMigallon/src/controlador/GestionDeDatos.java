@@ -63,9 +63,8 @@ public class GestionDeDatos {
 			session = this.sessionFactory.getCurrentSession();
 			session.beginTransaction();
 
-			Query query = sessionFactory.getCurrentSession().createQuery("FROM PORCENTAJES_RANGOEDAD");
+			Query<PorcentajesRangoedad> query = this.sessionFactory.getCurrentSession().createQuery("FROM PorcentajesRangoedad");
 			paises = query.list();
-			session.getTransaction().commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			if (null != session) {
@@ -167,7 +166,6 @@ public class GestionDeDatos {
 	}
 
 	public SessionFactory inicializarPoolConexiones() {
-		ResultadosFaseNacional resultadoFaseNacional = null;
 		try {
 			Configuration configuration = new Configuration();
 			configuration.configure("hibernate.cfg.xml");

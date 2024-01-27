@@ -13,7 +13,7 @@
         </property>
         <property name="espania" type="int">
             <column name="ESPANIA" not-null="true">
-                <comment>Puntacion final de España</comment>
+                <comment>Puntacion final de Espania</comment>
             </column>
         </property>
         <property name="alemania" type="int">

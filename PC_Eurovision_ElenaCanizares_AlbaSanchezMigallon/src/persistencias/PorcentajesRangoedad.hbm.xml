@@ -8,32 +8,32 @@
         </id>
         <property name="rango19" type="int">
             <column name="RANGO_1_9" not-null="true">
-                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 1 y 9 años</comment>
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 1 y 9 anios</comment>
             </column>
         </property>
         <property name="rango1017" type="int">
             <column name="RANGO_10_17" not-null="true">
-                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 10 y 17 años</comment>
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 10 y 17 anios</comment>
             </column>
         </property>
         <property name="rango1825" type="int">
             <column name="RANGO_18_25" not-null="true">
-                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 18 y 25 años</comment>
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 18 y 25 anios</comment>
             </column>
         </property>
         <property name="rango2640" type="int">
             <column name="RANGO_26_40" not-null="true">
-                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 26 y 40 años</comment>
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 26 y 40 anios</comment>
             </column>
         </property>
         <property name="rango4165" type="int">
             <column name="RANGO_41_65" not-null="true">
-                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 41 y 65 años</comment>
+                <comment>Porcentaje de habitantes cuya edad esta comprendida entre 41 y 65 anios</comment>
             </column>
         </property>
         <property name="rangoMas66" type="int">
             <column name="RANGO_MAS_66" not-null="true">
-                <comment>Porcentaje de habitantes cuya edad es superior o igual a 66 años</comment>
+                <comment>Porcentaje de habitantes cuya edad es superior o igual a 66 anios</comment>
             </column>
         </property>
         <property name="totalHabitantes" type="int">

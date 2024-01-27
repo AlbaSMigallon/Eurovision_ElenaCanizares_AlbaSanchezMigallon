@@ -16,6 +16,7 @@ public class ServidorNacional {
 					Socket conexion=socketEscucha.accept();
 			        HiloVotacionNacional hilo=new HiloVotacionNacional(conexion);
 			        hilo.start();
+			        hilo.join();
 				}
 				catch(IOException e) {
 					e.printStackTrace();

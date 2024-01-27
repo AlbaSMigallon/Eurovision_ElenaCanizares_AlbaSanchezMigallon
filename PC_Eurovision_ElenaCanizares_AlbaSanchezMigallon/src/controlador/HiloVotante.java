@@ -97,6 +97,8 @@ public class HiloVotante extends Thread {
 			if (random >= 96 && random <= 100) {
 				resultado = "Grecia";
 			}
+			Random randomNuevo = new Random();
+			random = randomNuevo.nextInt(100) + 1;
 		} while (resultado.equals(this.getPais()));
 
 		return resultado;
@@ -138,6 +140,8 @@ public class HiloVotante extends Thread {
 			if (random >= 96 && random <= 100) {
 				resultado = "Grecia";
 			}
+			Random randomNuevo = new Random();
+			random = randomNuevo.nextInt(100) + 1;
 		} while (resultado.equals(this.getPais()));
 
 		return resultado;
@@ -179,6 +183,8 @@ public class HiloVotante extends Thread {
 			if (random >= 96 && random <= 100) {
 				resultado = "Grecia";
 			}
+			Random randomNuevo = new Random();
+			random = randomNuevo.nextInt(100) + 1;
 		} while (resultado.equals(this.getPais()));
 
 		return resultado;
@@ -220,6 +226,8 @@ public class HiloVotante extends Thread {
 			if (random >= 96 && random <= 100) {
 				resultado = "Grecia";
 			}
+			Random randomNuevo = new Random();
+			random = randomNuevo.nextInt(100) + 1;
 		} while (resultado.equals(this.getPais()));
 
 		return resultado;

@@ -21,9 +21,12 @@ public class VotacionNacional extends Thread {
 	 */
 	
 	List<ResultadosFaseNacional> resultadosNacionales;
+	GestionDeDatos gBD;
+	
 
-	public VotacionNacional() {
+	public VotacionNacional(GestionDeDatos gBD) {
 		this.resultadosNacionales= new ArrayList<ResultadosFaseNacional>();
+		this.gBD= gBD;
 
 	}
 
@@ -43,56 +46,30 @@ public class VotacionNacional extends Thread {
 
 	}
 	
-	public List<PorcentajesRangoedad> getPorcentajes(SessionFactory sessionFactory) {// mover a gestiondedatos
-		Session session = null;
-		List<PorcentajesRangoedad> paises = null;
-
-		try {
-			session = sessionFactory.getCurrentSession();
-			session.beginTransaction();
-
-			Query query = sessionFactory.getCurrentSession().createQuery("FROM PORCENTAJES_RANGOEDAD");
-			paises = query.list();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			if (null != session) {
-				session.getTransaction().rollback();
-			}
-			throw e;
-		} finally {
-			if (null != session) {
-				session.close();
-			}
-		}
-
-		return paises;
-	}
+	
 
 	
 	public void run() {
-		/////////////////////////////////////////////
-		SessionFactory sessionFactory = null;
+
 		ResultadosFaseNacional resultadoFaseNacional = null;
 		try {
-			Configuration configuration = new Configuration();
-			configuration.configure("hibernate.cfg.xml");
-			sessionFactory = configuration.buildSessionFactory();
 
-			List<PorcentajesRangoedad> porcentajes = getPorcentajes(sessionFactory);
+			List<PorcentajesRangoedad> porcentajes = gBD.getPorcentajes();
 
 			for (int i = 0; i < porcentajes.size(); i++) {
+				System.out.println("Enviamos las votaciones de "+porcentajes.get(i).getNombrePais());
 				resultadoFaseNacional=generarClientes(porcentajes.get(i));
 				this.resultadosNacionales.add(resultadoFaseNacional);
+				//Insercion de resultados por pais-cliente en tabla
+				//this.gBD.insertResultadosFaseNacional(resultadoFaseNacional);
 			}
+			
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-		} finally {
-			if (sessionFactory != null) {
-				sessionFactory.close();
-			}
-		}
+		} 
 	}
 
 

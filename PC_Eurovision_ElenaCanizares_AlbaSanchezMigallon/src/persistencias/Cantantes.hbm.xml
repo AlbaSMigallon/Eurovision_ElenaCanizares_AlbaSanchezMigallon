@@ -13,7 +13,7 @@
         </property>
         <property name="nombreCancion" type="string">
             <column length="100" name="NOMBRE_CANCION">
-                <comment>Nombre de la canción que presenta</comment>
+                <comment>Nombre de la cancion que presenta</comment>
             </column>
         </property>
     </class>

@@ -8,15 +8,17 @@ import vista.Vista;
 public class Controlador implements ActionListener {
 	public Vista vista;
 	public VotacionNacional votacionNacional;
+	public GestionDeDatos gBD;
 
 	public Controlador(Vista frame) {
 		// TODO Auto-generated constructor stub
 		this.vista = vista;
 		// this.vista.btnComenzarInicio.addActionListener(this);
+		this.gBD= new GestionDeDatos();
+		iniciarVotaciones();
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void iniciarVotaciones() {
 		// TODO Auto-generated method stub
 		try {
 			/*
@@ -28,16 +30,30 @@ public class Controlador implements ActionListener {
 			 * disponible cuando acabe toda votacion nacional, de esta forma nos aseguramos
 			 * un correcto insert
 			 */
-			/////////// consulta para el logo
+			
+			/*
+			 *  Pintar logo del pais ganador de la anterior gala. La gala de eurovision se
+			 *  celebra en el pais ganador del anio anterior y en logo ponen la bandera del
+			 *  pais. Nosotros simularemos lo mismo
+			 */
+			
+			/*
+			 * Delete en la tabla RESULTADOS_FASE_NACIONAL 
+			 */
+			
+			votacionNacional = new VotacionNacional(this.gBD);
+		
 			votacionNacional.start();
 			votacionNacional.join();
-			// habilitamso poder pasar a la fase eurovision tras terminar toda la parte
-			// nacional
-			vista.btnComenzarVotaciones.setEnabled(true);
+			
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
 		if (e.getSource() == vista.btnComenzarInicio) {
 			// iniciamos proceso de votacion nacional
 			vista.panelInicial.setVisible(false);

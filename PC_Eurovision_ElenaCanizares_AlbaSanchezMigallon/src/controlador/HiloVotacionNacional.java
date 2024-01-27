@@ -41,17 +41,23 @@ public class HiloVotacionNacional extends Thread {
 			String nombrePais = bf.readLine();
 			String rangoEdad = bf.readLine();
 			int numHilos = Integer.parseInt(bf.readLine());
+			System.out.println("Pais: " +nombrePais + " - Rango: "+ rangoEdad+ " - Num hilos: "+ numHilos);
 			String result = "";
 
 			for (int i = 0; i < numHilos; i++) {
 
 				try {
 					// Creamos hilo, lanzamos, esperamos, concatenamos resultado, el hilo duerm
-					HiloVotante votante = new HiloVotante(rangoEdad, nombrePais);
+					HiloVotante votante = new HiloVotante(nombrePais, rangoEdad);
 					votante.start();
 					votante.join();
-					result = result + ";" + votante.getVoto();// Concatenamos con un ';'
-					Thread.sleep(200);// hilo duerme 0,2 milisegundos
+					if(result.equals("")) {
+						result = votante.getVoto();
+					}else  {
+						result = result + ";" + votante.getVoto();// Concatenamos con un ';'
+					}
+					
+					//Thread.sleep(200);// hilo duerme 0,2 segundos
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
