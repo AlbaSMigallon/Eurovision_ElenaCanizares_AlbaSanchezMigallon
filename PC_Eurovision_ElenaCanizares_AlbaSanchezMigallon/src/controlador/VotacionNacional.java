@@ -60,8 +60,9 @@ public class VotacionNacional extends Thread {
 				System.out.println("Enviamos las votaciones de "+porcentajes.get(i).getNombrePais());
 				resultadoFaseNacional=generarClientes(porcentajes.get(i));
 				this.resultadosNacionales.add(resultadoFaseNacional);
-				//Insercion de resultados por pais-cliente en tabla
-				//this.gBD.insertResultadosFaseNacional(resultadoFaseNacional);
+				//InserT de resultados por pais-cliente en tabla
+				this.gBD.insertResultadosFaseNacional(resultadoFaseNacional);
+				
 			}
 			
 			

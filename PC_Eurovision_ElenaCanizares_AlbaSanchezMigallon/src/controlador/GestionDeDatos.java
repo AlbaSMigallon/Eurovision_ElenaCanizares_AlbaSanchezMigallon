@@ -35,7 +35,7 @@ public class GestionDeDatos {
 			session = this.sessionFactory.getCurrentSession();
 			session.beginTransaction();
 
-			session.save(resultado);
+			session.save(resultado);////
 
 			session.getTransaction().commit();
 		} catch (HibernateException e) {
@@ -84,7 +84,7 @@ public class GestionDeDatos {
 	 * metodo para obtener el nombre del pais ganador de la gala anterior
 	 */
 	public String getPaisGanador() {
-		String ganador = null;
+		String ganador = "";
 		Session session = null;
 
 		try {
@@ -96,15 +96,9 @@ public class GestionDeDatos {
 
 			Query<String> query = session.createSQLQuery(sb.toString());
 			ganador = query.uniqueResult();
-
-			if (ganador == null) {
-				// la tabla esta vacia, cambiamos el String para que al concatenar la ruta para
-				// pintar el logo tire del generico
-				ganador = "Eurovision";
-
-			}
+			System.out.println("Ganador gala anterior: "+ganador);
+				
 			session.getTransaction().commit();
-
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			if (null != session) {

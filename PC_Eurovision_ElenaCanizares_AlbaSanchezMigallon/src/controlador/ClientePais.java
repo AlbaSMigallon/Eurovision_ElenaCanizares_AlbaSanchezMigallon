@@ -82,23 +82,23 @@ public class ClientePais {
 
         Map<Integer, List<String>> paisesPorPuntuacion = new HashMap<>();
 
-        // Agrupa los paises por puntuacion
+        // agrupa los paises por puntuacion
         for (Entry<String, Integer> entrada : this.votaciones.entrySet()) {
             int puntuacion = entrada.getValue();
             paisesPorPuntuacion.computeIfAbsent(puntuacion, k -> new ArrayList<>()).add(entrada.getKey());
         }
 
-        // Resuelve los empates y fija los ganadores
+        // resuelve los empates y fija los ganadores
         for (int i = 0; i < 3; i++) {
             int puntuacion = ganadores.get(i);
             List<String> paisesEmpatados = paisesPorPuntuacion.get(puntuacion);
 
-            // Si hay empate, decide el orden aleatoriamente
+            // si hay empate, decide el orden aleatoriamente
             if (paisesEmpatados.size() > 1) {
                 Collections.shuffle(paisesEmpatados);
             }
 
-            // Fija el ganador segun la posición
+            // fija el ganador segun la posición
             if (i == 0) {
                 this.resultadoNacional.setPaisPrimero(paisesEmpatados.get(0));
             } else if (i == 1) {
@@ -106,6 +106,8 @@ public class ClientePais {
             } else if (i == 2) {
                 this.resultadoNacional.setPaisTercero(paisesEmpatados.get(0));
             }
+            
+            this.resultadoNacional.setPais(this.porcentajes.getNombrePais());
         }
 
         System.out.println("Las votaciones en " + porcentajes.getNombrePais() + " son:");

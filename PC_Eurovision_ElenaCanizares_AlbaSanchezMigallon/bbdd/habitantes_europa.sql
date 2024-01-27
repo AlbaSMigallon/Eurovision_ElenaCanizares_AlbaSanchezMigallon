@@ -16,7 +16,7 @@ CREATE TABLE PORCENTAJES_RANGOEDAD (
     CONSTRAINT PK_PORCENTAJES_RANGOEDAD PRIMARY KEY (NOMBRE_PAIS)
 );
 
-/*Se insertan los datos para España*/
+/*Se insertan los datos para Espania*/
 INSERT INTO PORCENTAJES_RANGOEDAD (NOMBRE_PAIS, RANGO_1_9, RANGO_10_17, RANGO_18_25, RANGO_26_40, RANGO_41_65, RANGO_MAS_66, TOTAL_HABITANTES)
 VALUES ('Espania', 10, 8, 14, 28, 25, 15, 47420000);
 
@@ -57,19 +57,19 @@ INSERT INTO PORCENTAJES_RANGOEDAD (NOMBRE_PAIS, RANGO_1_9, RANGO_10_17, RANGO_18
 VALUES ('Grecia', 7, 5, 17, 29, 25, 17, 10640000);
 
 
-/*Se crea la tabla de CANTANTES para guardar la informacion de cada uno de los aspirantes a ganar Eurovisión*/
+/*Se crea la tabla de CANTANTES para guardar la informacion de cada uno de los aspirantes a ganar Eurovision*/
 
 CREATE TABLE CANTANTES (
 	PAIS VARCHAR(20) NOT NULL COMMENT 'Nombre del pais del cantante',
     NOMBRE VARCHAR(20) NOT NULL COMMENT 'Nombre del cantante',
-    NOMBRE_CANCION VARCHAR(100) COMMENT 'Nombre de la canción que presenta',
+    NOMBRE_CANCION VARCHAR(100) COMMENT 'Nombre de la cancion que presenta',
     CONSTRAINT PK_CANTANTES PRIMARY KEY (PAIS)
 );
 
 INSERT INTO CANTANTES (PAIS, NOMBRE, NOMBRE_CANCION)
 VALUES ('Espania', 'Joel', 'Un elefante se balanceaba'), 
 ('Alemania', 'Hilda', 'Que llueva, que llueva'), 
-('Francia', 'Bastian', 'Estrellita dónde estás'), 
+('Francia', 'Bastian', 'Estrellita donde estas'), 
 ('Italia', 'Gianmarco', 'El senior Don Gato'), 
 ('Portugal', 'Matilde', 'El corro de la patata'), 
 ('Reino Unido', 'Hanna', 'Cucu cantaba la rana'), 
@@ -82,9 +82,9 @@ VALUES ('Espania', 'Joel', 'Un elefante se balanceaba'),
 
 /*Se cre una tabla de RESULTADOS FINALES DE LA GALA EUROVISION para guardar los resultados de todos los paises*/
 CREATE TABLE RESULTADOS_EUROVISION (
-	ID_RESULTADOS_EUROVISION INT AUTO_INCREMENT NOT NULL COMMENT 'ID de resultados de Eurovisión',
+	ID_RESULTADOS_EUROVISION INT AUTO_INCREMENT NOT NULL COMMENT 'ID de resultados de Eurovision',
     FECHA_GALA DATE NULL COMMENT 'Fecha de la Gala de Eurovision',
-    ESPANIA INT NULL COMMENT 'Puntacion final de España',
+    ESPANIA INT NULL COMMENT 'Puntacion final de Espania',
     ALEMANIA INT NULL COMMENT 'Puntacion final de Alemania',
     FRANCIA INT NULL COMMENT 'Puntacion final de Francia',
     ITALIA INT NULL COMMENT 'Puntacion final de Italia',
@@ -94,7 +94,7 @@ CREATE TABLE RESULTADOS_EUROVISION (
     PAISES_BAJOS INT  NULL COMMENT 'Puntacion final de Paises Bajos',
     RUMANIA INT NULL COMMENT 'Puntacion final de Rumania',
     GRECIA INT NULL COMMENT 'Puntacion final de Grecia',
-    PAIS_GANADOR VARCHAR(20) NULL COMMENT 'Nombre del país ganador',
+    PAIS_GANADOR VARCHAR(20) NULL COMMENT 'Nombre del pais ganador',
     CONSTRAINT PK_RESULTADOS_EUROVISION PRIMARY KEY (ID_RESULTADOS_EUROVISION)
 );
 

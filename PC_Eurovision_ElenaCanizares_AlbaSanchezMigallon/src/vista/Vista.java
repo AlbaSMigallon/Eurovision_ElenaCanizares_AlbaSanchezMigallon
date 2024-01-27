@@ -74,8 +74,6 @@ public class Vista extends JFrame {
 		
 		lblLogoInicio = new JLabel("");
 		lblLogoInicio.setBounds(297, 189, 887, 405);
-		lblLogoInicio.setIcon(new ImageIcon(
-				"C:\\\\Users\\\\Alba\\\\git\\\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\\\resources\\logos\\logo_espania.png"));
 		panelInicial.add(lblLogoInicio);
 
 		lblFondoInicio = new JLabel("");
