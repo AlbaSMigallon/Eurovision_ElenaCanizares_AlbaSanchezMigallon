@@ -1,6 +1,5 @@
 package controlador;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -12,38 +11,12 @@ import org.hibernate.query.Query;
 import persistencias.PorcentajesRangoedad;
 import persistencias.ResultadosFaseNacional;
 
-public class VotacionNacional extends Thread {
+public class GestionDeDatos {
 	/*
-	 * Este hilo lo creamos para gestionar todas la fase de votaciones nacionales.
-	 * Hacemos esto para controlar que cuando acabe este proceso, cuando el hilo no
-	 * este vivo, hagamos el insert en la BBDD y tambien podamos pasar a la pantalla
-	 * de resultados, sabiendo que ya tenemos todo el proceso finalizado
+	 * Clase utilizada para gestionar datos
 	 */
 	
-	List<ResultadosFaseNacional> resultadosNacionales;
-
-	public VotacionNacional() {
-		this.resultadosNacionales= new ArrayList<ResultadosFaseNacional>();
-
-	}
-
-	
-	
-	public ResultadosFaseNacional generarClientes(PorcentajesRangoedad porcentajes) {
-		ResultadosFaseNacional resultadoFaseNacional = null;
-		try {
-			ClientePais cliente = new ClientePais(porcentajes);
-			resultadoFaseNacional= new ResultadosFaseNacional();
-			resultadoFaseNacional=cliente.iniciarCliente();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return resultadoFaseNacional;
-
-	}
-	
-	public List<PorcentajesRangoedad> getPorcentajes(SessionFactory sessionFactory) {// mover a gestiondedatos
+	public List<PorcentajesRangoedad> getPorcentajes(SessionFactory sessionFactory) {
 		Session session = null;
 		List<PorcentajesRangoedad> paises = null;
 
@@ -69,8 +42,7 @@ public class VotacionNacional extends Thread {
 	}
 
 	
-	public void run() {
-		/////////////////////////////////////////////
+	public void getPorcentajesRangoedad() {
 		SessionFactory sessionFactory = null;
 		ResultadosFaseNacional resultadoFaseNacional = null;
 		try {
@@ -80,11 +52,7 @@ public class VotacionNacional extends Thread {
 
 			List<PorcentajesRangoedad> porcentajes = getPorcentajes(sessionFactory);
 
-			for (int i = 0; i < porcentajes.size(); i++) {
-				resultadoFaseNacional=generarClientes(porcentajes.get(i));
-				this.resultadosNacionales.add(resultadoFaseNacional);
-			}
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -94,6 +62,5 @@ public class VotacionNacional extends Thread {
 			}
 		}
 	}
-
 
 }
