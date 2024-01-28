@@ -78,7 +78,7 @@ public class HiloVotante extends Thread {
 
 			result = this.getVoto();// extrae el voto y lo carga en el result
 
-			Thread.sleep(200);// hilo duerme 0,2 segundos
+			Thread.sleep(50);// hilo duerme 0,2 segundos
 
 			// envia el resultado
 			os = socket.getOutputStream();

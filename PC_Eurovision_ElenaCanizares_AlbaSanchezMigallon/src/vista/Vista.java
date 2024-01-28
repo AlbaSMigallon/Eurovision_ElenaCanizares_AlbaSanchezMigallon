@@ -81,12 +81,13 @@ public class Vista extends JFrame {
 		lblFondoInicio.setIcon(new ImageIcon(
 				"C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\fondo2.jpg"));
 		panelInicial.add(lblFondoInicio);
-		/*
+	
 		// PANEL VOTOS NACIONALES
 		panelVotacionesNacionales = new JPanel();
 		panelVotacionesNacionales.setBounds(0, 0, 1500, 900);
 		contentPane.add(panelVotacionesNacionales);
 		panelVotacionesNacionales.setLayout(null);
+		panelVotacionesNacionales.setVisible(false);
 
 		// label de fotos actuaciones
 
@@ -187,13 +188,9 @@ public class Vista extends JFrame {
 		panelVotacionesNacionales.add(lblTaylorPaElena);
 
 		btnComenzarVotaciones = new JButton("COMENZAR");
-		btnComenzarVotaciones.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnComenzarVotaciones.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
 		btnComenzarVotaciones.setBounds(742, 708, 89, 23);
-		btnComenzarVotaciones.setEnabled(true);
+		btnComenzarVotaciones.setEnabled(false);
 		panelVotacionesNacionales.add(btnComenzarVotaciones);
 
 		lblFondoInicio = new JLabel("");

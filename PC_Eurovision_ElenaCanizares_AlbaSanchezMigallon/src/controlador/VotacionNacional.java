@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 
 import persistencias.PorcentajesRangoedad;
 import persistencias.ResultadosFaseNacional;
+import vista.Vista;
 
 public class VotacionNacional extends Thread {
 	/*
@@ -20,12 +21,13 @@ public class VotacionNacional extends Thread {
 	 * de resultados, sabiendo que ya tenemos todo el proceso finalizado
 	 */
 
-	List<ResultadosFaseNacional> resultadosNacionales;
 	GestionDeDatos gBD;
+	Vista vista;
 
-	public VotacionNacional(GestionDeDatos gBD) {
-		this.resultadosNacionales = new ArrayList<ResultadosFaseNacional>();
+	public VotacionNacional(GestionDeDatos gBD, Vista vista) {
+
 		this.gBD = gBD;
+		this.vista = vista;
 
 	}
 
@@ -73,6 +75,12 @@ public class VotacionNacional extends Thread {
 																				// tabla
 
 			}
+			
+			/*
+			 * Aqui lo que hacemos es habilitar el voton de pasar a la fase de votacion eurovision cuando todo el proceso de votacion nacional acabe.
+			 * De esta manera controlamos que se empiece laa fase de suma de votos finales sin que termine la votacion nacional
+			 */
+			vista.btnComenzarVotaciones.setEnabled(true);
 
 		} catch (Exception e) {
 			e.printStackTrace();
