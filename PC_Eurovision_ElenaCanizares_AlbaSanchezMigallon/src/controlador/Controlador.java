@@ -29,6 +29,7 @@ public class Controlador implements ActionListener {
 		 */
 		// TODO Auto-generated method stub
 		try {
+
 			/*
 			 * Pintar logo del pais ganador de la anterior gala. La gala de eurovision se
 			 * celebra en el pais ganador del anio anterior y en logo ponen la bandera del
@@ -77,7 +78,7 @@ public class Controlador implements ActionListener {
 		if (e.getSource() == vista.btnComenzarInicio) {
 			// pasamos a pantalla de votacion nacional
 			vista.panelInicial.setVisible(false);
-			vista.panelVotacionesNacionales.setVisible(true);
+			//vista.panelVotacionesNacionales.setVisible(true);
 
 		}
 

@@ -1,10 +1,26 @@
 package controlador;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.net.Socket;
 import java.util.Random;
 
 public class HiloVotante extends Thread {
+	Socket socket;
+
+	public HiloVotante(Socket socket) {
+		this.socket = socket;
+	}
+
 	/*
-	 * Esta clase hilo se encarga de determinar el voto teniendo en cuenta la franja de edad y el filtro de no votar al pais de procedencia del voto
+	 * Esta clase hilo se encarga de determinar el voto teniendo en cuenta la franja
+	 * de edad y el filtro de no votar al pais de procedencia del voto
 	 */
 	private String voto;
 	private String rangoEdad;
@@ -40,29 +56,132 @@ public class HiloVotante extends Thread {
 		this.pais = pais;
 	}
 
-	public void run() {
+	private void escuchar() {
 
-		Random random = new Random();
-		int randomNumber = random.nextInt(100) + 1;
+		InputStream is = null;
+		InputStreamReader isr = null;
+		BufferedReader bf = null;
+		OutputStream os = null;
+		PrintWriter pw = null;
+		try {
+			System.out.println("Conexion recibida");
+			is = socket.getInputStream();
+			isr = new InputStreamReader(is);
+			bf = new BufferedReader(isr);
+			this.pais = bf.readLine();
+			this.rangoEdad = bf.readLine();
+
+			System.out.println("Pais: " + this.pais + " - Rango: " + this.rangoEdad);
+			String result = "";
+
+			generarRandom();// genera resultado del voto
+
+			result = this.getVoto();// extrae el voto y lo carga en el result
+
+			Thread.sleep(200);// hilo duerme 0,2 segundos
+
+			// envia el resultado
+			os = socket.getOutputStream();
+			pw = new PrintWriter(os);
+			pw.write(result.toString());
+			pw.flush();
+		} catch (IOException e) {
+			System.out.println("Error al aceptar conexion " + e.getMessage());
+			e.printStackTrace();
+			return;
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(pw);
+			close(os);
+			close(bf);
+			close(isr);
+			close(is);
+			try {
+				if (null != socket) {
+					socket.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private void close(Reader reader) {
+		try {
+			if (null != reader) {
+				reader.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void close(InputStream input) {
+		try {
+			if (null != input) {
+				input.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void close(OutputStream output) {
+		try {
+			if (null != output) {
+				output.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void close(Writer writer) {
+		try {
+			if (null != writer) {
+				writer.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void run() {
+		escuchar();
+		// generarRandom();
+
+	}
+
+	private void generarRandom() {
+		/*
+		 * Genera random para voto y en funcion de la edad del votante determina segun
+		 * intencion de voto porporcionada
+		 */
+		int random = (int) (0 + (Math.random() * 100));
 
 		switch (this.getRangoEdad()) {
 		case "1825":
-			this.voto = obtenerResultado1825(randomNumber);
+			this.voto = obtenerResultado1825(random);
 			break;
 		case "2640":
-			this.voto = obtenerResultado2640(randomNumber);
+			this.voto = obtenerResultado2640(random);
 			break;
 		case "4165":
-			this.voto = obtenerResultado4165(randomNumber);
+			this.voto = obtenerResultado4165(random);
 			break;
 		case "66":
-			this.voto = obtenerResultado66(randomNumber);
+			this.voto = obtenerResultado66(random);
 			break;
 
 		}
 	}
 
 	private String obtenerResultado1825(int random) {
+		/*
+		 * intencion de voto rango 18-25
+		 */
 
 		String resultado = "";
 
@@ -97,8 +216,8 @@ public class HiloVotante extends Thread {
 			if (random >= 96 && random <= 100) {
 				resultado = "Grecia";
 			}
-			Random randomNuevo = new Random();
-			random = randomNuevo.nextInt(100) + 1;
+
+			random = (int) (0 + (Math.random() * 100));
 		} while (resultado.equals(this.getPais()));
 
 		return resultado;
@@ -106,6 +225,9 @@ public class HiloVotante extends Thread {
 	}
 
 	private String obtenerResultado2640(int random) {
+		/*
+		 * intencion de voto rango 26-40
+		 */
 
 		String resultado = "";
 
@@ -140,8 +262,8 @@ public class HiloVotante extends Thread {
 			if (random >= 96 && random <= 100) {
 				resultado = "Grecia";
 			}
-			Random randomNuevo = new Random();
-			random = randomNuevo.nextInt(100) + 1;
+
+			random = (int) (0 + (Math.random() * 100));
 		} while (resultado.equals(this.getPais()));
 
 		return resultado;
@@ -149,6 +271,9 @@ public class HiloVotante extends Thread {
 	}
 
 	private String obtenerResultado4165(int random) {
+		/*
+		 * intencion de voto rango 41-65
+		 */
 
 		String resultado = "";
 
@@ -183,8 +308,8 @@ public class HiloVotante extends Thread {
 			if (random >= 96 && random <= 100) {
 				resultado = "Grecia";
 			}
-			Random randomNuevo = new Random();
-			random = randomNuevo.nextInt(100) + 1;
+
+			random = (int) (0 + (Math.random() * 100));
 		} while (resultado.equals(this.getPais()));
 
 		return resultado;
@@ -192,6 +317,9 @@ public class HiloVotante extends Thread {
 	}
 
 	private String obtenerResultado66(int random) {
+		/*
+		 * intencion de voto rango +65
+		 */
 
 		String resultado = "";
 
@@ -226,8 +354,8 @@ public class HiloVotante extends Thread {
 			if (random >= 96 && random <= 100) {
 				resultado = "Grecia";
 			}
-			Random randomNuevo = new Random();
-			random = randomNuevo.nextInt(100) + 1;
+
+			random = (int) (0 + (Math.random() * 100));
 		} while (resultado.equals(this.getPais()));
 
 		return resultado;

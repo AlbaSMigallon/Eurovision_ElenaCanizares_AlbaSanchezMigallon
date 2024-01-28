@@ -20,8 +20,8 @@ import persistencias.ResultadosFaseNacional;
 
 public class ClientePais {
 	/*
-	 * Cada pais es un cliente. Enviará una peticion al servidor por cada rango de
-	 * edad.
+	 * Cada pais es un cliente. Enviara una peticion al servidor por votante. La
+	 * petincion tendra en pais del votante y el rango de edad
 	 * 
 	 */
 
@@ -33,20 +33,10 @@ public class ClientePais {
 	// posteriormente utilizaremos para hacer el insert
 	private HashMap<String, Integer> votaciones;
 
-	public ClientePais() {
-		super();
-		this.resultadoNacional= new ResultadosFaseNacional();
-		this.resultadoNacional.setPais(porcentajes.getNombrePais());// seteamos el nombre del pais en resultadoNacional
-																	// con el nombre obtenido de la consulta de
-																	// porcentajes
-		inicializarHashMap();// inicializacion del HashMap con keys nombres de paises y values a 0 para ir
-								// sumando
-	}
-
 	public ClientePais(PorcentajesRangoedad porcentajes) {
 		this.porcentajes = porcentajes;
-		this.resultadoNacional= new ResultadosFaseNacional();
-		inicializarHashMap();
+		this.resultadoNacional = new ResultadosFaseNacional();
+		inicializarHashMap();// inicializamos hasmao con nombres de paises
 	}
 
 	public ResultadosFaseNacional getResultadoNacional() {
@@ -78,71 +68,78 @@ public class ClientePais {
 		 * Fijamos los paises votados
 		 */
 		ArrayList<Integer> ganadores = new ArrayList<>(this.votaciones.values());
-        Collections.sort(ganadores, Collections.reverseOrder());
+		Collections.sort(ganadores, Collections.reverseOrder());
 
-        Map<Integer, List<String>> paisesPorPuntuacion = new HashMap<>();
+		Map<Integer, List<String>> paisesPorPuntuacion = new HashMap<>();
 
-        // agrupa los paises por puntuacion
-        for (Entry<String, Integer> entrada : this.votaciones.entrySet()) {
-            int puntuacion = entrada.getValue();
-            paisesPorPuntuacion.computeIfAbsent(puntuacion, k -> new ArrayList<>()).add(entrada.getKey());
-        }
+		// agrupa los paises por puntuacion
+		for (Entry<String, Integer> entrada : this.votaciones.entrySet()) {/////// error
+			int puntuacion = entrada.getValue();
+			paisesPorPuntuacion.computeIfAbsent(puntuacion, k -> new ArrayList<>()).add(entrada.getKey());
+		}
 
-        // resuelve los empates y fija los ganadores
-        for (int i = 0; i < 3; i++) {
-            int puntuacion = ganadores.get(i);
-            List<String> paisesEmpatados = paisesPorPuntuacion.get(puntuacion);
+		// resuelve los empates y fija los ganadores
+		for (int i = 0; i < 3; i++) {
+			int puntuacion = ganadores.get(i);
+			List<String> paisesEmpatados = paisesPorPuntuacion.get(puntuacion);
 
-            // si hay empate, decide el orden aleatoriamente
-            if (paisesEmpatados.size() > 1) {
-                Collections.shuffle(paisesEmpatados);
-            }
+			// si hay empate, decide el orden aleatoriamente
+			if (paisesEmpatados.size() > 1) {
+				Collections.shuffle(paisesEmpatados);
+			}
 
-            // fija el ganador segun la posición
-            if (i == 0) {
-                this.resultadoNacional.setPaisPrimero(paisesEmpatados.get(0));
-            } else if (i == 1) {
-                this.resultadoNacional.setPaisSegundo(paisesEmpatados.get(0));
-            } else if (i == 2) {
-                this.resultadoNacional.setPaisTercero(paisesEmpatados.get(0));
-            }
-            
-            this.resultadoNacional.setPais(this.porcentajes.getNombrePais());
-        }
+			// fija el ganador segun la posicion
+			if (i == 0) {
+				this.resultadoNacional.setPaisPrimero(paisesEmpatados.get(0));
+			} else if (i == 1) {
+				if (paisesEmpatados.get(0).equals(this.resultadoNacional.getPaisPrimero())) {
+					this.resultadoNacional.setPaisSegundo(paisesEmpatados.get(1));
+				} else {
+					this.resultadoNacional.setPaisSegundo(paisesEmpatados.get(0));
+				}
 
-        System.out.println("Las votaciones en " + porcentajes.getNombrePais() + " son:");
-        System.out.println("15 puntos para " + resultadoNacional.getPaisPrimero());
-        System.out.println("10 puntos para " + resultadoNacional.getPaisSegundo());
-        System.out.println("8 puntos para " + resultadoNacional.getPaisTercero());
-    
-	}
+			} else if (i == 2) {
+				if (paisesEmpatados.get(0).equals(this.resultadoNacional.getPaisPrimero())) {
+					if (paisesEmpatados.get(0).equals(this.resultadoNacional.getPaisSegundo())) {
+						this.resultadoNacional.setPaisTercero(paisesEmpatados.get(2));
+					} else {
 
-	private void inicializarHashMap() {
-		this.votaciones = new HashMap<>();
-		votaciones.put("Espania", 0);
-		votaciones.put("Alemania", 0);
-		votaciones.put("Francia", 0);
-		votaciones.put("Italia", 0);
-		votaciones.put("Portugal", 0);
-		votaciones.put("Reino Unido", 0);
-		votaciones.put("Polonia", 0);
-		votaciones.put("Paises Bajos", 0);
-		votaciones.put("Rumania", 0);
-		votaciones.put("Grecia", 0);
+					}
+				} else {
+					if (paisesEmpatados.get(0).equals(this.resultadoNacional.getPaisSegundo())) {
+						this.resultadoNacional.setPaisTercero(paisesEmpatados.get(1));
+					} else {
+						this.resultadoNacional.setPaisTercero(paisesEmpatados.get(0));
+					}
+
+				}
+
+			}
+
+			this.resultadoNacional.setPais(this.porcentajes.getNombrePais());
+		}
+
+		System.out.println("Las votaciones en " + porcentajes.getNombrePais() + " son:");
+		System.out.println("15 puntos para " + resultadoNacional.getPaisPrimero());
+		System.out.println("10 puntos para " + resultadoNacional.getPaisSegundo());
+		System.out.println("8 puntos para " + resultadoNacional.getPaisTercero());
+
 	}
 
 	private void numeroVotos1825() {
 		/*
-		 * Calculamos el numero de hilos que devemos crear por cada rango de edad y, si
-		 * el numero de hilos es menor a 3, creamos 3. Tras el calculo, llamamos al
-		 * metodo calcularVotosNacionales que realiza la peticion al servidorF
+		 * Calculamos el numero de hilos que debemos crear por cada rango de edad y, si
+		 * el numero de hilos es menor a 3, creamos 3
 		 */
-		int numeroHilos = (int)((Double.valueOf(this.porcentajes.getRango1825()) / 100) * Double.valueOf(porcentajes.getTotalHabitantes())) / 500000;
+		int numeroHilos = (int) ((Double.valueOf(this.porcentajes.getRango1825()) / 100)
+				* Double.valueOf(porcentajes.getTotalHabitantes())) / 500000;
 		if (numeroHilos < 3) {
 			numeroHilos = 3;
 		}
 		try {
-			calcularVotosNacionales(this.porcentajes.getNombrePais(), "1825", numeroHilos);
+			for (int i = 0; i < numeroHilos; i++) {
+				calcularVotosNacionales(this.porcentajes.getNombrePais(), "1825");
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,16 +148,19 @@ public class ClientePais {
 
 	private void numeroVotos2640() {
 		/*
-		 * Calculamos el numero de hilos que devemos crear por cada rango de edad y, si
-		 * el numero de hilos es menor a 3, creamos 3. Tras el calculo, llamamos al
-		 * metodo calcularVotosNacionales que realiza la peticion al servidorF
+		 * Calculamos el numero de hilos que debemos crear por cada rango de edad y, si
+		 * el numero de hilos es menor a 3, creamos 3
 		 */
-		int numeroHilos = (int)((Double.valueOf(this.porcentajes.getRango2640()) / 100) * Double.valueOf(porcentajes.getTotalHabitantes())) / 500000;
+		int numeroHilos = (int) ((Double.valueOf(this.porcentajes.getRango2640()) / 100)
+				* Double.valueOf(porcentajes.getTotalHabitantes())) / 500000;
 		if (numeroHilos < 3) {
 			numeroHilos = 3;
 		}
 		try {
-			calcularVotosNacionales(this.porcentajes.getNombrePais(), "2640", numeroHilos);
+			for (int i = 0; i < numeroHilos; i++) {
+				calcularVotosNacionales(this.porcentajes.getNombrePais(), "2640");
+			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -169,16 +169,19 @@ public class ClientePais {
 
 	private void numeroVotos4165() {
 		/*
-		 * Calculamos el numero de hilos que devemos crear por cada rango de edad y, si
-		 * el numero de hilos es menor a 3, creamos 3. Tras el calculo, llamamos al
-		 * metodo calcularVotosNacionales que realiza la peticion al servidorF
+		 * Calculamos el numero de hilos que debemos crear por cada rango de edad y, si
+		 * el numero de hilos es menor a 3, creamos 3
 		 */
-		int numeroHilos = (int)((Double.valueOf(this.porcentajes.getRango4165()) / 100) * Double.valueOf(porcentajes.getTotalHabitantes())) / 500000;
+		int numeroHilos = (int) ((Double.valueOf(this.porcentajes.getRango4165()) / 100)
+				* Double.valueOf(porcentajes.getTotalHabitantes())) / 500000;
 		if (numeroHilos < 3) {
 			numeroHilos = 3;
 		}
 		try {
-			calcularVotosNacionales(this.porcentajes.getNombrePais(), "4165", numeroHilos);
+			for (int i = 0; i < numeroHilos; i++) {
+				calcularVotosNacionales(this.porcentajes.getNombrePais(), "4165");
+			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -187,16 +190,19 @@ public class ClientePais {
 
 	private void numeroVotosMas66() {
 		/*
-		 * Calculamos el numero de hilos que devemos crear por cada rango de edad y, si
-		 * el numero de hilos es menor a 3, creamos 3. Tras el calculo, llamamos al
-		 * metodo calcularVotosNacionales que realiza la peticion al servidorF
+		 * Calculamos el numero de hilos que debemos crear por cada rango de edad y, si
+		 * el numero de hilos es menor a 3, creamos 3
 		 */
-		int numeroHilos = (int)((Double.valueOf(this.porcentajes.getRangoMas66()) / 100) * Double.valueOf(porcentajes.getTotalHabitantes())) / 500000;
+		int numeroHilos = (int) ((Double.valueOf(this.porcentajes.getRangoMas66()) / 100)
+				* Double.valueOf(porcentajes.getTotalHabitantes())) / 500000;
 		if (numeroHilos < 3) {
 			numeroHilos = 3;
 		}
 		try {
-			calcularVotosNacionales(this.porcentajes.getNombrePais(), "66", numeroHilos);
+			for (int i = 0; i < numeroHilos; i++) {
+				calcularVotosNacionales(this.porcentajes.getNombrePais(), "66");
+			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -207,7 +213,7 @@ public class ClientePais {
 	 * @param args
 	 * @throws IOException
 	 */
-	private void calcularVotosNacionales(String pais, String rango, int numeroHilos) throws Exception {
+	private void calcularVotosNacionales(String pais, String rango) throws Exception {////////////////////////
 		// Peticion al servidor
 		Socket socket = null;
 		BufferedReader bfr = null;
@@ -221,21 +227,16 @@ public class ClientePais {
 			pw = new PrintWriter(socket.getOutputStream());
 			pw.print(pais + "\n");// Nombre del pais
 			pw.print(rango + "\n");// Rango edad
-			pw.print(numeroHilos + "\n");// Cantidad de hilos
+
 			pw.flush();
+
 			// lee la respuesta del servidor
 			isr = new InputStreamReader(socket.getInputStream());
 			bfr = new BufferedReader(isr);
-			String resultado = bfr.readLine();
-			System.out.println("El resultado fue:" + resultado);
+			String resultado = bfr.readLine();// respuesta
+			// System.out.println("El resultado fue:" + resultado);
+			this.votaciones.put(resultado, this.votaciones.get(resultado) + 1);
 
-			String[] resultadosRespuesta = resultado.split(";");// Dividimos el string concatenado por ';' para
-																// quedarnos con el nombre de paises votados
-
-			for (int i = 0; i < resultadosRespuesta.length; i++) {
-				this.votaciones.put(resultadosRespuesta[i], this.votaciones.get(resultadosRespuesta[i])+1);// Aniadimos voto al
-																									// hashmap
-			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw e;
@@ -277,16 +278,33 @@ public class ClientePais {
 		}
 	}
 
+	private void inicializarHashMap() {
+		this.votaciones = new HashMap<>();
+		votaciones.put("Espania", 0);
+		votaciones.put("Alemania", 0);
+		votaciones.put("Francia", 0);
+		votaciones.put("Italia", 0);
+		votaciones.put("Portugal", 0);
+		votaciones.put("Reino Unido", 0);
+		votaciones.put("Polonia", 0);
+		votaciones.put("Paises Bajos", 0);
+		votaciones.put("Rumania", 0);
+		votaciones.put("Grecia", 0);
+	}
+
 	public ResultadosFaseNacional iniciarCliente() {
-		// metodo inicial, llamado desde la calse VotacionNacional y que lanza una
-		// peticion al servidor por cada rango de edad
+		// metodo inicial, llamado desde la calse VotacionNacional para calcular numero
+		// de votantes por rango
 		numeroVotos1825();
 		numeroVotos2640();
 		numeroVotos4165();
 		numeroVotosMas66();
 
+		// fija los ganadores por pais
 		fijarGanadores();
-		// devolvemos el resultado de voto del pais
+
+		// devolvemos el resultado de voto del pais a votacion nacional para el
+		// posterior insert
 		return this.resultadoNacional;
 	}
 

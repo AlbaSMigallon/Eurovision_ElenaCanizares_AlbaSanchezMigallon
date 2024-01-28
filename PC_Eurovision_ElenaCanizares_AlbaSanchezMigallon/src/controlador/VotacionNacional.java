@@ -19,25 +19,26 @@ public class VotacionNacional extends Thread {
 	 * este vivo, hagamos el insert en la BBDD y tambien podamos pasar a la pantalla
 	 * de resultados, sabiendo que ya tenemos todo el proceso finalizado
 	 */
-	
+
 	List<ResultadosFaseNacional> resultadosNacionales;
 	GestionDeDatos gBD;
-	
 
 	public VotacionNacional(GestionDeDatos gBD) {
-		this.resultadosNacionales= new ArrayList<ResultadosFaseNacional>();
-		this.gBD= gBD;
+		this.resultadosNacionales = new ArrayList<ResultadosFaseNacional>();
+		this.gBD = gBD;
 
 	}
 
-	
-	
 	public ResultadosFaseNacional generarClientes(PorcentajesRangoedad porcentajes) {
+		/*
+		 * Crea los clientes, uno por pais y le pasa los datos de los porcentajes por
+		 * rango de edad
+		 */
 		ResultadosFaseNacional resultadoFaseNacional = null;
 		try {
 			ClientePais cliente = new ClientePais(porcentajes);
-			resultadoFaseNacional= new ResultadosFaseNacional();
-			resultadoFaseNacional=cliente.iniciarCliente();
+			resultadoFaseNacional = new ResultadosFaseNacional();
+			resultadoFaseNacional = cliente.iniciarCliente();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -45,10 +46,7 @@ public class VotacionNacional extends Thread {
 		return resultadoFaseNacional;
 
 	}
-	
-	
 
-	
 	public void run() {
 
 		ResultadosFaseNacional resultadoFaseNacional = null;
@@ -56,22 +54,30 @@ public class VotacionNacional extends Thread {
 
 			List<PorcentajesRangoedad> porcentajes = gBD.getPorcentajes();
 
+			/*
+			 * Recorremos la lista de porcentajes, que tiene la lista de cada pais y su
+			 * rango de edad. por cada pais nor creamos el cliente del pais y le pasamos el
+			 * objeto de porcentajes para que el cliente pueda luego tratarlos y crear una
+			 * peticion por cada votante segun rango
+			 */
 			for (int i = 0; i < porcentajes.size(); i++) {
-				System.out.println("Enviamos las votaciones de "+porcentajes.get(i).getNombrePais());
-				resultadoFaseNacional=generarClientes(porcentajes.get(i));
-				this.resultadosNacionales.add(resultadoFaseNacional);
-				//InserT de resultados por pais-cliente en tabla
-				this.gBD.insertResultadosFaseNacional(resultadoFaseNacional);
-				
+				System.out.println("Enviamos las votaciones de " + porcentajes.get(i).getNombrePais());
+				resultadoFaseNacional = generarClientes(porcentajes.get(i));
+				// this.resultadosNacionales.add(resultadoFaseNacional);
+				/*
+				 * AQUI YA TENEMOS LOS RESULTADOS POR PAIS. Ya se hizo todo el proceso de
+				 * cliente servidor
+				 */
+
+				this.gBD.insertResultadosFaseNacional(resultadoFaseNacional);// InserT de resultados por pais-cliente en
+																				// tabla
+
 			}
-			
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
-		} 
+		}
 	}
-
 
 }
