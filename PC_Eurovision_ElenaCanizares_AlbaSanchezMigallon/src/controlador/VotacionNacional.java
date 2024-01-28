@@ -80,6 +80,7 @@ public class VotacionNacional extends Thread {
 			 * Aqui lo que hacemos es habilitar el voton de pasar a la fase de votacion eurovision cuando todo el proceso de votacion nacional acabe.
 			 * De esta manera controlamos que se empiece laa fase de suma de votos finales sin que termine la votacion nacional
 			 */
+			vista.btnComenzarVotaciones.setName("COMENZAR");
 			vista.btnComenzarVotaciones.setEnabled(true);
 
 		} catch (Exception e) {

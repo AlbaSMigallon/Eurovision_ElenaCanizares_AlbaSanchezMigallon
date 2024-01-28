@@ -184,10 +184,10 @@ public class Vista extends JFrame {
 
 		lblTaylorPaElena = new JLabel("");
 		lblTaylorPaElena.setBounds(153, 454, 302, 456);
-		lblTaylorPaElena.setIcon(new ImageIcon("C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\Taylor_ConSombra\\taylor1.png"));
+		lblTaylorPaElena.setIcon(new ImageIcon("C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\taylor\\taylor1.png"));
 		panelVotacionesNacionales.add(lblTaylorPaElena);
 
-		btnComenzarVotaciones = new JButton("COMENZAR");
+		btnComenzarVotaciones = new JButton("ESPERANDO");
 		btnComenzarVotaciones.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
 		btnComenzarVotaciones.setBounds(742, 708, 89, 23);
 		btnComenzarVotaciones.setEnabled(false);
