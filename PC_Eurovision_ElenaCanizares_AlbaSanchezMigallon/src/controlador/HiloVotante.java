@@ -78,7 +78,7 @@ public class HiloVotante extends Thread {
 
 			result = this.getVoto();// extrae el voto y lo carga en el result
 
-			Thread.sleep(50);// hilo duerme 0,2 segundos
+			//Thread.sleep(200);// hilo duerme 0,2 segundos/////////////////////////////////////////////////////////////////////////////////////
 
 			// envia el resultado
 			os = socket.getOutputStream();
@@ -89,10 +89,10 @@ public class HiloVotante extends Thread {
 			System.out.println("Error al aceptar conexion " + e.getMessage());
 			e.printStackTrace();
 			return;
-		} catch (InterruptedException e) {
+		} /*catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+		}*/ finally {
 			close(pw);
 			close(os);
 			close(bf);
