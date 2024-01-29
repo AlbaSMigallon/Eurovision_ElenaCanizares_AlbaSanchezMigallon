@@ -16,7 +16,7 @@ public class Servidor {
 					Socket conexion = socketEscucha.accept();
 					HiloVotante hilo = new HiloVotante(conexion);// crea hilo votante
 					hilo.start();
-					hilo.join();
+					//hilo.join();
 				} catch (IOException e) {
 					e.printStackTrace();
 					throw e;

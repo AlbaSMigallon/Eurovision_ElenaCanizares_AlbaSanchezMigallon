@@ -22,7 +22,7 @@ public class ClientePais {
 	/*
 	 * Cada pais es un cliente. Enviara una peticion al servidor por votante. La
 	 * petincion tendra en pais del votante y el rango de edad
-	 * 
+	 *
 	 */
 
 	// contruimos el objeto ResultadosFaseNacional para futuro insert
@@ -235,6 +235,7 @@ public class ClientePais {
 			bfr = new BufferedReader(isr);
 			String resultado = bfr.readLine();// respuesta
 			// System.out.println("El resultado fue:" + resultado);
+			// AQUI ESTA ALMACENADA LA INFORMACION DE LOS PAISES A LOS QUE HA VOTADO CADA PAIS
 			this.votaciones.put(resultado, this.votaciones.get(resultado) + 1);
 
 		} catch (IOException e) {

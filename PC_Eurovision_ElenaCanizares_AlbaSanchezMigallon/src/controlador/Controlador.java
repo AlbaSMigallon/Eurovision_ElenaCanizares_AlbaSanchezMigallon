@@ -30,7 +30,7 @@ public class Controlador implements ActionListener {
 		 * celebra en el pais ganador del anio anterior y en logo ponen la bandera del
 		 * pais. Nosotros simularemos lo mismo. Aqui tambien inciamos el proceso de
 		 * votacion nacional
-		 * 
+		 *
 		 */
 		this.gBD = new GestionDeDatos();
 		String ganador = this.gBD.getPaisGanador();
@@ -75,7 +75,5 @@ public class Controlador implements ActionListener {
 			vista.panelVotacionesEurovision.setVisible(true);
 
 		}
-
 	}
-
 }
