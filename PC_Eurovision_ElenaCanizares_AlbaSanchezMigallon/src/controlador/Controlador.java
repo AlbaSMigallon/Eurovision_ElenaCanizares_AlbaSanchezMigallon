@@ -13,7 +13,7 @@ import vista.Vista;
 public class Controlador implements ActionListener {
 	public Vista vista;
 	public VotacionNacional votacionNacional;
-	public GestionDeDatos gBD;
+	//public GestionDeDatos gBD;
 	
 
 	public Controlador(Vista frame) {
@@ -33,8 +33,9 @@ public class Controlador implements ActionListener {
 		 * votacion nacional
 		 *
 		 */
-		this.gBD = new GestionDeDatos();
-		String ganador = this.gBD.getPaisGanador();
+		//this.gBD = new GestionDeDatos();
+		GestionDeDatos gBD= GestionDeDatos.getInstance();
+		String ganador = gBD.getPaisGanador();
 		if (ganador == null) {
 			// la tabla esta vacia, cambiamos el String para que al concatenar la ruta para
 			// pintar el logo tire del generico
@@ -48,12 +49,12 @@ public class Controlador implements ActionListener {
 		 * Delete en la tabla RESULTADOS_FASE_NACIONAL
 		 */
 
-		this.gBD.deleteResultadosFaseNacional();// vaciamos de registros la tabla de RESULTADOS_FASE_NACIONAL
+		gBD.deleteResultadosFaseNacional();// vaciamos de registros la tabla de RESULTADOS_FASE_NACIONAL
 
 		/*
 		 * Iniciamos votacion nacional, desde que abrimos la aplicacion
 		 */
-		votacionNacional = new VotacionNacional(this.gBD, this.vista);// le pasamos el objeto para la gestion de datos y
+		votacionNacional = new VotacionNacional(this.vista);// le pasamos el objeto para la gestion de datos y
 																		// la vista para gestion del boton de continuar
 																		// a votacion de eurovision
 		votacionNacional.start();

@@ -14,12 +14,12 @@ public class VotacionNacional extends Thread {
 	 * de resultados, sabiendo que ya tenemos todo el proceso finalizado
 	 */
 
-	GestionDeDatos gBD;
+	//GestionDeDatos gBD;
 	Vista vista;
 
-	public VotacionNacional(GestionDeDatos gBD, Vista vista) {
+	public VotacionNacional(Vista vista) {
 
-		this.gBD = gBD;
+		//this.gBD = gBD;
 		this.vista = vista;
 
 	}
@@ -47,6 +47,8 @@ public class VotacionNacional extends Thread {
 
 		// ResultadosFaseNacional resultadoFaseNacional = null;
 		try {
+			
+			GestionDeDatos gBD= GestionDeDatos.getInstance();
 
 			List<PorcentajesRangoedad> porcentajes = gBD.getPorcentajes();
 			List<Cantantes> cantantes = gBD.getCantantes();

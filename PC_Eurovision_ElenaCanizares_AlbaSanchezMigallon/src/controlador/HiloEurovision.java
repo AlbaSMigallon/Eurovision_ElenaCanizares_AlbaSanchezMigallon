@@ -46,9 +46,9 @@ public class HiloEurovision extends Thread {
 			resultadosNacionales.setCantanteSegundo(cantanteSegundo);
 			resultadosNacionales.setCantanteTercero(cantanteTercero);
 			
-			gBD= new GestionDeDatos();
+			GestionDeDatos gBD= GestionDeDatos.getInstance();
 			gBD.insertResultadosFaseNacional(resultadosNacionales);
-			gBD.cerrarPoolConexiones();
+			//gBD.cerrarPoolConexiones();
 			
 			
 			
