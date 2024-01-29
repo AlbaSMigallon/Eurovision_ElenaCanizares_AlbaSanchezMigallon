@@ -1,5 +1,5 @@
 package persistencias;
-// Generated 26 ene 2024 19:16:10 by Hibernate Tools 5.4.33.Final
+// Generated 29 ene 2024 20:56:30 by Hibernate Tools 5.4.33.Final
 
 import java.util.Date;
 
@@ -10,22 +10,28 @@ public class ResultadosEurovision implements java.io.Serializable {
 
 	private int idResultadosEurovision;
 	private Date fechaGala;
-	private int espania;
-	private int alemania;
-	private int francia;
-	private int italia;
-	private int portugal;
-	private int reinoUnido;
-	private int polonia;
-	private int paisesBajos;
-	private int rumania;
-	private int grecia;
+	private Integer espania;
+	private Integer alemania;
+	private Integer francia;
+	private Integer italia;
+	private Integer portugal;
+	private Integer reinoUnido;
+	private Integer polonia;
+	private Integer paisesBajos;
+	private Integer rumania;
+	private Integer grecia;
+	private String paisGanador;
 
 	public ResultadosEurovision() {
 	}
 
-	public ResultadosEurovision(int idResultadosEurovision, Date fechaGala, int espania, int alemania, int francia,
-			int italia, int portugal, int reinoUnido, int polonia, int paisesBajos, int rumania, int grecia) {
+	public ResultadosEurovision(int idResultadosEurovision) {
+		this.idResultadosEurovision = idResultadosEurovision;
+	}
+
+	public ResultadosEurovision(int idResultadosEurovision, Date fechaGala, Integer espania, Integer alemania,
+			Integer francia, Integer italia, Integer portugal, Integer reinoUnido, Integer polonia, Integer paisesBajos,
+			Integer rumania, Integer grecia, String paisGanador) {
 		this.idResultadosEurovision = idResultadosEurovision;
 		this.fechaGala = fechaGala;
 		this.espania = espania;
@@ -38,6 +44,7 @@ public class ResultadosEurovision implements java.io.Serializable {
 		this.paisesBajos = paisesBajos;
 		this.rumania = rumania;
 		this.grecia = grecia;
+		this.paisGanador = paisGanador;
 	}
 
 	public int getIdResultadosEurovision() {
@@ -56,84 +63,92 @@ public class ResultadosEurovision implements java.io.Serializable {
 		this.fechaGala = fechaGala;
 	}
 
-	public int getEspania() {
+	public Integer getEspania() {
 		return this.espania;
 	}
 
-	public void setEspania(int espania) {
+	public void setEspania(Integer espania) {
 		this.espania = espania;
 	}
 
-	public int getAlemania() {
+	public Integer getAlemania() {
 		return this.alemania;
 	}
 
-	public void setAlemania(int alemania) {
+	public void setAlemania(Integer alemania) {
 		this.alemania = alemania;
 	}
 
-	public int getFrancia() {
+	public Integer getFrancia() {
 		return this.francia;
 	}
 
-	public void setFrancia(int francia) {
+	public void setFrancia(Integer francia) {
 		this.francia = francia;
 	}
 
-	public int getItalia() {
+	public Integer getItalia() {
 		return this.italia;
 	}
 
-	public void setItalia(int italia) {
+	public void setItalia(Integer italia) {
 		this.italia = italia;
 	}
 
-	public int getPortugal() {
+	public Integer getPortugal() {
 		return this.portugal;
 	}
 
-	public void setPortugal(int portugal) {
+	public void setPortugal(Integer portugal) {
 		this.portugal = portugal;
 	}
 
-	public int getReinoUnido() {
+	public Integer getReinoUnido() {
 		return this.reinoUnido;
 	}
 
-	public void setReinoUnido(int reinoUnido) {
+	public void setReinoUnido(Integer reinoUnido) {
 		this.reinoUnido = reinoUnido;
 	}
 
-	public int getPolonia() {
+	public Integer getPolonia() {
 		return this.polonia;
 	}
 
-	public void setPolonia(int polonia) {
+	public void setPolonia(Integer polonia) {
 		this.polonia = polonia;
 	}
 
-	public int getPaisesBajos() {
+	public Integer getPaisesBajos() {
 		return this.paisesBajos;
 	}
 
-	public void setPaisesBajos(int paisesBajos) {
+	public void setPaisesBajos(Integer paisesBajos) {
 		this.paisesBajos = paisesBajos;
 	}
 
-	public int getRumania() {
+	public Integer getRumania() {
 		return this.rumania;
 	}
 
-	public void setRumania(int rumania) {
+	public void setRumania(Integer rumania) {
 		this.rumania = rumania;
 	}
 
-	public int getGrecia() {
+	public Integer getGrecia() {
 		return this.grecia;
 	}
 
-	public void setGrecia(int grecia) {
+	public void setGrecia(Integer grecia) {
 		this.grecia = grecia;
+	}
+
+	public String getPaisGanador() {
+		return this.paisGanador;
+	}
+
+	public void setPaisGanador(String paisGanador) {
+		this.paisGanador = paisGanador;
 	}
 
 }

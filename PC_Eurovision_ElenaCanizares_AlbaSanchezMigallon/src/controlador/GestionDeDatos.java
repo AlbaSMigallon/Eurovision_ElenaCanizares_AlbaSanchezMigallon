@@ -1,6 +1,6 @@
 package controlador;
 
-import java.util.List;
+
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -8,14 +8,22 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
+import persistencias.Cantantes;
 import persistencias.PorcentajesRangoedad;
 import persistencias.ResultadosFaseNacional;
+
+import java.util.List;
+
+
+
+
 
 public class GestionDeDatos {
 	/*
 	 * Clase utilizada para gestionar datos
 	 */
 	private SessionFactory sessionFactory;
+	
 	// trabajamos con el mismo session factory de la calse
 
 	public GestionDeDatos() {
@@ -28,6 +36,8 @@ public class GestionDeDatos {
 	 * metodo para hacer el insert en la tabla de RESULTADOS_FASE_NACIONAL. un
 	 * insert por cada pais
 	 */
+	
+	
 	public void insertResultadosFaseNacional(ResultadosFaseNacional resultado) {
 		Session session = null;
 
@@ -50,6 +60,7 @@ public class GestionDeDatos {
 			}
 		}
 	}
+
 
 	/*
 	 * metodo para sacar los registro de los rangos de edad para calcular las
@@ -78,6 +89,33 @@ public class GestionDeDatos {
 		}
 
 		return paises;
+	}
+	
+	public List<Cantantes> getCantantes(){
+		
+		Session session = null;
+		List<Cantantes> cantantes = null;
+
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			session.beginTransaction();
+
+			Query<Cantantes> query = this.sessionFactory.getCurrentSession().createQuery("FROM Cantantes");
+			cantantes = query.list();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			if (null != session) {
+				session.getTransaction().rollback();
+			}
+			throw e;
+		} finally {
+			if (null != session) {
+				session.close();
+			}
+		}
+
+		return cantantes;
+		
 	}
 
 	/*

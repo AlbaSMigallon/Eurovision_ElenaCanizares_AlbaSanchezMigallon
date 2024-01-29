@@ -14,6 +14,7 @@ public class Controlador implements ActionListener {
 	public Vista vista;
 	public VotacionNacional votacionNacional;
 	public GestionDeDatos gBD;
+	
 
 	public Controlador(Vista frame) {
 		// TODO Auto-generated constructor stub

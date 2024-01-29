@@ -12,41 +12,42 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Map;
+import java.util.Map.Entry;
 
+import persistencias.Cantantes;
 import persistencias.PorcentajesRangoedad;
-import persistencias.ResultadosFaseNacional;
 
-public class ClientePais {
+
+
+
+
+
+
+public class ClientePais extends Thread{
 	/*
-	 * Cada pais es un cliente. Enviara una peticion al servidor por votante. La
-	 * petincion tendra en pais del votante y el rango de edad
+	 * Cada pais es un cliente. Creara un hilo por votante y gestionara la cantidad segun rango de edad
 	 *
 	 */
 
-	// contruimos el objeto ResultadosFaseNacional para futuro insert
-	private ResultadosFaseNacional resultadoNacional;
 	// objeto obtenido de la consulta para calcular porcentajes por rango de edad
-	private PorcentajesRangoedad porcentajes;
-	// estructura de datos en la que se almacenaran los resultados de los votos que
-	// posteriormente utilizaremos para hacer el insert
-	private HashMap<String, Integer> votaciones;
+		private PorcentajesRangoedad porcentajes;
+		// estructura de datos en la que se almacenaran los resultados de los votos que
 
-	public ClientePais(PorcentajesRangoedad porcentajes) {
+		private HashMap<String, Integer> votaciones;
+		private List<Cantantes> cantantes;
+		private String cantanteVotoPrimero;
+		private String cantanteVotoSegundo;
+		private String cantanteVotoTercero;
+	
+
+	public ClientePais(PorcentajesRangoedad porcentajes, List<Cantantes> cantantes ) {
 		this.porcentajes = porcentajes;
-		this.resultadoNacional = new ResultadosFaseNacional();
+		this.cantantes = cantantes;
 		inicializarHashMap();// inicializamos hasmao con nombres de paises
 	}
 
-	public ResultadosFaseNacional getResultadoNacional() {
-		return resultadoNacional;
-	}
-
-	public void setResultadoNacional(ResultadosFaseNacional resultadoNacional) {
-		this.resultadoNacional = resultadoNacional;
-	}
-
+	
 	public PorcentajesRangoedad getPorcentajes() {
 		return porcentajes;
 	}
@@ -62,10 +63,70 @@ public class ClientePais {
 	public void setVotaciones(HashMap<String, Integer> votaciones) {
 		this.votaciones = votaciones;
 	}
+	
+	public String getCantanteVotoPrimero() {
+		return cantanteVotoPrimero;
+	}
+
+
+	public void setCantanteVotoPrimero(String cantanteVotoPrimero) {
+		this.cantanteVotoPrimero = cantanteVotoPrimero;
+	}
+
+
+	public String getCantanteVotoSegundo() {
+		return cantanteVotoSegundo;
+	}
+
+
+	public void setCantanteVotoSegundo(String cantanteVotoSegundo) {
+		this.cantanteVotoSegundo = cantanteVotoSegundo;
+	}
+
+
+	public String getCantanteVotoTercero() {
+		return cantanteVotoTercero;
+	}
+
+
+	public void setCantanteVotoTercero(String cantanteVotoTercero) {
+		this.cantanteVotoTercero = cantanteVotoTercero;
+	}
+
+	public List<Cantantes> getCantantes() {
+		return cantantes;
+	}
+
+
+	public void setCantantes(List<Cantantes> cantantes) {
+		this.cantantes = cantantes;
+	}
+
+
+	public void run() {
+		// metodo inicial, llamado desde la calse VotacionNacional para calcular numero
+		// de votantes por rango
+		numeroVotos1825();
+		numeroVotos2640();
+		numeroVotos4165();
+		numeroVotosMas66();
+
+		// fija los ganadores por pais
+		fijarGanadores();
+
+		// enviamos el resultado al servidor de eurovision
+		try {
+			enviarVotosNacionales(porcentajes.getNombrePais(), getCantanteVotoPrimero(), getCantanteVotoSegundo(), getCantanteVotoTercero());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	private void fijarGanadores() {
 		/*
-		 * Fijamos los paises votados
+		 * Fijamos los cantantes votados
 		 */
 		ArrayList<Integer> ganadores = new ArrayList<>(this.votaciones.values());
 		Collections.sort(ganadores, Collections.reverseOrder());
@@ -79,50 +140,64 @@ public class ClientePais {
 		}
 
 		// resuelve los empates y fija los ganadores
-		for (int i = 0; i < 3; i++) {
-			int puntuacion = ganadores.get(i);
-			List<String> paisesEmpatados = paisesPorPuntuacion.get(puntuacion);
+        for (int i = 0; i < 3; i++) {
+            int puntuacion = ganadores.get(i);
+            List<String> paisesEmpatados = paisesPorPuntuacion.get(puntuacion);
 
-			// si hay empate, decide el orden aleatoriamente
-			if (paisesEmpatados.size() > 1) {
-				Collections.shuffle(paisesEmpatados);
-			}
+            // si hay empate, decide el orden aleatoriamente
+            if (paisesEmpatados.size() > 1) {
+                Collections.shuffle(paisesEmpatados);
+            }
 
-			// fija el ganador segun la posicion
-			if (i == 0) {
-				this.resultadoNacional.setPaisPrimero(paisesEmpatados.get(0));
+            // fija el ganador segun la posicion
+            if (i == 0) {
+				setCantanteVotoPrimero(paisesEmpatados.get(0));
 			} else if (i == 1) {
-				if (paisesEmpatados.get(0).equals(this.resultadoNacional.getPaisPrimero())) {
-					this.resultadoNacional.setPaisSegundo(paisesEmpatados.get(1));
+				if (paisesEmpatados.get(0).equals(getCantanteVotoPrimero())) {
+					setCantanteVotoSegundo(paisesEmpatados.get(1));
 				} else {
-					this.resultadoNacional.setPaisSegundo(paisesEmpatados.get(0));
+					setCantanteVotoSegundo(paisesEmpatados.get(0));
 				}
 
 			} else if (i == 2) {
-				if (paisesEmpatados.get(0).equals(this.resultadoNacional.getPaisPrimero())) {
-					if (paisesEmpatados.get(0).equals(this.resultadoNacional.getPaisSegundo())) {
-						this.resultadoNacional.setPaisTercero(paisesEmpatados.get(2));
+				if (paisesEmpatados.get(0).equals(getCantanteVotoPrimero())) {
+					if (paisesEmpatados.get(0).equals(getCantanteVotoSegundo())) {
+						setCantanteVotoTercero(paisesEmpatados.get(2));
 					} else {
-
+						setCantanteVotoTercero(paisesEmpatados.get(1));
 					}
 				} else {
-					if (paisesEmpatados.get(0).equals(this.resultadoNacional.getPaisSegundo())) {
-						this.resultadoNacional.setPaisTercero(paisesEmpatados.get(1));
+					if (paisesEmpatados.get(0).equals(getCantanteVotoSegundo())) {
+						setCantanteVotoTercero(paisesEmpatados.get(1));
 					} else {
-						this.resultadoNacional.setPaisTercero(paisesEmpatados.get(0));
+						setCantanteVotoTercero(paisesEmpatados.get(0));
 					}
 
 				}
 
 			}
+		}
+        
 
-			this.resultadoNacional.setPais(this.porcentajes.getNombrePais());
+		//Obtenemos los cantantes asociados a los paises ganadores
+        // como en el enunciado pide que se vote a cantantes, lo hacemos por cantantes en vez de paises
+		for(int i = 0; i < cantantes.size(); i++) {
+			if (cantantes.get(i).getPais().equals(getCantanteVotoPrimero())) {
+				setCantanteVotoPrimero(cantantes.get(i).getNombre());
+			}
+			if (cantantes.get(i).getPais().equals(getCantanteVotoSegundo())) {
+				setCantanteVotoSegundo(cantantes.get(i).getNombre());
+			}
+			if (cantantes.get(i).getPais().equals(getCantanteVotoTercero())) {
+				setCantanteVotoTercero(cantantes.get(i).getNombre());
+			}
 		}
 
 		System.out.println("Las votaciones en " + porcentajes.getNombrePais() + " son:");
-		System.out.println("15 puntos para " + resultadoNacional.getPaisPrimero());
-		System.out.println("10 puntos para " + resultadoNacional.getPaisSegundo());
-		System.out.println("8 puntos para " + resultadoNacional.getPaisTercero());
+		System.out.println("15 puntos para " + getCantanteVotoPrimero());
+		System.out.println("10 puntos para " + getCantanteVotoSegundo());
+		System.out.println("8 puntos para " + getCantanteVotoTercero());
+			
 
 	}
 
@@ -138,7 +213,9 @@ public class ClientePais {
 		}
 		try {
 			for (int i = 0; i < numeroHilos; i++) {
-				calcularVotosNacionales(this.porcentajes.getNombrePais(), "1825");
+				String voto = calcularVotosNacionales(this.porcentajes.getNombrePais(), "1825");
+				this.votaciones.put(voto, this.votaciones.get(voto)+1);// Aniadimos voto al
+				// hashmap
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -158,7 +235,9 @@ public class ClientePais {
 		}
 		try {
 			for (int i = 0; i < numeroHilos; i++) {
-				calcularVotosNacionales(this.porcentajes.getNombrePais(), "2640");
+				String voto = calcularVotosNacionales(this.porcentajes.getNombrePais(), "2640");
+				this.votaciones.put(voto, this.votaciones.get(voto)+1);// Aniadimos voto al
+				// hashmap
 			}
 
 		} catch (Exception e) {
@@ -179,7 +258,9 @@ public class ClientePais {
 		}
 		try {
 			for (int i = 0; i < numeroHilos; i++) {
-				calcularVotosNacionales(this.porcentajes.getNombrePais(), "4165");
+				String voto = calcularVotosNacionales(this.porcentajes.getNombrePais(), "4165");
+				this.votaciones.put(voto, this.votaciones.get(voto)+1);// Aniadimos voto al
+				// hashmap
 			}
 
 		} catch (Exception e) {
@@ -200,7 +281,9 @@ public class ClientePais {
 		}
 		try {
 			for (int i = 0; i < numeroHilos; i++) {
-				calcularVotosNacionales(this.porcentajes.getNombrePais(), "66");
+				String voto = calcularVotosNacionales(this.porcentajes.getNombrePais(), "66");
+				this.votaciones.put(voto, this.votaciones.get(voto)+1);// Aniadimos voto al
+				// hashmap
 			}
 
 		} catch (Exception e) {
@@ -213,8 +296,22 @@ public class ClientePais {
 	 * @param args
 	 * @throws IOException
 	 */
-	private void calcularVotosNacionales(String pais, String rango) throws Exception {////////////////////////
-		// Peticion al servidor
+	private String calcularVotosNacionales(String pais, String rango) throws Exception {
+		// Creacion de hilos votante
+		HiloVotante hilo = new HiloVotante(pais, rango);// crea hilo votante
+		hilo.start();
+		hilo.join();
+		
+		return hilo.getVoto();
+		
+	}
+	
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
+	private void enviarVotosNacionales(String pais, String cantantePrimero, String cantanteSegundo, String cantanteTercero) throws Exception {
+		// Peticion al servidor, se hace una por pais con los resultados fionales de los votos del pais
 		Socket socket = null;
 		BufferedReader bfr = null;
 		PrintWriter pw = null;
@@ -226,17 +323,11 @@ public class ClientePais {
 			// Escribe la peticion al servidor
 			pw = new PrintWriter(socket.getOutputStream());
 			pw.print(pais + "\n");// Nombre del pais
-			pw.print(rango + "\n");// Rango edad
-
+			pw.print(cantantePrimero + "\n");// Cantante primero
+			pw.print(cantanteSegundo + "\n");// Cantante primero
+			pw.print(cantanteTercero + "\n");//Cantante segundo
 			pw.flush();
-
-			// lee la respuesta del servidor
-			isr = new InputStreamReader(socket.getInputStream());
-			bfr = new BufferedReader(isr);
-			String resultado = bfr.readLine();// respuesta
-			// System.out.println("El resultado fue:" + resultado);
-			// AQUI ESTA ALMACENADA LA INFORMACION DE LOS PAISES A LOS QUE HA VOTADO CADA PAIS
-			this.votaciones.put(resultado, this.votaciones.get(resultado) + 1);
+		
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -248,6 +339,7 @@ public class ClientePais {
 			close(socket);
 		}
 	}
+
 
 	private static void close(Socket socket) {
 		try {
@@ -293,20 +385,5 @@ public class ClientePais {
 		votaciones.put("Grecia", 0);
 	}
 
-	public ResultadosFaseNacional iniciarCliente() {
-		// metodo inicial, llamado desde la calse VotacionNacional para calcular numero
-		// de votantes por rango
-		numeroVotos1825();
-		numeroVotos2640();
-		numeroVotos4165();
-		numeroVotosMas66();
-
-		// fija los ganadores por pais
-		fijarGanadores();
-
-		// devolvemos el resultado de voto del pais a votacion nacional para el
-		// posterior insert
-		return this.resultadoNacional;
-	}
 
 }

@@ -6,12 +6,12 @@ USE CENSO_EUROPA;
 
 CREATE TABLE PORCENTAJES_RANGOEDAD (
 	NOMBRE_PAIS VARCHAR(30) NOT NULL COMMENT 'Nombre del pais',
-	RANGO_1_9 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 1 y 9 años',
-	RANGO_10_17 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 10 y 17 años',
-    RANGO_18_25 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 18 y 25 años',
-    RANGO_26_40 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 26 y 40 años',
-    RANGO_41_65 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 41 y 65 años',
-    RANGO_MAS_66 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad es superior o igual a 66 años',
+	RANGO_1_9 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 1 y 9 anios',
+	RANGO_10_17 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 10 y 17 anios',
+    RANGO_18_25 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 18 y 25 anios',
+    RANGO_26_40 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 26 y 40 anios',
+    RANGO_41_65 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad esta comprendida entre 41 y 65 anios',
+    RANGO_MAS_66 INT(3) NOT NULL COMMENT 'Porcentaje de habitantes cuya edad es superior o igual a 66 anios',
     TOTAL_HABITANTES INT(8) NOT NULL COMMENT 'Numero total de habitantes que tiene el pais',
     CONSTRAINT PK_PORCENTAJES_RANGOEDAD PRIMARY KEY (NOMBRE_PAIS)
 );
@@ -69,7 +69,7 @@ CREATE TABLE CANTANTES (
 INSERT INTO CANTANTES (PAIS, NOMBRE, NOMBRE_CANCION)
 VALUES ('Espania', 'Joel', 'Un elefante se balanceaba'), 
 ('Alemania', 'Hilda', 'Que llueva, que llueva'), 
-('Francia', 'Bastian', 'Estrellita donde estas'), 
+('Francia', 'Bastian', 'Estrellita donde estás'), 
 ('Italia', 'Gianmarco', 'El senior Don Gato'), 
 ('Portugal', 'Matilde', 'El corro de la patata'), 
 ('Reino Unido', 'Hanna', 'Cucu cantaba la rana'), 
@@ -82,7 +82,7 @@ VALUES ('Espania', 'Joel', 'Un elefante se balanceaba'),
 
 /*Se cre una tabla de RESULTADOS FINALES DE LA GALA EUROVISION para guardar los resultados de todos los paises*/
 CREATE TABLE RESULTADOS_EUROVISION (
-	ID_RESULTADOS_EUROVISION INT AUTO_INCREMENT NOT NULL COMMENT 'ID de resultados de Eurovision',
+	ID_RESULTADOS_EUROVISION INT AUTO_INCREMENT NOT NULL COMMENT 'ID de resultados de EurovisiOn',
     FECHA_GALA DATE NULL COMMENT 'Fecha de la Gala de Eurovision',
     ESPANIA INT NULL COMMENT 'Puntacion final de Espania',
     ALEMANIA INT NULL COMMENT 'Puntacion final de Alemania',
@@ -99,11 +99,15 @@ CREATE TABLE RESULTADOS_EUROVISION (
 );
 
 
-/*Se crea una tabla de RESULTADOS DE LA FASE NACIONAL de cada pais, con los tres paises que han votado relacionados con la puntuacion*/
+/*Se crea una tabla de RESULTADOS DE LA FASE NACIONAL de cada cantante por pais, con los tres paises que han votado relacionados con la puntuacion*/
+/*Utilizamos como PK el nombre del cantante, ya que en el enunciado del ejercicio especifica que el votante vota al cantante, no al pais*/
+
 CREATE TABLE RESULTADOS_FASE_NACIONAL (
-	PAIS VARCHAR(20) NOT NULL COMMENT 'Nombre del pais que inserta los votos',
-    PAIS_TERCERO VARCHAR(20) NOT NULL COMMENT 'Nombre del pais que votan como tercero con 8 puntos',
-	PAIS_SEGUNDO VARCHAR(20) NOT NULL COMMENT 'Nombre del pais que votan como segundo con 10 puntos',
-	PAIS_PRIMERO VARCHAR(20) NOT NULL COMMENT 'Nombre del pais que votan como primero con 15 puntos',
-    CONSTRAINT PK_PAIS_VOTANTE PRIMARY KEY (PAIS)
+    PAIS VARCHAR(20) NOT NULL COMMENT 'Nombre del pais',
+    CANTANTE_TERCERO VARCHAR(20) NULL COMMENT 'Nombre del cantante que votan como tercero con 8 puntos',
+	CANTANTE_SEGUNDO VARCHAR(20) NULL COMMENT 'Nombre del cantante que votan como segundo con 10 puntos',
+	CANTANTE_PRIMERO VARCHAR(20) NULL COMMENT 'Nombre del cantante que votan como primero con 15 puntos',
+    CONSTRAINT PK_PAIS PRIMARY KEY (PAIS)
 );
+
+

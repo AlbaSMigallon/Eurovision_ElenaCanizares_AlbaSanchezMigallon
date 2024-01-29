@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 26 ene 2024 19:16:10 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29 ene 2024 20:56:30 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class catalog="censo_europa" name="persistencias.ResultadosEurovision" optimistic-lock="none" table="resultados_eurovision">
         <id name="idResultadosEurovision" type="int">
@@ -7,58 +7,63 @@
             <generator class="assigned"/>
         </id>
         <property name="fechaGala" type="date">
-            <column length="10" name="FECHA_GALA" not-null="true">
+            <column length="10" name="FECHA_GALA">
                 <comment>Fecha de la Gala de Eurovision</comment>
             </column>
         </property>
-        <property name="espania" type="int">
-            <column name="ESPANIA" not-null="true">
+        <property name="espania" type="java.lang.Integer">
+            <column name="ESPANIA">
                 <comment>Puntacion final de Espania</comment>
             </column>
         </property>
-        <property name="alemania" type="int">
-            <column name="ALEMANIA" not-null="true">
+        <property name="alemania" type="java.lang.Integer">
+            <column name="ALEMANIA">
                 <comment>Puntacion final de Alemania</comment>
             </column>
         </property>
-        <property name="francia" type="int">
-            <column name="FRANCIA" not-null="true">
+        <property name="francia" type="java.lang.Integer">
+            <column name="FRANCIA">
                 <comment>Puntacion final de Francia</comment>
             </column>
         </property>
-        <property name="italia" type="int">
-            <column name="ITALIA" not-null="true">
+        <property name="italia" type="java.lang.Integer">
+            <column name="ITALIA">
                 <comment>Puntacion final de Italia</comment>
             </column>
         </property>
-        <property name="portugal" type="int">
-            <column name="PORTUGAL" not-null="true">
+        <property name="portugal" type="java.lang.Integer">
+            <column name="PORTUGAL">
                 <comment>Puntacion final de Portugal</comment>
             </column>
         </property>
-        <property name="reinoUnido" type="int">
-            <column name="REINO_UNIDO" not-null="true">
+        <property name="reinoUnido" type="java.lang.Integer">
+            <column name="REINO_UNIDO">
                 <comment>Puntacion final de Reino Unido</comment>
             </column>
         </property>
-        <property name="polonia" type="int">
-            <column name="POLONIA" not-null="true">
+        <property name="polonia" type="java.lang.Integer">
+            <column name="POLONIA">
                 <comment>Puntacion final de Polonia</comment>
             </column>
         </property>
-        <property name="paisesBajos" type="int">
-            <column name="PAISES_BAJOS" not-null="true">
+        <property name="paisesBajos" type="java.lang.Integer">
+            <column name="PAISES_BAJOS">
                 <comment>Puntacion final de Paises Bajos</comment>
             </column>
         </property>
-        <property name="rumania" type="int">
-            <column name="RUMANIA" not-null="true">
+        <property name="rumania" type="java.lang.Integer">
+            <column name="RUMANIA">
                 <comment>Puntacion final de Rumania</comment>
             </column>
         </property>
-        <property name="grecia" type="int">
-            <column name="GRECIA" not-null="true">
+        <property name="grecia" type="java.lang.Integer">
+            <column name="GRECIA">
                 <comment>Puntacion final de Grecia</comment>
+            </column>
+        </property>
+        <property name="paisGanador" type="string">
+            <column length="20" name="PAIS_GANADOR">
+                <comment>Nombre del pais ganador</comment>
             </column>
         </property>
     </class>

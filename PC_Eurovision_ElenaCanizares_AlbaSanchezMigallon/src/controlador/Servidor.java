@@ -14,7 +14,7 @@ public class Servidor {
 			while (true) {
 				try {
 					Socket conexion = socketEscucha.accept();
-					HiloVotante hilo = new HiloVotante(conexion);// crea hilo votante
+					HiloEurovision hilo = new HiloEurovision(conexion);// crea hilo votante
 					hilo.start();
 					//hilo.join();
 				} catch (IOException e) {
