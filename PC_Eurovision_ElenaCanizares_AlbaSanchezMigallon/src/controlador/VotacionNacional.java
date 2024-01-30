@@ -1,6 +1,7 @@
 package controlador;
 
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 import persistencias.Cantantes;
 import persistencias.PorcentajesRangoedad;
@@ -23,12 +24,13 @@ public class VotacionNacional extends Thread {
 		this.vista = vista;
 
 	}
+
 /*
 	public ResultadosFaseNacional generarClientes(PorcentajesRangoedad porcentajes) {
 		/*
 		 * Crea los clientes, uno por pais y le pasa los datos de los porcentajes por
 		 * rango de edad
-		 
+
 		ResultadosFaseNacional resultadoFaseNacional = null;
 		try {
 			ClientePais cliente = new ClientePais(porcentajes);
@@ -47,7 +49,7 @@ public class VotacionNacional extends Thread {
 
 		// ResultadosFaseNacional resultadoFaseNacional = null;
 		try {
-			
+
 			GestionDeDatos gBD= GestionDeDatos.getInstance();
 
 			List<PorcentajesRangoedad> porcentajes = gBD.getPorcentajes();
@@ -74,13 +76,12 @@ public class VotacionNacional extends Thread {
 																				// tabla
 
 			}
-			
 			/*
 			 * Aqui lo que hacemos es habilitar el voton de pasar a la fase de votacion eurovision cuando todo el proceso de votacion nacional acabe.
 			 * De esta manera controlamos que se empiece laa fase de suma de votos finales sin que termine la votacion nacional
 			 */
-			//vista.btnComenzarVotaciones.setName("COMENZAR");
-			//vista.btnComenzarVotaciones.setEnabled(true);
+			/*vista.btnComenzarVotaciones.setText("COMENZAR");
+			vista.btnComenzarVotaciones.setEnabled(true);*/
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -173,6 +173,36 @@ public class GestionDeDatos {
 		}
 	}
 
+	// Metodo que busca todos los registros de la tabla ResultadosFaseNacional
+	public List<ResultadosFaseNacional> getResultadosFaseNacional() {
+	    Session session = null;
+	    List<ResultadosFaseNacional> resultados = null;
+
+	    synchronized (object) {
+	        try {
+	            session = this.sessionFactory.getCurrentSession();
+	            session.beginTransaction();
+
+	            Query<ResultadosFaseNacional> query = session.createQuery("FROM ResultadosFaseNacional", ResultadosFaseNacional.class);
+	            resultados = query.getResultList();
+
+	            session.getTransaction().commit();
+	        } catch (HibernateException e) {
+	            e.printStackTrace();
+	            if (null != session) {
+	                session.getTransaction().rollback();
+	            }
+	            throw e;
+	        } finally {
+	            if (null != session) {
+	                session.close();
+	            }
+	        }
+
+	        return resultados;
+	    }
+	}
+
 	/*
 	 * metodo para borrar todos los registros de la tabla RESULTADOS_FASE_NACIONAL.
 	 */
