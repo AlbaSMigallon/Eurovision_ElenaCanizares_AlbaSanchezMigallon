@@ -116,6 +116,7 @@ public class ClientePais extends Thread{
 
 		// enviamos el resultado al servidor de eurovision
 		try {
+			// CAMBIAR: aqui enviar directamente el objeto //////////////////////////////////////////////////////////////////////////////////
 			enviarVotosNacionales(porcentajes.getNombrePais(), getCantanteVotoPrimero(), getCantanteVotoSegundo(), getCantanteVotoTercero());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -317,6 +318,7 @@ public class ClientePais extends Thread{
 		PrintWriter pw = null;
 		InputStreamReader isr = null;
 		try {
+			// CAMBIAR. en vez de que envia lineas que envia el objeto construido///////////////////////////////////////////////////////////
 			InetSocketAddress direccion = new InetSocketAddress("localhost", 9876);
 			socket = new Socket();
 			socket.connect(direccion);
@@ -327,6 +329,8 @@ public class ClientePais extends Thread{
 			pw.print(cantanteSegundo + "\n");// Cantante primero
 			pw.print(cantanteTercero + "\n");//Cantante segundo
 			pw.flush();
+			
+			// escucha respuesta //////////////////////////////////////////////////////////////////////////////////////
 		
 
 		} catch (IOException e) {

@@ -48,8 +48,8 @@ public class HiloEurovision extends Thread {
 			
 			GestionDeDatos gBD= GestionDeDatos.getInstance();
 			gBD.insertResultadosFaseNacional(resultadosNacionales);
-			//gBD.cerrarPoolConexiones();
 			
+			// contesta a cliente, que no esta bonito dejarle en visto////////////////////////////////////////////////////////////
 			
 			
 		} catch (IOException e) {
