@@ -8,9 +8,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
-import java.net.ServerSocket;
 import java.net.Socket;
-
 import persistencias.ResultadosFaseNacional;
 
 public class HiloEurovision extends Thread {
@@ -20,8 +18,9 @@ public class HiloEurovision extends Thread {
 
 	public HiloEurovision(Socket socket) {
 		this.socket = socket;
+		System.out.println("se crea un hiloEurovision");
 	}
-	
+
 	public void run() {
 		// recibe la informacion del cliente
 		InputStream is = null;
@@ -37,21 +36,29 @@ public class HiloEurovision extends Thread {
 			String cantantePrimero = bf.readLine();
 			String cantanteSegundo = bf.readLine();
 			String cantanteTercero = bf.readLine();
-			
+
 			System.out.println("Informacion recibida por el servidor: "+pais+" "+cantantePrimero+" "+cantanteSegundo+" "+cantanteTercero);
-			
+
 			resultadosNacionales= new ResultadosFaseNacional();
 			resultadosNacionales.setPais(pais);
 			resultadosNacionales.setCantantePrimero(cantantePrimero);
 			resultadosNacionales.setCantanteSegundo(cantanteSegundo);
 			resultadosNacionales.setCantanteTercero(cantanteTercero);
-			
+
 			GestionDeDatos gBD= GestionDeDatos.getInstance();
+			System.out.println("antes del insert");
 			gBD.insertResultadosFaseNacional(resultadosNacionales);
+<<<<<<< HEAD
 			
 			// contesta a cliente, que no esta bonito dejarle en visto////////////////////////////////////////////////////////////
 			
 			
+=======
+			//gBD.cerrarPoolConexiones();
+
+
+
+>>>>>>> branch 'master' of https://github.com/AlbaSMigallon/Eurovision_ElenaCanizares_AlbaSanchezMigallon.git
 		} catch (IOException e) {
 			System.out.println("Error al aceptar conexion "+e.getMessage());
 			e.printStackTrace();
@@ -66,17 +73,7 @@ public class HiloEurovision extends Thread {
 
 
 	}
-	
-	private void close(ServerSocket socket) {
-		try {
-			if (null != socket) {
-				socket.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
+
 	private void close(Socket socket) {
 		try {
 			if (null != socket) {
@@ -86,7 +83,7 @@ public class HiloEurovision extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void close(Reader reader) {
 		try {
 			if (null != reader) {
@@ -96,7 +93,7 @@ public class HiloEurovision extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void close(InputStream input) {
 		try {
 			if (null != input) {
@@ -106,7 +103,7 @@ public class HiloEurovision extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void close(OutputStream output) {
 		try {
 			if (null != output) {
@@ -116,7 +113,7 @@ public class HiloEurovision extends Thread {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void close(Writer writer) {
 		try {
 			if (null != writer) {

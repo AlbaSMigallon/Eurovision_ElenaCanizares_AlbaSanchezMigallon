@@ -52,6 +52,7 @@ public class GestionDeDatos {
 	 */
 
 	public void insertResultadosFaseNacional(ResultadosFaseNacional resultado) {
+		System.out.println("ENTRA");
 		Session session = null;
 		// Controlar el acceso al recurso compartido
 		synchronized (object) {
@@ -60,9 +61,10 @@ public class GestionDeDatos {
 				session = this.sessionFactory.getCurrentSession();
 				session.beginTransaction();
 
-				session.save(resultado);////
+				session.save(resultado);
 
 				session.getTransaction().commit();
+
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				if (null != session) {
@@ -75,7 +77,6 @@ public class GestionDeDatos {
 				}
 			}
 		}
-
 	}
 
 	/*
@@ -171,6 +172,36 @@ public class GestionDeDatos {
 			}
 			return ganador;
 		}
+	}
+
+	// Metodo que busca todos los registros de la tabla ResultadosFaseNacional
+	public List<ResultadosFaseNacional> getResultadosFaseNacional() {
+	    Session session = null;
+	    List<ResultadosFaseNacional> resultados = null;
+
+	    synchronized (object) {
+	        try {
+	            session = this.sessionFactory.getCurrentSession();
+	            session.beginTransaction();
+
+	            Query<ResultadosFaseNacional> query = session.createQuery("FROM ResultadosFaseNacional", ResultadosFaseNacional.class);
+	            resultados = query.getResultList();
+
+	            session.getTransaction().commit();
+	        } catch (HibernateException e) {
+	            e.printStackTrace();
+	            if (null != session) {
+	                session.getTransaction().rollback();
+	            }
+	            throw e;
+	        } finally {
+	            if (null != session) {
+	                session.close();
+	            }
+	        }
+
+	        return resultados;
+	    }
 	}
 
 	/*
