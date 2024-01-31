@@ -14,11 +14,13 @@ import vista.Vista;
 public class Controlador implements ActionListener {
 	private static Vista vista;
 	private VotacionNacional votacionNacional;
-	private GestionDeDatos gBD;
+	private static GestionDeDatos gBD;
 	private static int tiempoTransicion;
 	private static int tiempoEurovision;
 	private static Timer timerCronometro;
 	private static Timer timerVotaciones;
+	private static List<ResultadosFaseNacional> listaResultadosFaseNacional;
+	private int indiceListaResultadosNacionales;
 
 	public Controlador() {
 		Controlador.vista = new Vista();
@@ -26,6 +28,8 @@ public class Controlador implements ActionListener {
 		this.gBD= GestionDeDatos.getInstance();
 		Controlador.tiempoTransicion = 2;
 		Controlador.tiempoEurovision = 21;
+		listaResultadosFaseNacional = new ArrayList<>();
+		indiceListaResultadosNacionales = 0;
 
 		// Asignamos escuchadores a los JButton
 		Controlador.vista.btnComenzarInicio.addActionListener(this);
@@ -51,15 +55,42 @@ public class Controlador implements ActionListener {
 			timerCronometro.stop();
 			vista.panelVotacionesNacionales.setVisible(false);
 			vista.panelVotaciones.setVisible(true);
+			String nombrePrimerPais = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais();
+			String cantantePrimero = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantantePrimero();
+			String cantanteSegundo = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantanteSegundo();
+			String cantanteTercero = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantanteTercero();
+			String info = "PAIS: " + nombrePrimerPais + "\n";
+			info += "\tVota como primer cantante a " + cantantePrimero + "\n";
+			info += "\tVota como segundo cantante a " + cantanteSegundo + "\n";
+			info += "\tVota como tercer cantante a " + cantanteTercero + "\n";
+			vista.textAreaPrueba.setText(info);
+			vista.btnRefrescarInfo.setText(nombrePrimerPais);
 		}else if(e.getSource() == vista.btnRefrescarInfo) {
-			List<ResultadosFaseNacional> lista= new ArrayList<>();
-			lista = gBD.getResultadosFaseNacional();
-			for(ResultadosFaseNacional r: lista) {
+			int tamanio = listaResultadosFaseNacional.size() - 1;
+			indiceListaResultadosNacionales++;
+			vista.textAreaPrueba.setText("");
+
+			if(indiceListaResultadosNacionales <= tamanio) {
+				String nombrePais = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais();
+				String cantantePrimero = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantantePrimero();
+				String cantanteSegundo = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantanteSegundo();
+				String cantanteTercero = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantanteTercero();
+				String info = "PAIS: " + nombrePais + "\n";
+				info += "\tVota como primer cantante a " + cantantePrimero + "\n";
+				info += "\tVota como segundo cantante a " + cantanteSegundo + "\n";
+				info += "\tVota como tercer cantante a " + cantanteTercero + "\n";
+				vista.textAreaPrueba.setText(info);
+				vista.btnRefrescarInfo.setText(nombrePais);
+			}else {
+				vista.textAreaPrueba.setText("Noenque de que no hace insert y ya tal");
+				vista.btnRefrescarInfo.setText("FIN..POR AHORA");
+			}
+			/*for(ResultadosFaseNacional r: listaResultadosFaseNacional) {
 				System.out.println(r.getPais()+"\n");
 				System.out.println(r.getCantantePrimero());
 				System.out.println(r.getCantanteSegundo());
 				System.out.println(r.getCantanteTercero());
-			}
+			}*/
 		}
 	}
 
@@ -97,8 +128,9 @@ public class Controlador implements ActionListener {
             	if(tiempoEurovision > 0) {
              	   tiempoEurovision = tiempoEurovision - 1;
                 }else if(tiempoEurovision == 0) {
-                	vista.getBtnComenzarVotaciones().setText("COMENZAR");
                 	vista.getBtnComenzarVotaciones().setEnabled(true);
+                	vista.getBtnComenzarVotaciones().setText("COMENZAR");
+                	listaResultadosFaseNacional = gBD.getResultadosFaseNacional();
                 	tiempoEurovision = 21;
                 }
             }

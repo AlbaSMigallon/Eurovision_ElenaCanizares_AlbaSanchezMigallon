@@ -52,6 +52,7 @@ public class GestionDeDatos {
 	 */
 
 	public void insertResultadosFaseNacional(ResultadosFaseNacional resultado) {
+		System.out.println("ENTRA");
 		Session session = null;
 		// Controlar el acceso al recurso compartido
 		synchronized (object) {
@@ -60,9 +61,10 @@ public class GestionDeDatos {
 				session = this.sessionFactory.getCurrentSession();
 				session.beginTransaction();
 
-				session.save(resultado);////
+				session.save(resultado);
 
 				session.getTransaction().commit();
+
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				if (null != session) {
@@ -75,7 +77,6 @@ public class GestionDeDatos {
 				}
 			}
 		}
-
 	}
 
 	/*

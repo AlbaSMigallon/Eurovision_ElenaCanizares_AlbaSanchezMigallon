@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 public class Vista extends JFrame {
 
@@ -22,6 +23,7 @@ public class Vista extends JFrame {
 			lblTlfPolonia, lblTlfPaisesBajos, lblTlfRumania, lblTlfGrecia;
 	public JLabel lblTaylorPaElena;
 	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo;
+	public JTextArea textAreaPrueba;
 
 
 	public Vista() {
@@ -193,8 +195,12 @@ public class Vista extends JFrame {
 		panelVotaciones.setLayout(null);
 
 		btnRefrescarInfo = new JButton("New button");
-		btnRefrescarInfo.setBounds(414, 554, 85, 21);
+		btnRefrescarInfo.setBounds(414, 539, 171, 36);
 		panelVotaciones.add(btnRefrescarInfo);
+
+		textAreaPrueba = new JTextArea();
+		textAreaPrueba.setBounds(219, 353, 496, 143);
+		panelVotaciones.add(textAreaPrueba);
 		panelVotaciones.setVisible(false);
 
 

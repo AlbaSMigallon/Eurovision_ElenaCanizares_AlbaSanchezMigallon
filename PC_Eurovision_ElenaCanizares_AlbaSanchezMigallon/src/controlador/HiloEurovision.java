@@ -18,6 +18,7 @@ public class HiloEurovision extends Thread {
 
 	public HiloEurovision(Socket socket) {
 		this.socket = socket;
+		System.out.println("se crea un hiloEurovision");
 	}
 
 	public void run() {
@@ -45,6 +46,7 @@ public class HiloEurovision extends Thread {
 			resultadosNacionales.setCantanteTercero(cantanteTercero);
 
 			GestionDeDatos gBD= GestionDeDatos.getInstance();
+			System.out.println("antes del insert");
 			gBD.insertResultadosFaseNacional(resultadosNacionales);
 			//gBD.cerrarPoolConexiones();
 
