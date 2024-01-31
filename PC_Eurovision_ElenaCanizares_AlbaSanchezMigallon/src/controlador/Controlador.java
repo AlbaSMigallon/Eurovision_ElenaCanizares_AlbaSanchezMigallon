@@ -1,13 +1,22 @@
 package controlador;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 
+import persistencias.Cantantes;
 import persistencias.ResultadosFaseNacional;
 import vista.Vista;
 
@@ -20,6 +29,7 @@ public class Controlador implements ActionListener {
 	private static Timer timerCronometro;
 	private static Timer timerVotaciones;
 	private static List<ResultadosFaseNacional> listaResultadosFaseNacional;
+	private Map<String, Integer> diccionarioPaisesPuntos;
 	private int indiceListaResultadosNacionales;
 	private boolean panel1_activo;
 	private boolean panel2_activo;
@@ -33,6 +43,7 @@ public class Controlador implements ActionListener {
 		Controlador.tiempoTransicion = 2;
 		Controlador.tiempoEurovision = 21;
 		this.votacionNacional = new VotacionNacional(vista);
+		this.diccionarioPaisesPuntos = new HashMap<>();
 		this.panel1_activo = true;
 		this.panel2_activo = false;
 		this.panel3_activo = false;
@@ -77,16 +88,23 @@ public class Controlador implements ActionListener {
 			this.panel3_activo = true;
 			vista.panelVotacionesNacionales.setVisible(false);
 			vista.panelVotaciones.setVisible(true);
+			vista.btnRefrescarInfo.setText("Comenzar");
 		}else if (e.getSource() == vista.btnRefrescarInfo) {
+			if(vista.btnRefrescarInfo.getText().equals("Comenzar")) {
+				vista.btnRefrescarInfo.setText(listaResultadosFaseNacional.get(0).getPais());
+				cargarDiccionario();
+				cargarJLabels();
+			}else {
+				int tamanio = listaResultadosFaseNacional.size() - 1;
+				mostrarSiguienteResultado(tamanio);
+			}
+			/*if(this.indiceListaResultadosNacionales == 0) {
+				cargarDiccionario();
+				cargarJLabels();
+			}
 			int tamanio = listaResultadosFaseNacional.size() - 1;
-			mostrarSiguienteResultado(tamanio);
+			mostrarSiguienteResultado(tamanio);*/
 
-			/*for(ResultadosFaseNacional r: listaResultadosFaseNacional) {
-				System.out.println(r.getPais()+"\n");
-				System.out.println(r.getCantantePrimero());
-				System.out.println(r.getCantanteSegundo());
-				System.out.println(r.getCantanteTercero());
-			}*/
 		}else if (e.getSource() == vista.itemMenuInformacion) {
 			getPerspectivaAutoria();
 		}else if(e.getSource() == vista.btnVolver) {
@@ -103,6 +121,45 @@ public class Controlador implements ActionListener {
 		}
 	}
 
+	private void cargarDiccionario() {
+		for(ResultadosFaseNacional r: Controlador.listaResultadosFaseNacional) {
+			this.diccionarioPaisesPuntos.put(r.getPais(), 0);
+		}
+	}
+
+	private void actualizarDiccionario(String nombrePais, int puntos) {
+		for (String clavePais : this.diccionarioPaisesPuntos.keySet()) {
+            int valorPuntos = this.diccionarioPaisesPuntos.get(clavePais);
+            if(clavePais.equals(nombrePais)) {
+            	this.diccionarioPaisesPuntos.put(clavePais, valorPuntos + puntos);
+            	System.out.println("Clave: " + clavePais + ", Valor: " + valorPuntos);
+            }
+        }
+	}
+
+	private void cargarJLabels() {
+		this.diccionarioPaisesPuntos = ordenarMapaDescendentemente(this.diccionarioPaisesPuntos);
+		List<String> listaClaves = new ArrayList<>(this.diccionarioPaisesPuntos.keySet());
+		List<Integer> listaValores = new ArrayList<>(this.diccionarioPaisesPuntos.values());
+    	for (int i = 0; i < vista.panelPaisesPuntos.getComponentCount(); i++) {
+		    Component componente = vista.panelPaisesPuntos.getComponent(i);
+		    if (componente instanceof JLabel) {
+		    	JLabel label = (JLabel) componente;
+		    	label.setText(listaClaves.get(i) + " " + listaValores.get(i));
+		    }
+		}
+	}
+
+	public static Map<String, Integer> ordenarMapaDescendentemente(Map<String, Integer> mapa) {
+        List<Map.Entry<String, Integer>> listaDeEntradas = new ArrayList<>(mapa.entrySet());
+        Collections.sort(listaDeEntradas, Comparator.comparing(Map.Entry::getValue, Comparator.reverseOrder()));
+        Map<String, Integer> mapaOrdenado = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entrada : listaDeEntradas) {
+            mapaOrdenado.put(entrada.getKey(), entrada.getValue());
+        }
+        return mapaOrdenado;
+    }
+
 	private void mostrarSiguienteResultado(int tamanio) {
         vista.textAreaPrueba.setText("");
         if (this.indiceListaResultadosNacionales <= tamanio) {
@@ -110,17 +167,28 @@ public class Controlador implements ActionListener {
             String cantantePrimero = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantantePrimero();
             String cantanteSegundo = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantanteSegundo();
             String cantanteTercero = listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getCantanteTercero();
-            String info = "PAIS: " + nombrePais + "\n";
-            info += "\tVota como primer cantante a " + cantantePrimero + "\n";
-            info += "\tVota como segundo cantante a " + cantanteSegundo + "\n";
-            info += "\tVota como tercer cantante a " + cantanteTercero + "\n";
+            String info = "PAIS VOTANTE: " + nombrePais + "\n";
+            String paisCantante1 = gBD.getCantante(cantantePrimero);
+            String paisCantante2 = gBD.getCantante(cantanteSegundo);
+            String paisCantante3 = gBD.getCantante(cantanteTercero);
+            info += "\tVota como primer cantante con 15 points a " + cantantePrimero + " (" + paisCantante1 + ")\n";
+            info += "\tVota como segundo cantante con 10 points a " + cantanteSegundo + " (" + paisCantante2 + ")\n";
+            info += "\tVota como tercer cantante con 8 points a " + cantanteTercero + " (" + paisCantante3 + ")\n";
             vista.textAreaPrueba.setText(info);
-            vista.btnRefrescarInfo.setText(nombrePais);
+            actualizarDiccionario(paisCantante1,  15);
+            actualizarDiccionario(paisCantante2,  10);
+            actualizarDiccionario(paisCantante3,  8);
+            cargarJLabels();
+            this.indiceListaResultadosNacionales++;
+            if(indiceListaResultadosNacionales <= tamanio) {
+            	vista.btnRefrescarInfo.setText(listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais());
+            }else {
+            	vista.btnRefrescarInfo.setText("Siguiente panel");
+            }
         } else {
             vista.textAreaPrueba.setText("Fin votaciones");
             vista.btnRefrescarInfo.setText("FIN..POR AHORA");
         }
-        this.indiceListaResultadosNacionales++;
     }
 
 	public void getPerspectivaAutoria() {

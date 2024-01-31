@@ -33,6 +33,17 @@ public class Vista extends JFrame {
     public JLabel lblAutor1;
     public JLabel lblAutor2;
     public JLabel lblAutor3;
+    public JPanel panelPaisesPuntos;
+    public JLabel lblPosicion1;
+    public JLabel lblPosicion2;
+    public JLabel lblPosicion3;
+    public JLabel lblPosicion4;
+    public JLabel lblPosicion5;
+    public JLabel lblPosicion6;
+    public JLabel lblPosicion7;
+    public JLabel lblPosicion8;
+    public JLabel lblPosicion9;
+    public JLabel lblPosicion10;
 
 
 	public Vista() {
@@ -209,8 +220,53 @@ public class Vista extends JFrame {
 		panelVotaciones.setVisible(false);
 
 		textAreaPrueba = new JTextArea();
-		textAreaPrueba.setBounds(219, 353, 496, 143);
+		textAreaPrueba.setBounds(256, 352, 496, 143);
 		panelVotaciones.add(textAreaPrueba);
+
+		panelPaisesPuntos = new JPanel();
+		panelPaisesPuntos.setBounds(355, 62, 270, 266);
+		panelVotaciones.add(panelPaisesPuntos);
+		panelPaisesPuntos.setLayout(null);
+
+		lblPosicion1 = new JLabel("1");
+		lblPosicion1.setBounds(10, 25, 253, 13);
+		panelPaisesPuntos.add(lblPosicion1);
+
+		lblPosicion2 = new JLabel("2");
+		lblPosicion2.setBounds(10, 49, 253, 13);
+		panelPaisesPuntos.add(lblPosicion2);
+
+		lblPosicion3 = new JLabel("3");
+		lblPosicion3.setBounds(10, 72, 253, 13);
+		panelPaisesPuntos.add(lblPosicion3);
+
+		lblPosicion4 = new JLabel("4");
+		lblPosicion4.setBounds(10, 95, 253, 13);
+		panelPaisesPuntos.add(lblPosicion4);
+
+		lblPosicion5 = new JLabel("5");
+		lblPosicion5.setBounds(10, 118, 253, 13);
+		panelPaisesPuntos.add(lblPosicion5);
+
+		lblPosicion6 = new JLabel("6");
+		lblPosicion6.setBounds(10, 144, 253, 13);
+		panelPaisesPuntos.add(lblPosicion6);
+
+		lblPosicion7 = new JLabel("7");
+		lblPosicion7.setBounds(10, 167, 253, 13);
+		panelPaisesPuntos.add(lblPosicion7);
+
+		lblPosicion8 = new JLabel("8");
+		lblPosicion8.setBounds(10, 190, 253, 13);
+		panelPaisesPuntos.add(lblPosicion8);
+
+		lblPosicion9 = new JLabel("9");
+		lblPosicion9.setBounds(10, 213, 253, 13);
+		panelPaisesPuntos.add(lblPosicion9);
+
+		lblPosicion10 = new JLabel("10");
+		lblPosicion10.setBounds(10, 236, 253, 13);
+		panelPaisesPuntos.add(lblPosicion10);
 
 		panelAutoria = new JPanel();
 		panelAutoria.setBounds(0, 0, 925, 562);

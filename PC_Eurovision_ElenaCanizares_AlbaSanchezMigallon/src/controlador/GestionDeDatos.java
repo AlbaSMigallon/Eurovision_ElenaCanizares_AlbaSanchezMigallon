@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-
 import persistencias.Cantantes;
 import persistencias.PorcentajesRangoedad;
 import persistencias.ResultadosFaseNacional;
@@ -109,6 +108,36 @@ public class GestionDeDatos {
 			}
 
 			return paises;
+		}
+	}
+
+	public String getCantante(String nombreParametro) {
+		Session session = null;
+
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			session.beginTransaction();
+
+			// Buscar el cantante en base al nombre
+			Query query = session.createQuery("FROM Cantantes c WHERE c.nombre = :variableNombre");
+			query.setParameter("variableNombre", nombreParametro);
+			Cantantes cantante = (Cantantes) query.getSingleResult();
+			String pais = cantante.getPais();
+			session.getTransaction().commit();
+			return pais;
+
+		}
+		catch(HibernateException e) {
+			e.printStackTrace();
+			if (null != session) {
+				session.getTransaction().rollback();
+			}
+			throw e;
+		}
+		finally {
+			if (null != session) {
+				session.close();
+			}
 		}
 	}
 
