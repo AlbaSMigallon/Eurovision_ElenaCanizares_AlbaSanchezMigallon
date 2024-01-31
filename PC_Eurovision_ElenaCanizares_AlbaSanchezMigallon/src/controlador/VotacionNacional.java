@@ -85,7 +85,7 @@ public class VotacionNacional extends Thread {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw e;
+			//throw e;
 		}
 	}
 

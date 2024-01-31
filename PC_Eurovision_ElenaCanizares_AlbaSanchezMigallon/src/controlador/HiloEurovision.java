@@ -48,17 +48,17 @@ public class HiloEurovision extends Thread {
 			GestionDeDatos gBD= GestionDeDatos.getInstance();
 			System.out.println("antes del insert");
 			gBD.insertResultadosFaseNacional(resultadosNacionales);
-<<<<<<< HEAD
-			
+
+
 			// contesta a cliente, que no esta bonito dejarle en visto////////////////////////////////////////////////////////////
-			
-			
-=======
+
+
+
 			//gBD.cerrarPoolConexiones();
 
 
 
->>>>>>> branch 'master' of https://github.com/AlbaSMigallon/Eurovision_ElenaCanizares_AlbaSanchezMigallon.git
+
 		} catch (IOException e) {
 			System.out.println("Error al aceptar conexion "+e.getMessage());
 			e.printStackTrace();

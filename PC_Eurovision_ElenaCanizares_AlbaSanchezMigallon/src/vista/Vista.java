@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -14,21 +17,27 @@ public class Vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
-	public JPanel panelInicial, panelVotacionesNacionales, panelVotaciones, panelResultados, panelFinal;
+	public JPanel panelInicial, panelVotacionesNacionales, panelVotaciones, panelResultados, panelFinal, panelAutoria;
 	public JLabel lblFondoInicio, lblLogoInicio;
 	public JLabel lblActuacionEspania, lblActuacionAlemania, lblActuacionFrancia, lblActuacionItalia,
 			lblActuacionPortugal, lblActuacionReinoUnido, lblActuacionPolonia, lblActuacionPaisesBajos,
-			lblActuacionRumania, lblActuacionGrecia;
+			lblActuacionRumania, lblActuacionGrecia, lblCabecera, lblLogoCentro;
 	public JLabel lblTlfEspania, lblTlfAlemania, lblTlfFrancia, lblTlfItalia, lblTlfPortugal, lblTlfReinoUnido,
 			lblTlfPolonia, lblTlfPaisesBajos, lblTlfRumania, lblTlfGrecia;
 	public JLabel lblTaylorPaElena;
-	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo;
+	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo, btnVolver;
 	public JTextArea textAreaPrueba;
+	public JMenuBar menuBar;
+	public JMenu mnMenu;
+    public JMenuItem itemMenuInformacion;
+    public JLabel lblAutor1;
+    public JLabel lblAutor2;
+    public JLabel lblAutor3;
 
 
 	public Vista() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 939, 643);
+		setBounds(100, 100, 939, 621);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -37,28 +46,28 @@ public class Vista extends JFrame {
 
 		// PANEL INICIAL
 		panelInicial = new JPanel();
-		panelInicial.setBounds(0, 0, 925, 606);
+		panelInicial.setBounds(0, 0, 925, 562);
 		contentPane.add(panelInicial);
 		panelInicial.setLayout(null);
 
 		btnComenzarInicio = new JButton("COMENZAR");
 		btnComenzarInicio.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
-		btnComenzarInicio.setBounds(369, 540, 181, 51);
+		btnComenzarInicio.setBounds(370, 501, 181, 51);
 		panelInicial.add(btnComenzarInicio);
 
 		lblLogoInicio = new JLabel("");
 		lblLogoInicio.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLogoInicio.setBounds(0, 0, 925, 606);
+		lblLogoInicio.setBounds(0, 0, 925, 577);
 		panelInicial.add(lblLogoInicio);
 
 		lblFondoInicio = new JLabel("");
-		lblFondoInicio.setBounds(0, 0, 925, 606);
+		lblFondoInicio.setBounds(0, 0, 925, 562);
 		lblFondoInicio.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/fondo2.jpg"));
 		panelInicial.add(lblFondoInicio);
 
 		// PANEL VOTOS NACIONALES
 		panelVotacionesNacionales = new JPanel();
-		panelVotacionesNacionales.setBounds(0, 0, 925, 606);
+		panelVotacionesNacionales.setBounds(0, 0, 925, 562);
 		contentPane.add(panelVotacionesNacionales);
 		panelVotacionesNacionales.setLayout(null);
 		panelVotacionesNacionales.setVisible(false);
@@ -178,30 +187,67 @@ public class Vista extends JFrame {
 
 		btnComenzarVotaciones = new JButton("ESPERANDO");
 		btnComenzarVotaciones.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
-		btnComenzarVotaciones.setBounds(389, 556, 155, 23);
+		btnComenzarVotaciones.setBounds(388, 529, 155, 23);
 		btnComenzarVotaciones.setEnabled(false);
 		panelVotacionesNacionales.add(btnComenzarVotaciones);
 
 		lblTaylorPaElena = new JLabel("");
 		lblTaylorPaElena.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTaylorPaElena.setBounds(623, 184, 302, 412);
+		lblTaylorPaElena.setBounds(623, 184, 302, 368);
 		lblTaylorPaElena.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/taylor/taylor1.png"));
 		panelVotacionesNacionales.add(lblTaylorPaElena);
 		panelVotacionesNacionales.setLayout(null);
 
 		panelVotaciones = new JPanel();
-		panelVotaciones.setBounds(0, 0, 925, 606);
+		panelVotaciones.setBounds(0, 0, 925, 562);
 		contentPane.add(panelVotaciones);
 		panelVotaciones.setLayout(null);
 
-		btnRefrescarInfo = new JButton("New button");
-		btnRefrescarInfo.setBounds(414, 539, 171, 36);
+		btnRefrescarInfo = new JButton("VOTACIONES");
+		btnRefrescarInfo.setBounds(411, 516, 171, 36);
 		panelVotaciones.add(btnRefrescarInfo);
+		panelVotaciones.setVisible(false);
 
 		textAreaPrueba = new JTextArea();
 		textAreaPrueba.setBounds(219, 353, 496, 143);
 		panelVotaciones.add(textAreaPrueba);
-		panelVotaciones.setVisible(false);
+
+		panelAutoria = new JPanel();
+		panelAutoria.setBounds(0, 0, 925, 562);
+		contentPane.add(panelAutoria);
+		panelAutoria.setLayout(null);
+		panelAutoria.setVisible(false);
+
+		btnVolver = new JButton("Volver");
+		btnVolver.setBounds(404, 524, 102, 28);
+		panelAutoria.add(btnVolver);
+
+		lblLogoCentro = new JLabel("");
+		lblLogoCentro.setBounds(233, 253, 439, 236);
+		panelAutoria.add(lblLogoCentro);
+		lblLogoCentro.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/logos/logoEFA.jpg"));
+
+		lblCabecera = new JLabel("2º DAM, EFA Moratalaz");
+		lblCabecera.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCabecera.setBounds(179, 10, 530, 77);
+		lblCabecera.setFont(new Font("Impact", Font.PLAIN, 30));
+		panelAutoria.add(lblCabecera);
+
+		lblAutor1 = new JLabel("Alba Sanchez-Migallón Calero");
+		lblAutor1.setBounds(328, 97, 233, 28);
+		panelAutoria.add(lblAutor1);
+		lblAutor1.setFont(new Font("Impact", Font.PLAIN, 15));
+
+		lblAutor2 = new JLabel("Elena Cañizares Jimenez");
+		lblAutor2.setBounds(328, 146, 233, 28);
+		panelAutoria.add(lblAutor2);
+		lblAutor2.setFont(new Font("Impact", Font.PLAIN, 15));
+
+		lblAutor3 = new JLabel("Carlos Guerrero Caro");
+		lblAutor3.setBounds(328, 196, 233, 28);
+		panelAutoria.add(lblAutor3);
+		lblAutor3.setFont(new Font("Impact", Font.PLAIN, 15));
+
 
 
 		// PANEL RESULTADOS FINALES EUROVISION
@@ -227,6 +273,14 @@ public class Vista extends JFrame {
 		lblFondoInicio.setIcon(new ImageIcon(
 				"C:\\Users\\Alba\\git\\Eurovision_ElenaCanizares_AlbaSanchezMigallon\\PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon\\resources\\fondo2.jpg"));
 		panelInicial.add(lblFondoInicio);*/
+
+		menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+        mnMenu = new JMenu("Menu");
+    	menuBar.add(mnMenu);
+    	itemMenuInformacion = new JMenuItem("Autoría");
+		mnMenu.add(itemMenuInformacion);
+		menuBar.setBounds(0, 0, getWidth(), 30);
 
 	}
 
