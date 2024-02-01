@@ -14,32 +14,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import persistencias.Cantantes;
 import persistencias.PorcentajesRangoedad;
 
-
-
-
-
-
-
+/**
+ * Cada pais es un cliente. Creara un hilo por votante y gestionara la cantidad segun rango de edad
+ * @author Alba Sanchez-Migallon Arias, Elena Cañizares Jimenez y Carlos Guerrero Caro
+ * @version 1.0
+ * @see Thread
+ */
 public class ClientePais extends Thread{
-	/*
-	 * Cada pais es un cliente. Creara un hilo por votante y gestionara la cantidad segun rango de edad
-	 *
-	 */
 
 	// objeto obtenido de la consulta para calcular porcentajes por rango de edad
-		private PorcentajesRangoedad porcentajes;
-		// estructura de datos en la que se almacenaran los resultados de los votos que
+	private PorcentajesRangoedad porcentajes;
+	// estructura de datos en la que se almacenaran los resultados de los votos que
 
-		private HashMap<String, Integer> votaciones;
-		private List<Cantantes> cantantes;
-		private String cantanteVotoPrimero;
-		private String cantanteVotoSegundo;
-		private String cantanteVotoTercero;
-	
+	private HashMap<String, Integer> votaciones;
+	private List<Cantantes> cantantes;
+	private String cantanteVotoPrimero;
+	private String cantanteVotoSegundo;
+	private String cantanteVotoTercero;
+
 
 	public ClientePais(PorcentajesRangoedad porcentajes, List<Cantantes> cantantes ) {
 		this.porcentajes = porcentajes;
@@ -47,7 +42,7 @@ public class ClientePais extends Thread{
 		inicializarHashMap();// inicializamos hasmao con nombres de paises
 	}
 
-	
+
 	public PorcentajesRangoedad getPorcentajes() {
 		return porcentajes;
 	}
@@ -63,7 +58,7 @@ public class ClientePais extends Thread{
 	public void setVotaciones(HashMap<String, Integer> votaciones) {
 		this.votaciones = votaciones;
 	}
-	
+
 	public String getCantanteVotoPrimero() {
 		return cantanteVotoPrimero;
 	}
@@ -178,7 +173,7 @@ public class ClientePais extends Thread{
 
 			}
 		}
-        
+
 
 		//Obtenemos los cantantes asociados a los paises ganadores
         // como en el enunciado pide que se vote a cantantes, lo hacemos por cantantes en vez de paises
@@ -198,7 +193,7 @@ public class ClientePais extends Thread{
 		System.out.println("15 puntos para " + getCantanteVotoPrimero());
 		System.out.println("10 puntos para " + getCantanteVotoSegundo());
 		System.out.println("8 puntos para " + getCantanteVotoTercero());
-			
+
 
 	}
 
@@ -302,11 +297,11 @@ public class ClientePais extends Thread{
 		HiloVotante hilo = new HiloVotante(pais, rango);// crea hilo votante
 		hilo.start();
 		hilo.join();
-		
+
 		return hilo.getVoto();
-		
+
 	}
-	
+
 	/**
 	 * @param args
 	 * @throws IOException
@@ -329,9 +324,9 @@ public class ClientePais extends Thread{
 			pw.print(cantanteSegundo + "\n");// Cantante primero
 			pw.print(cantanteTercero + "\n");//Cantante segundo
 			pw.flush();
-			
+
 			// escucha respuesta //////////////////////////////////////////////////////////////////////////////////////
-		
+
 
 		} catch (IOException e) {
 			e.printStackTrace();

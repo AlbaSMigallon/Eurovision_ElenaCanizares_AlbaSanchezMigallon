@@ -11,6 +11,13 @@ import java.io.Writer;
 import java.net.Socket;
 import persistencias.ResultadosFaseNacional;
 
+/**
+ * Clase HiloEurovision que extiende la clase Thread y representa un hilo de ejecucion que maneja la comunicacion con un
+ * cliente
+ * @author Alba Sanchez-Migallon Arias, Elena Cañizares Jimenez y Carlos Guerrero Caro
+ * @version 1.0
+ * @see Thread
+ */
 public class HiloEurovision extends Thread {
 	Socket socket;
 	ResultadosFaseNacional resultadosNacionales;
@@ -49,15 +56,9 @@ public class HiloEurovision extends Thread {
 			System.out.println("antes del insert");
 			gBD.insertResultadosFaseNacional(resultadosNacionales);
 
-
 			// contesta a cliente, que no esta bonito dejarle en visto////////////////////////////////////////////////////////////
 
-
-
 			//gBD.cerrarPoolConexiones();
-
-
-
 
 		} catch (IOException e) {
 			System.out.println("Error al aceptar conexion "+e.getMessage());
@@ -70,8 +71,6 @@ public class HiloEurovision extends Thread {
 			close(is);
 			close(socket);
 		}
-
-
 	}
 
 	private void close(Socket socket) {

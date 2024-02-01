@@ -1,25 +1,24 @@
 package controlador;
 
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
 import persistencias.Cantantes;
 import persistencias.PorcentajesRangoedad;
 import vista.Vista;
 
+/**
+ * Este hilo lo creamos para gestionar todas la fase de votaciones nacionales. Hacemos esto para controlar que cuando
+ * acabe este proceso, cuando el hilo no este vivo, hagamos el insert en la BBDD y tambien podamos pasar a la pantalla
+ * de resultados, sabiendo que ya tenemos todo el proceso finalizado
+ * @author Alba Sanchez-Migallon Arias, Elena Cañizares Jimenez y Carlos Guerrero Caro
+ * @version 1.0
+ * @see Thread
+ */
 public class VotacionNacional extends Thread {
-	/*
-	 * Este hilo lo creamos para gestionar todas la fase de votaciones nacionales.
-	 * Hacemos esto para controlar que cuando acabe este proceso, cuando el hilo no
-	 * este vivo, hagamos el insert en la BBDD y tambien podamos pasar a la pantalla
-	 * de resultados, sabiendo que ya tenemos todo el proceso finalizado
-	 */
 
 	//GestionDeDatos gBD;
 	Vista vista;
 
 	public VotacionNacional(Vista vista) {
-
 		//this.gBD = gBD;
 		this.vista = vista;
 

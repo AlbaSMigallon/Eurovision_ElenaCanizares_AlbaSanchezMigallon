@@ -1,11 +1,14 @@
 package controlador;
 
+/**
+ * Esta clase hilo se encarga de determinar el voto teniendo en cuenta la franja de edad y el filtro de no votar al
+ * pais de procedencia del voto
+ * @author Alba Sanchez-Migallon Arias, Elena Cañizares Jimenez y Carlos Guerrero Caro
+ * @version 1.0
+ * @see Thread
+ */
 public class HiloVotante extends Thread {
 
-	/*
-	 * Esta clase hilo se encarga de determinar el voto teniendo en cuenta la franja
-	 * de edad y el filtro de no votar al pais de procedencia del voto
-	 */
 	private String voto;
 	private String rangoEdad;
 	private String pais;
