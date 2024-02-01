@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import persistencias.Cantantes;
 import persistencias.PorcentajesRangoedad;
+import persistencias.ResultadosEurovision;
 import persistencias.ResultadosFaseNacional;
 
 import java.util.List;
@@ -43,72 +44,6 @@ public class GestionDeDatos {
 			createInstance();
 		}
 		return instance;
-	}
-
-	/*
-	 * metodo para hacer el insert en la tabla de RESULTADOS_FASE_NACIONAL. un
-	 * insert por cada pais
-	 */
-
-	public void insertResultadosFaseNacional(ResultadosFaseNacional resultado) {
-		System.out.println("ENTRA");
-		Session session = null;
-		// Controlar el acceso al recurso compartido
-		synchronized (object) {
-
-			try {
-				session = this.sessionFactory.getCurrentSession();
-				session.beginTransaction();
-
-				session.save(resultado);
-
-				session.getTransaction().commit();
-
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				if (null != session) {
-					session.getTransaction().rollback();
-				}
-				throw e;
-			} finally {
-				if (null != session) {
-					session.close();
-				}
-			}
-		}
-	}
-
-	/*
-	 * metodo para sacar los registro de los rangos de edad para calcular las
-	 * votaciones nacionales
-	 */
-	public List<PorcentajesRangoedad> getPorcentajes() {
-		Session session = null;
-		List<PorcentajesRangoedad> paises = null;
-
-		synchronized (object) {
-
-			try {
-				session = this.sessionFactory.getCurrentSession();
-				session.beginTransaction();
-
-				Query<PorcentajesRangoedad> query = this.sessionFactory.getCurrentSession()
-						.createQuery("FROM PorcentajesRangoedad");
-				paises = query.list();
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				if (null != session) {
-					session.getTransaction().rollback();
-				}
-				throw e;
-			} finally {
-				if (null != session) {
-					session.close();
-				}
-			}
-
-			return paises;
-		}
 	}
 
 	public String getCantante(String nombreParametro) {
@@ -165,6 +100,100 @@ public class GestionDeDatos {
 			}
 
 			return cantantes;
+		}
+	}
+
+	public void insertResultadosEurovision(ResultadosEurovision resultado) {
+		Session session = null;
+		// Controlar el acceso al recurso compartido
+		synchronized (object) {
+
+			try {
+				session = this.sessionFactory.getCurrentSession();
+				session.beginTransaction();
+
+				session.saveOrUpdate(resultado);
+
+				session.getTransaction().commit();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				if (null != session) {
+					session.getTransaction().rollback();
+				}
+				throw e;
+			} finally {
+				if (null != session) {
+					session.close();
+				}
+			}
+		}
+	}
+
+
+
+	/*
+	 * metodo para hacer el insert en la tabla de RESULTADOS_FASE_NACIONAL. un
+	 * insert por cada pais
+	 */
+
+	public void insertResultadosFaseNacional(ResultadosFaseNacional resultado) {
+		Session session = null;
+		// Controlar el acceso al recurso compartido
+		synchronized (object) {
+
+			try {
+				session = this.sessionFactory.getCurrentSession();
+				session.beginTransaction();
+
+				session.save(resultado);
+
+				session.getTransaction().commit();
+
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				if (null != session) {
+					session.getTransaction().rollback();
+				}
+				throw e;
+			} finally {
+				if (null != session) {
+					session.close();
+				}
+			}
+		}
+	}
+
+	/*
+	 * metodo para sacar los registro de los rangos de edad para calcular las
+	 * votaciones nacionales
+	 */
+	public List<PorcentajesRangoedad> getPorcentajes() {
+		Session session = null;
+		List<PorcentajesRangoedad> paises = null;
+
+		synchronized (object) {
+
+			try {
+				session = this.sessionFactory.getCurrentSession();
+				session.beginTransaction();
+
+				Query<PorcentajesRangoedad> query = this.sessionFactory.getCurrentSession()
+						.createQuery("FROM PorcentajesRangoedad");
+				paises = query.list();
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				if (null != session) {
+					session.getTransaction().rollback();
+				}
+				throw e;
+			} finally {
+				if (null != session) {
+					session.close();
+				}
+			}
+
+			return paises;
 		}
 	}
 

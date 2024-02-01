@@ -4,8 +4,10 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -17,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 import persistencias.Cantantes;
+import persistencias.ResultadosEurovision;
 import persistencias.ResultadosFaseNacional;
 import vista.Vista;
 
@@ -98,12 +101,9 @@ public class Controlador implements ActionListener {
 				int tamanio = listaResultadosFaseNacional.size() - 1;
 				mostrarSiguienteResultado(tamanio);
 			}
-			/*if(this.indiceListaResultadosNacionales == 0) {
-				cargarDiccionario();
-				cargarJLabels();
+			if(vista.btnRefrescarInfo.getText().equals("ACTUACION GANADORA")) {
+				
 			}
-			int tamanio = listaResultadosFaseNacional.size() - 1;
-			mostrarSiguienteResultado(tamanio);*/
 
 		}else if (e.getSource() == vista.itemMenuInformacion) {
 			getPerspectivaAutoria();
@@ -183,13 +183,53 @@ public class Controlador implements ActionListener {
             if(indiceListaResultadosNacionales <= tamanio) {
             	vista.btnRefrescarInfo.setText(listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais());
             }else {
-            	vista.btnRefrescarInfo.setText("Siguiente panel");
+            	vista.btnRefrescarInfo.setText("ACTUACION GANADORA");
+            	guardarResultadosEurovision();
             }
         } else {
             vista.textAreaPrueba.setText("Fin votaciones");
-            vista.btnRefrescarInfo.setText("FIN..POR AHORA");
         }
     }
+
+	public void guardarResultadosEurovision() {
+		ResultadosEurovision resultado = new ResultadosEurovision();
+		boolean primeraIteracion = true;
+		String ganador = null;
+		for (String clavePais : this.diccionarioPaisesPuntos.keySet()) {
+            int valorPuntos = this.diccionarioPaisesPuntos.get(clavePais);
+            if (primeraIteracion == true) {
+                ganador = clavePais;
+                primeraIteracion = false;
+                resultado.setPaisGanador(ganador);
+            }
+            if(clavePais.equals("Espania")) {
+            	resultado.setAlemania(valorPuntos);
+            }else if(clavePais.equals("Alemania")) {
+            	resultado.setAlemania(valorPuntos);
+            }else if(clavePais.equals("Francia")) {
+            	resultado.setFrancia(valorPuntos);
+            }else if(clavePais.equals("Italia")) {
+            	resultado.setItalia(valorPuntos);
+            }else if(clavePais.equals("Portugal")) {
+            	resultado.setPortugal(valorPuntos);
+            }else if(clavePais.equals("Reino Unido")) {
+            	resultado.setReinoUnido(valorPuntos);
+            }else if(clavePais.equals("Polonia")) {
+            	resultado.setPolonia(valorPuntos);
+            }else if(clavePais.equals("Paises Bajos")) {
+            	resultado.setPaisesBajos(valorPuntos);
+            }else if(clavePais.equals("Rumania")) {
+            	resultado.setRumania(valorPuntos);
+            }else if(clavePais.equals("Grecia")) {
+            	resultado.setGrecia(valorPuntos);
+            }
+        }
+		Date fechaActual = Calendar.getInstance().getTime();
+		resultado.setFechaGala(fechaActual);
+		gBD.insertResultadosEurovision(resultado);
+        System.out.println("Fecha actual: " + fechaActual);
+        System.out.println("DATOS GUARDADOS EN TABLA EUROVISION");
+	}
 
 	public void getPerspectivaAutoria() {
 		vista.panelInicial.setVisible(false);
