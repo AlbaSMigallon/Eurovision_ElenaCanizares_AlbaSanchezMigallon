@@ -1,76 +1,71 @@
 package controlador;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
-import java.io.Reader;
-import java.io.Writer;
 import java.net.Socket;
 import persistencias.ResultadosFaseNacional;
 
 /**
- * Clase HiloEurovision que extiende la clase Thread y representa un hilo de ejecucion que maneja la comunicacion con un
- * cliente
+ * Clase HiloEurovision que extiende la clase Thread 
+ * Se encarga de recibir el objeto con la informacion de cada cliente pais para hacer el insert en la tabla de la Fase Nacional
  * @author Alba Sanchez-Migallon Arias, Elena Cañizares Jimenez y Carlos Guerrero Caro
  * @version 1.0
  * @see Thread
  */
 public class HiloEurovision extends Thread {
-	Socket socket;
-	ResultadosFaseNacional resultadosNacionales;
-	GestionDeDatos gBD;
+	private Socket socket;
+	//private ResultadosFaseNacional resultadosNacionales;
+	//private GestionDeDatos gBD;
+	
 
 	public HiloEurovision(Socket socket) {
 		this.socket = socket;
-		System.out.println("se crea un hiloEurovision");
+		//System.out.println("se crea un hiloEurovision");
+		
 	}
 
 	public void run() {
-		// recibe la informacion del cliente
-		InputStream is = null;
-		InputStreamReader isr = null;
-		BufferedReader bf = null;
-		OutputStream os = null;
-		PrintWriter pw = null;
-		try {
-			is = socket.getInputStream();
-			isr = new InputStreamReader(is);
-			bf = new BufferedReader(isr);
-			String pais = bf.readLine();
-			String cantantePrimero = bf.readLine();
-			String cantanteSegundo = bf.readLine();
-			String cantanteTercero = bf.readLine();
+		PrintWriter printWriter = null;
+		 try {
+	            // Recibir el objeto desde el cliente
+	            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+	            ResultadosFaseNacional resultadosRecibidos = (ResultadosFaseNacional) objectInputStream.readObject();
 
-			System.out.println("Informacion recibida por el servidor: "+pais+" "+cantantePrimero+" "+cantanteSegundo+" "+cantanteTercero);
+	            System.out.println("Informacion recibida por el servidor: " + resultadosRecibidos.getPais()
+	                    + " " + resultadosRecibidos.getCantantePrimero() + " " + resultadosRecibidos.getCantanteSegundo()
+	                    + " " + resultadosRecibidos.getCantanteTercero());
 
-			resultadosNacionales= new ResultadosFaseNacional();
-			resultadosNacionales.setPais(pais);
-			resultadosNacionales.setCantantePrimero(cantantePrimero);
-			resultadosNacionales.setCantanteSegundo(cantanteSegundo);
-			resultadosNacionales.setCantanteTercero(cantanteTercero);
+	            // Realizar operaciones con resultadosRecibidos según sea necesario
+	            GestionDeDatos gBD = GestionDeDatos.getInstance();
+	           
+	            gBD.insertResultadosFaseNacional(resultadosRecibidos);
+	            
+	            System.out.println(resultadosRecibidos);
+	            
+	         // Enviar respuesta al cliente y seteamos para indicar que este cliente ha terminado, paro luego gestionar el boton
+	            printWriter = new PrintWriter(socket.getOutputStream(), true);
+	            printWriter.println("Estamos ok");
+	          
 
-			GestionDeDatos gBD= GestionDeDatos.getInstance();
-			System.out.println("antes del insert");
-			gBD.insertResultadosFaseNacional(resultadosNacionales);
+	            // Puedes enviar una respuesta al cliente si es necesario
+	            // (por ejemplo, usando un PrintWriter en el socket.getOutputStream())
 
-			// contesta a cliente, que no esta bonito dejarle en visto////////////////////////////////////////////////////////////
 
-			//gBD.cerrarPoolConexiones();
+
 
 		} catch (IOException e) {
 			System.out.println("Error al aceptar conexion "+e.getMessage());
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}finally {
-			close(pw);
-			close(os);
-			close(bf);
-			close(isr);
-			close(is);
+			close(printWriter);
 			close(socket);
 		}
+
+
 	}
 
 	private void close(Socket socket) {
@@ -82,44 +77,12 @@ public class HiloEurovision extends Thread {
 			e.printStackTrace();
 		}
 	}
-
-	private void close(Reader reader) {
-		try {
-			if (null != reader) {
-				reader.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+	
+	private void close(PrintWriter printWriter) {
+		if (null != socket) {
+			printWriter.close();
 		}
 	}
 
-	private void close(InputStream input) {
-		try {
-			if (null != input) {
-				input.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void close(OutputStream output) {
-		try {
-			if (null != output) {
-				output.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void close(Writer writer) {
-		try {
-			if (null != writer) {
-				writer.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+	
 }

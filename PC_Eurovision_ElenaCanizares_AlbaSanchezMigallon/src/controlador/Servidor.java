@@ -5,9 +5,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Clase Servidor establece un servidor que escucha en el puerto 9876, acepta conexiones entrantes de clientes y crea
- * un hilo (HiloEurovision) para manejar la comunicacion con cada cliente de forma concurrente
- * @author Alba Sanchez-Migallon Arias, Elena Cañizares Jimenez y Carlos Guerrero Caro
+ * Clase Servidor establece un servidor que escucha en el puerto 9876, acepta
+ * conexiones entrantes de clientes y crea un hilo (HiloEurovision) para manejar
+ * la comunicacion con cada cliente de forma concurrente
+ * 
+ * @author Alba Sanchez-Migallon Arias, Elena Cañizares Jimenez y Carlos
+ *         Guerrero Caro
  * @version 1.0
  */
 public class Servidor {
@@ -22,7 +25,7 @@ public class Servidor {
 					Socket conexion = socketEscucha.accept();
 					HiloEurovision hilo = new HiloEurovision(conexion);// crea hilo votante
 					hilo.start();
-					//hilo.join();
+					// hilo.join();
 				} catch (IOException e) {
 					e.printStackTrace();
 					throw e;
