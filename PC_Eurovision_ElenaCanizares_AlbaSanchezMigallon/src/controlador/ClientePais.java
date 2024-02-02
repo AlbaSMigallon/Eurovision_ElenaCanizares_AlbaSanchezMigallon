@@ -44,6 +44,7 @@ public class ClientePais extends Thread {
 	private String cantanteVotoSegundo;
 	private String cantanteVotoTercero;
 	private ResultadosFaseNacional resultadosFaseNacional;
+	//se pone a true cuando obtiene respuesta del servidor al tener ya el insert ejecutado
 	private boolean esFinCliente;
 
 	public ClientePais(PorcentajesRangoedad porcentajes, List<Cantantes> cantantes) {
