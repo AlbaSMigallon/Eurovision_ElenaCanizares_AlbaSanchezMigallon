@@ -33,7 +33,7 @@ public class VotacionNacional extends Thread {
 			boolean salir = false;
 
 			GestionDeDatos gBD = GestionDeDatos.getInstance();
-			List<ClientePais> clientesPais = new ArrayList<>(); 
+			List<ClientePais> clientesPais = new ArrayList<>();
 			List<PorcentajesRangoedad> porcentajes = gBD.getPorcentajes();
 			List<Cantantes> cantantes = gBD.getCantantes();
 
@@ -49,10 +49,10 @@ public class VotacionNacional extends Thread {
 				clientesPais.add(clientePais);
 				clientePais.start();
 			}
-			
-			
-			
-			
+
+
+
+
 			/*
 			 * Aqui lo que hacemos es habilitar el boton de pasar a la fase de votacion
 			 * eurovision cuando todo el proceso de votacion nacional acabe. De esta manera
@@ -77,7 +77,8 @@ public class VotacionNacional extends Thread {
 				}
 
 				if (contador == clientesPais.size()) {
-					vista.btnComenzarVotaciones.setText("COMENZAR");
+					// Si se cambia el texto del boton, ha de cambiarse tambien el control que se hace de el en el Controlador
+					vista.btnComenzarVotaciones.setText("COMENZAR VOTACIONES");
 					vista.btnComenzarVotaciones.setEnabled(true);
 					salir = true;
 					System.out.println("BOOOOOTONNNN");
@@ -85,7 +86,7 @@ public class VotacionNacional extends Thread {
 
 			}
 
-			
+
 
 		} catch (Exception e) {
 			e.printStackTrace();

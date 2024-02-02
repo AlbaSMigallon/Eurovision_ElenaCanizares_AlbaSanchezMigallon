@@ -34,11 +34,11 @@ public class Controlador implements ActionListener {
 	// Instancia unica que encapsula toda la funcionalidad respectiva al acceso y manipulacion de la base de datos "CENSO_EUROPA"
 	private static GestionDeDatos gBD;
 	// Instancias de la clase Timer que controlaran el tiempo asignado para la gestion de un gif y un JButton respectivamente
-	private static Timer timerCronometro, timerVotaciones;
+	private static Timer timerCronometro;
 	// Lista que almacena todos los objetos de tipo "ResultadosFaseNacional" buscados de la tabla "RESULTADOS_FASE_NACIONAL"
 	private static List<ResultadosFaseNacional> listaResultadosFaseNacional;
 	// Valores numericos para el control del tiempo asignados a las respectivas instancias Timer "timerCronometro" y "timerVotaciones"
-	private static int tiempoTransicion, tiempoEurovision;
+	private static int tiempoTransicion;
 	// Instancia hilo que creara los procesos necesarios en el calculo de los votos por franjas de edad
 	private VotacionNacional votacionNacional;
 	// Diccionario en el que se ira almacenante cada pais y los votos que recibe, utilizado para jugar con el ranking
@@ -60,7 +60,6 @@ public class Controlador implements ActionListener {
 		Controlador.gBD= GestionDeDatos.getInstance();
 		Controlador.listaResultadosFaseNacional = new ArrayList<>();
 		Controlador.tiempoTransicion = 2;
-		Controlador.tiempoEurovision = 21;
 		this.votacionNacional = new VotacionNacional(vista);
 		this.diccionarioPaisesPuntos = new HashMap<>();
 		this.panel1_activo = true;
@@ -107,7 +106,7 @@ public class Controlador implements ActionListener {
 			iniciarCronometroTransicion();
 
 			// Se inicia el Timer que controla el tiempo hasta la disponibilidad del JButon "btnComenzarVotaciones"
-			iniciarCronometroVotacionesEurovision();
+			//iniciarCronometroVotacionesEurovision();
 		}
 		// Acciones a realizar al pulsar el JButton "btnComenzarVotaciones"
 		else if (e.getSource() == vista.btnComenzarVotaciones) {
@@ -120,6 +119,9 @@ public class Controlador implements ActionListener {
 			// Hacemos visible el segundo JPanel y ocula
 			vista.panelVotacionesNacionales.setVisible(false);
 			vista.panelVotaciones.setVisible(true);
+
+			// Cargamos la JList "listaResultadosFaseNacional"
+			listaResultadosFaseNacional = gBD.getResultadosFaseNacional();
 			vista.btnRefrescarInfo.setText("COMENZAR");
 		}
 		// Acciones a realizar al pulsar el JButton "btnRefrescarInfo"
@@ -469,7 +471,6 @@ public class Controlador implements ActionListener {
 	private static void iniciarCronometroTransicion() {
 		// Se inicializa la instancia y se especifica que se dispare cada segundo (1000 milisegundos) y anade un escuchador
 		timerCronometro = new Timer(1000, new ActionListener() {
-
 			//En el actionPerformed redefinido se controlara el atributo de instancia "tiempoTransicion" y su valor
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -495,42 +496,6 @@ public class Controlador implements ActionListener {
 		timerCronometro.start();
 		// Se ocula el JMenuBar "menuBar" mientras el Timer este activo para controlar errores de perspectiva
 		vista.menuBar.setVisible(false);
-    }
-
-	/**
-	 * Funcionalidad que inicializa el Timer "timerVotaciones", el cual controla el tiempo que pasa hasta hacer funcional
-	 * el JButton "btnComenzarVotaciones"
-	 */
-	private static void iniciarCronometroVotacionesEurovision() {
-		// Se inicializa la instancia y se especifica que se dispare cada segundo (1000 milisegundos) y anade un escuchador
-		timerVotaciones = new Timer(1000, new ActionListener() {
-
-			//En el actionPerformed redefinido se controlara el atributo de instancia "tiempoEurovision" y su valor
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	// Si el valor de "tiempoEurovision" es mayor que 0 le resta 1
-            	if(tiempoEurovision > 0) {
-             	   tiempoEurovision = tiempoEurovision - 1;
-             	// Si el valor de "tiempoEurovision" es igual a 0 entra
-                }else if(tiempoEurovision == 0) {
-                	// Hacemos funcional el JButton "btnComenzarVotaciones"
-                	//vista.getBtnComenzarVotaciones().setEnabled(true);
-                	// Hacemos visible el JMenuBar "menuBar"
-                	vista.menuBar.setVisible(true);
-                	// Cambiamos el texto del JButton "btnComenzarVotaciones"
-                	//vista.getBtnComenzarVotaciones().setText("COMENZAR VOTACIONES");//////////////////////////// CARLOS, GESTIONO EL BOTON COMO ESTABA ANTES, LO PUEDES QUIETAR DE AQUI
-                	// Obtenemos toda la informacion de la tabla "RESULTADOS_FASE_NACIONAL" y los guardamos en una lista
-                	listaResultadosFaseNacional = gBD.getResultadosFaseNacional();
-                	// Paramos el Timer
-                	timerVotaciones.stop();
-                	// Volvemos a darle el valor original de tiempo a "tiempoEurovision" aunque no hace falta porque no se usara mas
-                	tiempoEurovision = 21;
-                	// Traza
-                	System.out.println("TIEMPO DE INSERTS TERMINADO");
-                }
-            }
-        });
-		timerVotaciones.start();
     }
 
 	/**
