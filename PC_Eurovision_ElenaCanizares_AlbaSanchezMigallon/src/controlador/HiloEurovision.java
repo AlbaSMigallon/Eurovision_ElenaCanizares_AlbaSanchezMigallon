@@ -8,7 +8,8 @@ import persistencias.ResultadosFaseNacional;
 
 /**
  * Clase HiloEurovision que extiende la clase Thread 
- * Se encarga de recibir el objeto con la informacion de cada cliente pais para hacer el insert en la tabla de la Fase Nacional
+ * Se encarga de recibir el objeto con la informacion de cada cliente pais para hacer el insert en la tabla 
+ * de la Fase Nacional. Ejecuta el insert.
  * @author Alba Sanchez-Migallon Arias, Elena Cañizares Jimenez y Carlos Guerrero Caro
  * @version 1.0
  * @see Thread

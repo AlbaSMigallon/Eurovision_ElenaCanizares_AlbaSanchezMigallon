@@ -514,11 +514,11 @@ public class Controlador implements ActionListener {
              	// Si el valor de "tiempoEurovision" es igual a 0 entra
                 }else if(tiempoEurovision == 0) {
                 	// Hacemos funcional el JButton "btnComenzarVotaciones"
-                	vista.getBtnComenzarVotaciones().setEnabled(true);
+                	//vista.getBtnComenzarVotaciones().setEnabled(true);
                 	// Hacemos visible el JMenuBar "menuBar"
                 	vista.menuBar.setVisible(true);
                 	// Cambiamos el texto del JButton "btnComenzarVotaciones"
-                	vista.getBtnComenzarVotaciones().setText("COMENZAR VOTACIONES");
+                	//vista.getBtnComenzarVotaciones().setText("COMENZAR VOTACIONES");//////////////////////////// CARLOS, GESTIONO EL BOTON COMO ESTABA ANTES, LO PUEDES QUIETAR DE AQUI
                 	// Obtenemos toda la informacion de la tabla "RESULTADOS_FASE_NACIONAL" y los guardamos en una lista
                 	listaResultadosFaseNacional = gBD.getResultadosFaseNacional();
                 	// Paramos el Timer

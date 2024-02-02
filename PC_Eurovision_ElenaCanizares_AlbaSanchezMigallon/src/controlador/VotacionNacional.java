@@ -1,5 +1,6 @@
 package controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 import persistencias.Cantantes;
 import persistencias.PorcentajesRangoedad;
@@ -15,42 +16,24 @@ import vista.Vista;
  */
 public class VotacionNacional extends Thread {
 
-	//GestionDeDatos gBD;
 	Vista vista;
 
 	public VotacionNacional(Vista vista) {
-		//this.gBD = gBD;
+
 		this.vista = vista;
 
 	}
 
-/*
-	public ResultadosFaseNacional generarClientes(PorcentajesRangoedad porcentajes) {
-		/*
-		 * Crea los clientes, uno por pais y le pasa los datos de los porcentajes por
-		 * rango de edad
 
-		ResultadosFaseNacional resultadoFaseNacional = null;
-		try {
-			ClientePais cliente = new ClientePais(porcentajes);
-			resultadoFaseNacional = new ResultadosFaseNacional();
-			resultadoFaseNacional = cliente.iniciarCliente();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		return resultadoFaseNacional;
-
-	}
-*/
 
 	public void run() {
 
 		// ResultadosFaseNacional resultadoFaseNacional = null;
 		try {
+			boolean salir = false;
 
-			GestionDeDatos gBD= GestionDeDatos.getInstance();
-
+			GestionDeDatos gBD = GestionDeDatos.getInstance();
+			List<ClientePais> clientesPais = new ArrayList<>(); 
 			List<PorcentajesRangoedad> porcentajes = gBD.getPorcentajes();
 			List<Cantantes> cantantes = gBD.getCantantes();
 
@@ -63,28 +46,50 @@ public class VotacionNacional extends Thread {
 			for (int i = 0; i < porcentajes.size(); i++) {
 				System.out.println("Enviamos las votaciones de " + porcentajes.get(i).getNombrePais());
 				ClientePais clientePais = new ClientePais(porcentajes.get(i), cantantes);
+				clientesPais.add(clientePais);
 				clientePais.start();
-				//resultadoFaseNacional = generarClientes(porcentajes.get(i));
-				// this.resultadosNacionales.add(resultadoFaseNacional);
-				/*
-				 * AQUI YA TENEMOS LOS RESULTADOS POR PAIS. Ya se hizo todo el proceso de
-				 * cliente servidor
-				 */
+			}
+			
+			
+			
+			
+			/*
+			 * Aqui lo que hacemos es habilitar el boton de pasar a la fase de votacion
+			 * eurovision cuando todo el proceso de votacion nacional acabe. De esta manera
+			 * controlamos que se empiece laa fase de suma de votos finales sin que termine
+			 * la votacion nacional
+			 */
 
-				//this.gBD.insertResultadosFaseNacional(resultadoFaseNacional);// InserT de resultados por pais-cliente en
-																				// tabla
+			/*
+			 * En cliente tenemos un boolean que se pone a true cuando obtiene respuesta el
+			 * cliente de fin de insert del registro en el hiloeurovision. Lo que hacemos en
+			 * este bucle es recorrer la lista de clientes hasta que tengamos todos esos
+			 * boolean a true. Eso quiere decir que los insert estan todos acabados y
+			 * podemos habilitar el boton para pasar a la siguiente fase sin que nos de
+			 * error y salir del bucle.
+			 */
+			while (!salir) {
+				int contador = 0;
+				for (int i = 0; i < clientesPais.size(); i++) {
+					if (clientesPais.get(i).isEsFinCliente()) {
+						contador++;
+					}
+				}
+
+				if (contador == clientesPais.size()) {
+					vista.btnComenzarVotaciones.setText("COMENZAR");
+					vista.btnComenzarVotaciones.setEnabled(true);
+					salir = true;
+					System.out.println("BOOOOOTONNNN");
+				}
 
 			}
-			/*
-			 * Aqui lo que hacemos es habilitar el voton de pasar a la fase de votacion eurovision cuando todo el proceso de votacion nacional acabe.
-			 * De esta manera controlamos que se empiece laa fase de suma de votos finales sin que termine la votacion nacional
-			 */
-			/*vista.btnComenzarVotaciones.setText("COMENZAR");
-			vista.btnComenzarVotaciones.setEnabled(true);*/
+
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			//throw e;
+			// throw e;
 		}
 	}
 
