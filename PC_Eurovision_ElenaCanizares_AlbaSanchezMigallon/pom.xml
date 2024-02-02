@@ -4,7 +4,7 @@
   <artifactId>PC_Eurovision_ElenaCanizares_AlbaSanchezMigallon</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
-		<!-- Todas las librerias del proyecto, no hace falta aniadirlas al classpath ni tener carpeta lib -->
+		<!-- Todas las librerias del proyecto, no hace falta aniadirlas al classpath ni tener carpeta lib
         <dependency>
             <groupId>antlr</groupId>
             <artifactId>antlr</artifactId>
@@ -95,7 +95,7 @@
 		    <groupId>org.glassfish.jaxb</groupId>
 		    <artifactId>txw2</artifactId>
 		    <version>2.3.1</version>
-		</dependency>
+		</dependency> -->
     </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
