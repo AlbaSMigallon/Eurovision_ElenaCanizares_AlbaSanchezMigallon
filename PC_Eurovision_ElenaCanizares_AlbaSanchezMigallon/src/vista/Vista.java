@@ -49,8 +49,6 @@ public class Vista extends JFrame {
     public JMenuItem itemMenuInformacion;
 
     public ImageIcon imagenCarrusel;
-    
-    private final JFXPanel jfxPanel = new JFXPanel();
     /**
 	 * Constructor de la clase "Vista".
 	 */

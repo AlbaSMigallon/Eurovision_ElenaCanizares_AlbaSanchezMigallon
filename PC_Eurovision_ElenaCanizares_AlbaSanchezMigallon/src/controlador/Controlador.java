@@ -4,6 +4,10 @@ import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -13,6 +17,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.Timer;
@@ -510,8 +520,9 @@ public class Controlador implements ActionListener {
 	 * asociado al JLabel "lblLogoInicio"
 	 */
 	private static void iniciarCronometroTransicion() {
+		reproducirSonido(System.getProperty("user.dir") + "/resources/introEuroSonido.wav");  
 		// Se inicializa la instancia y se especifica que se dispare cada segundo (1000 milisegundos) y anade un escuchador
-		timerCronometro = new Timer(1000, new ActionListener() {
+		timerCronometro = new Timer(2400, new ActionListener() {
 			//En el actionPerformed redefinido se controlara el atributo de instancia "tiempoTransicion" y su valor
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -538,10 +549,19 @@ public class Controlador implements ActionListener {
 		// Se ocula el JMenuBar "menuBar" mientras el Timer este activo para controlar errores de perspectiva
 		vista.menuBar.setVisible(false);
     }
-
 	/**
 	 * Funcionalidad que ofrece la interfaz grafica de usuario. Es llamado desde el main con una instancia Controlador
 	 */
+	private static void reproducirSonido(String rutaAudio) {
+	    try {
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(rutaAudio).getAbsoluteFile());
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 	public void iniciarVista() {
 		Controlador.vista.setVisible(true);
 	}
