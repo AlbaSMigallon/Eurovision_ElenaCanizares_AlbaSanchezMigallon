@@ -49,6 +49,8 @@ public class Controlador implements ActionListener {
 	private boolean panel1_activo, panel2_activo, panel3_activo, panel4_activo;
 	// Variable donde se guardara el nombre del pais ganador de Eurovision
 	private String paisGanador;
+	
+	private int contadorCarrusel=1;
 
 	/**
 	 * Constructor de la clase "Controlador"
@@ -74,6 +76,9 @@ public class Controlador implements ActionListener {
 		Controlador.vista.btnComenzarVotaciones.addActionListener(this);
 		Controlador.vista.btnRefrescarInfo.addActionListener(this);
 		Controlador.vista.btnVolver.addActionListener(this);
+		 
+		Controlador.vista.btnCarruselAnterior.addActionListener(this);
+		Controlador.vista.btnCarruselSiguiente.addActionListener(this);
 
 		// Asignamos escuchador al JMenuItem
 		vista.itemMenuInformacion.addActionListener(this);
@@ -86,6 +91,7 @@ public class Controlador implements ActionListener {
 
 		// Iniciamos la votacion nacional desde el inicio del programa
 		votacionNacional.start();
+		
 	}
 
 	@Override
@@ -100,7 +106,7 @@ public class Controlador implements ActionListener {
 			this.panel2_activo = true;
 
 			// Le asignamos un archivo .gif al JLabel "lblLogoInicio".
-			vista.lblLogoInicio.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/gifTransicion.gif"));
+			vista.lblLogoInicio.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/introEuroGif.gif"));
 
 			// Se inicia el Timer que controla el tiempo del gif de transicion entre el primer JPanel y el segundo
 			iniciarCronometroTransicion();
@@ -205,6 +211,41 @@ public class Controlador implements ActionListener {
 				vista.lblActuacionGanador.setVisible(true);
 			}
 		}
+		
+		
+		/*-------CARRUSEL-------*/
+		else if(e.getSource() == vista.btnCarruselSiguiente) {
+			if(contadorCarrusel>=3) {
+				contadorCarrusel = 1;
+			}else {
+				contadorCarrusel++;
+			}
+			
+		}//FIN CARRUSEL SIGUIENTE
+		else if(e.getSource() == vista.btnCarruselAnterior) {
+			if(contadorCarrusel<=1) {
+				contadorCarrusel = 3;
+			}else {
+				contadorCarrusel--;
+			}
+			
+		}//FIN CARRUSEL ANTERIOR
+		
+		/*vista.imagenCarrusel = new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/" + contadorCarrusel + ".gif");
+		vista.lblCarrusel.setIcon(vista.imagenCarrusel);*/
+		
+		// Load the GIF
+		String gifPath = System.getProperty("user.dir") + "/resources/actuaciones/" + contadorCarrusel + ".gif";
+		vista.imagenCarrusel = new ImageIcon(gifPath);
+
+		// Resize the GIF to fit the JLabel
+		Image img = vista.imagenCarrusel.getImage();
+		Image newImg = img.getScaledInstance(vista.lblCarrusel.getWidth(), vista.lblCarrusel.getHeight(), Image.SCALE_DEFAULT);
+		vista.imagenCarrusel = new ImageIcon(newImg);
+
+		vista.lblCarrusel.setIcon(vista.imagenCarrusel);
+		
+		/*-------FIN CARRUSEL-------*/
 	}
 
 	/**

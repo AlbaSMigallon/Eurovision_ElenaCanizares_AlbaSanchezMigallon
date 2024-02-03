@@ -10,6 +10,8 @@ import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.image.ImageObserver;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 
@@ -34,9 +36,9 @@ public class Vista extends JFrame {
 				  lblTaylorPaElena, lblAutor1, lblAutor2, lblAutor3, lblPosicion1, lblPosicion2, lblPosicion3, lblPosicion4,
 				  lblPosicion5, lblPosicion6, lblPosicion7, lblPosicion8, lblPosicion9, lblPosicion10, lblPaisGanador,
 				  lblBandera1, lblBandera2, lblBandera3, lblBandera4, lblBandera5, lblBandera6, lblBandera7, lblBandera8,
-				  lblBandera9, lblBandera10;
+				  lblBandera9, lblBandera10,lblCarrusel;
 	// JButton
-	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo, btnVolver;
+	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo, btnVolver,btnCarruselAnterior,btnCarruselSiguiente;
 	// JTextArea
 	public JTextArea textAreaPrueba;
 	// JMenuBar
@@ -46,6 +48,9 @@ public class Vista extends JFrame {
 	// JMenuItem
     public JMenuItem itemMenuInformacion;
 
+    public ImageIcon imagenCarrusel;
+    
+    private final JFXPanel jfxPanel = new JFXPanel();
     /**
 	 * Constructor de la clase "Vista".
 	 */
@@ -88,7 +93,23 @@ public class Vista extends JFrame {
 		panelVotacionesNacionales.setLayout(null);
 		panelVotacionesNacionales.setVisible(false);
 
-		// Elementos del JPanel "panelVotacionesNacionales"
+		lblTaylorPaElena = new JLabel("");
+		//lblTaylorPaElena.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTaylorPaElena.setBounds(623, 141, 290, 411);
+		lblTaylorPaElena.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/taylor/taylor1.png"));
+		panelVotacionesNacionales.add(lblTaylorPaElena);
+		panelVotacionesNacionales.setLayout(null);
+		
+		lblCarrusel = new JLabel("");
+		lblCarrusel.setBounds(63, 11, 810, 483);
+		lblCarrusel.setHorizontalAlignment(SwingConstants.CENTER);
+		imagenCarrusel =new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/1.gif");
+		lblCarrusel.setIcon(imagenCarrusel);
+
+		lblCarrusel.setVisible(true);
+		panelVotacionesNacionales.add(lblCarrusel);
+		
+	/*	// Elementos del JPanel "panelVotacionesNacionales"
 		// JLabels de las actuaciones de los distintos paises
 		lblActuacionEspania = new JLabel("Actuacion Espania");
 		lblActuacionEspania.setHorizontalAlignment(SwingConstants.CENTER);
@@ -199,20 +220,13 @@ public class Vista extends JFrame {
 		lblTlfGrecia = new JLabel("tlfno Grecia: 768-654-123");
 		lblTlfGrecia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTlfGrecia.setBounds(476, 475, 159, 14);
-		panelVotacionesNacionales.add(lblTlfGrecia);
+		panelVotacionesNacionales.add(lblTlfGrecia);*/
 
 		btnComenzarVotaciones = new JButton("ESPERANDO");
 		btnComenzarVotaciones.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
 		btnComenzarVotaciones.setBounds(307, 519, 272, 33);
 		btnComenzarVotaciones.setEnabled(false);
 		panelVotacionesNacionales.add(btnComenzarVotaciones);
-
-		lblTaylorPaElena = new JLabel("");
-		lblTaylorPaElena.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTaylorPaElena.setBounds(623, 184, 302, 368);
-		lblTaylorPaElena.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/taylor/taylor1.png"));
-		panelVotacionesNacionales.add(lblTaylorPaElena);
-		panelVotacionesNacionales.setLayout(null);
 
 		// JPanel "panelVotaciones"
 		panelVotaciones = new JPanel();
@@ -349,7 +363,7 @@ public class Vista extends JFrame {
 		lblCabecera.setFont(new Font("Impact", Font.PLAIN, 30));
 		panelAutoria.add(lblCabecera);
 
-		lblAutor1 = new JLabel("Alba Sanchez-Migallón Calero");
+		lblAutor1 = new JLabel("Alba Sanchez-Migallón Arias");
 		lblAutor1.setBounds(328, 97, 233, 28);
 		lblAutor1.setFont(new Font("Impact", Font.PLAIN, 15));
 		panelAutoria.add(lblAutor1);
@@ -403,6 +417,16 @@ public class Vista extends JFrame {
     	itemMenuInformacion = new JMenuItem("Autoría");
 		mnMenu.add(itemMenuInformacion);
 		menuBar.setBounds(0, 0, getWidth(), 30);
+		
+		/*--------------CARRUSEL--------------*/
+
+		btnCarruselAnterior = new JButton("<");
+		btnCarruselAnterior.setBounds(10, 235, 32, 23);
+		panelVotacionesNacionales.add(btnCarruselAnterior);
+		
+		btnCarruselSiguiente = new JButton(">");
+		btnCarruselSiguiente.setBounds(883, 235, 32, 23);
+		panelVotacionesNacionales.add(btnCarruselSiguiente);
 	}
 
 	// Getters requeridos dentro del Timer del controlador, pese a que son elementos declarados como publicos
