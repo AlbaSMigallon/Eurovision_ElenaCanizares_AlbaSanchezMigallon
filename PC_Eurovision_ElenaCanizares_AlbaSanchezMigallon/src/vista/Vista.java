@@ -42,7 +42,9 @@ public class Vista extends JFrame {
 			lblTaylorPaElena, lblAutor1, lblAutor2, lblAutor3, lblPosicion1, lblPosicion2, lblPosicion3, lblPosicion4,
 			lblPosicion5, lblPosicion6, lblPosicion7, lblPosicion8, lblPosicion9, lblPosicion10, lblPaisGanador,
 			lblBandera1, lblBandera2, lblBandera3, lblBandera4, lblBandera5, lblBandera6, lblBandera7, lblBandera8,
-			lblBandera9, lblBandera10, lblCarrusel, lblFondoTaylor, lblImagenPresentador, lblFondoPanelVotaciones,lblApano,lblApano2,lblApano3,lblApano4,lblApano5,lblApano6,lblApano7,lblApano8,lblApano9,lblApano10;
+			lblBandera9, lblBandera10, lblCarrusel, lblFondoTaylor, lblImagenPresentador, lblFondoPanelVotaciones,
+			lblApano, lblApano2, lblApano3, lblApano4, lblApano5, lblApano6, lblApano7, lblApano8, lblApano9,
+			lblApano10, lblFondoFinal;
 	// JButton
 	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo, btnVolver, btnCarruselAnterior,
 			btnCarruselSiguiente;
@@ -99,61 +101,61 @@ public class Vista extends JFrame {
 		// Elementos del JPanel "panelPaisesPuntos"
 		lblPosicion1 = new JLabel("1");
 		lblPosicion1.setBounds(10, 10, 253, 28);
-		lblPosicion1.setOpaque(true); 
+		lblPosicion1.setOpaque(true);
 		lblPosicion1.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion1);
 
 		lblPosicion2 = new JLabel("2");
 		lblPosicion2.setBounds(10, 50, 253, 28);
-		lblPosicion2.setOpaque(true); 
+		lblPosicion2.setOpaque(true);
 		lblPosicion2.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion2);
 
 		lblPosicion3 = new JLabel("3");
 		lblPosicion3.setBounds(10, 90, 253, 28);
-		lblPosicion3.setOpaque(true); 
+		lblPosicion3.setOpaque(true);
 		lblPosicion3.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion3);
 
 		lblPosicion4 = new JLabel("4");
 		lblPosicion4.setBounds(10, 130, 253, 28);
-		lblPosicion4.setOpaque(true); 
+		lblPosicion4.setOpaque(true);
 		lblPosicion4.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion4);
 
 		lblPosicion5 = new JLabel("5");
 		lblPosicion5.setBounds(10, 170, 253, 28);
-		lblPosicion5.setOpaque(true); 
+		lblPosicion5.setOpaque(true);
 		lblPosicion5.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion5);
 
 		lblPosicion6 = new JLabel("6");
 		lblPosicion6.setBounds(10, 210, 253, 28);
-		lblPosicion6.setOpaque(true); 
+		lblPosicion6.setOpaque(true);
 		lblPosicion6.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion6);
 
 		lblPosicion7 = new JLabel("7");
 		lblPosicion7.setBounds(10, 250, 253, 28);
-		lblPosicion7.setOpaque(true); 
+		lblPosicion7.setOpaque(true);
 		lblPosicion7.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion7);
 
 		lblPosicion8 = new JLabel("8");
 		lblPosicion8.setBounds(10, 290, 253, 28);
-		lblPosicion8.setOpaque(true); 
+		lblPosicion8.setOpaque(true);
 		lblPosicion8.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion8);
 
 		lblPosicion9 = new JLabel("9");
 		lblPosicion9.setBounds(10, 330, 253, 28);
-		lblPosicion9.setOpaque(true); 
+		lblPosicion9.setOpaque(true);
 		lblPosicion9.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion9);
 
 		lblPosicion10 = new JLabel("10");
 		lblPosicion10.setBounds(10, 370, 253, 28);
-		lblPosicion10.setOpaque(true); 
+		lblPosicion10.setOpaque(true);
 		lblPosicion10.setBackground(Color.WHITE);
 		panelPaisesPuntos.add(lblPosicion10);
 
@@ -207,7 +209,7 @@ public class Vista extends JFrame {
 		panelBanderas.add(lblBandera10);
 
 		lblImagenPresentador = new JLabel("");
-		lblImagenPresentador.setBounds(515, 11, 850, 599);
+		lblImagenPresentador.setBounds(485, 0, 850, 599);
 		lblImagenPresentador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/taylor/taylor2.png"));
 		panelVotaciones.add(lblImagenPresentador);
@@ -218,11 +220,11 @@ public class Vista extends JFrame {
 		lblApano.setBackground(new Color(255, 0, 128));
 		lblApano.setForeground(Color.WHITE);
 		lblApano.setHorizontalAlignment(SwingConstants.CENTER);
-        lblApano.setVerticalAlignment(SwingConstants.CENTER); 
+		lblApano.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano.setOpaque(true);
 		lblApano.setVisible(false);
 		panelVotaciones.add(lblApano);
-		
+
 		lblApano2 = new JLabel("2");
 		lblApano2.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano2.setOpaque(true);
@@ -232,17 +234,17 @@ public class Vista extends JFrame {
 		lblApano2.setBounds(394, 76, 46, 28);
 		lblApano2.setVisible(false);
 		panelVotaciones.add(lblApano2);
-		
+
 		lblApano3 = new JLabel("3");
 		lblApano3.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano3.setOpaque(true);
 		lblApano3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblApano3.setForeground(Color.WHITE);
 		lblApano3.setBackground(new Color(255, 0, 128));
-		lblApano3.setBounds(394, 117, 46, 28);
+		lblApano3.setBounds(394, 115, 46, 28);
 		lblApano3.setVisible(false);
 		panelVotaciones.add(lblApano3);
-		
+
 		lblApano4 = new JLabel("4");
 		lblApano4.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano4.setOpaque(true);
@@ -252,7 +254,7 @@ public class Vista extends JFrame {
 		lblApano4.setBounds(394, 156, 46, 28);
 		lblApano4.setVisible(false);
 		panelVotaciones.add(lblApano4);
-		
+
 		lblApano5 = new JLabel("5");
 		lblApano5.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano5.setOpaque(true);
@@ -262,27 +264,27 @@ public class Vista extends JFrame {
 		lblApano5.setBounds(394, 194, 46, 28);
 		lblApano5.setVisible(false);
 		panelVotaciones.add(lblApano5);
-		
+
 		lblApano6 = new JLabel("6");
 		lblApano6.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano6.setOpaque(true);
 		lblApano6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblApano6.setForeground(Color.WHITE);
 		lblApano6.setBackground(new Color(255, 0, 128));
-		lblApano6.setBounds(394, 233, 46, 28);
+		lblApano6.setBounds(394, 237, 46, 28);
 		lblApano6.setVisible(false);
 		panelVotaciones.add(lblApano6);
-		
+
 		lblApano7 = new JLabel("7");
 		lblApano7.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano7.setOpaque(true);
 		lblApano7.setHorizontalAlignment(SwingConstants.CENTER);
 		lblApano7.setForeground(Color.WHITE);
 		lblApano7.setBackground(new Color(255, 0, 128));
-		lblApano7.setBounds(394, 272, 46, 28);
+		lblApano7.setBounds(394, 276, 46, 28);
 		lblApano7.setVisible(false);
 		panelVotaciones.add(lblApano7);
-		
+
 		lblApano8 = new JLabel("8");
 		lblApano8.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano8.setOpaque(true);
@@ -292,7 +294,7 @@ public class Vista extends JFrame {
 		lblApano8.setBounds(394, 315, 46, 28);
 		lblApano8.setVisible(false);
 		panelVotaciones.add(lblApano8);
-		
+
 		lblApano9 = new JLabel("9");
 		lblApano9.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano9.setOpaque(true);
@@ -302,7 +304,7 @@ public class Vista extends JFrame {
 		lblApano9.setBounds(394, 354, 46, 28);
 		lblApano9.setVisible(false);
 		panelVotaciones.add(lblApano9);
-		
+
 		lblApano10 = new JLabel("10");
 		lblApano10.setVerticalAlignment(SwingConstants.CENTER);
 		lblApano10.setOpaque(true);
@@ -312,12 +314,47 @@ public class Vista extends JFrame {
 		lblApano10.setBounds(394, 395, 46, 28);
 		lblApano10.setVisible(false);
 		panelVotaciones.add(lblApano10);
-		
+
 		lblFondoPanelVotaciones = new JLabel("");
 		lblFondoPanelVotaciones.setBounds(0, 0, 1400, 900);
 		lblFondoPanelVotaciones.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/fondo.jpg"));
 		panelVotaciones.add(lblFondoPanelVotaciones);
-		
+
+		// JPanel "panelFinal"
+		panelFinal = new JPanel();
+		panelFinal.setBounds(0, 0, 1400, 900);
+		contentPane.add(panelFinal);
+		panelFinal.setLayout(null);
+
+		// Elementos del JPanel "panelFinal"
+		lblActuacionGanador = new JLabel("");
+		lblActuacionGanador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActuacionGanador.setBounds(542, 154, 356, 277);
+		panelFinal.add(lblActuacionGanador);
+
+		lblNombreGanador = new JLabel("");
+		lblNombreGanador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreGanador.setBounds(598, 457, 246, 43);
+		lblNombreGanador.setFont(new Font("Impact", Font.PLAIN, 30));
+		panelFinal.add(lblNombreGanador);
+
+		lblCancionGanador = new JLabel("");
+		lblCancionGanador.setFont(new Font("Goudy Old Style", Font.PLAIN, 18));
+		lblCancionGanador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCancionGanador.setBounds(580, 536, 282, 43);
+		panelFinal.add(lblCancionGanador);
+
+		lblPaisGanador = new JLabel("");
+		lblPaisGanador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPaisGanador.setFont(new Font("Impact", Font.PLAIN, 40));
+		lblPaisGanador.setBounds(542, 11, 356, 85);
+		panelFinal.add(lblPaisGanador);
+		panelFinal.setVisible(false);
+
+		lblFondoFinal = new JLabel("");
+		lblFondoFinal.setBounds(0, 0, 1400, 900);
+		lblFondoFinal.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/fondo2.jpg"));
+		panelFinal.add(lblFondoFinal);
 
 		// JPanel "panelInicial"
 		panelInicial = new JPanel();
@@ -567,38 +604,6 @@ public class Vista extends JFrame {
 		lblAutor3.setBounds(328, 196, 233, 28);
 		lblAutor3.setFont(new Font("Impact", Font.PLAIN, 15));
 		panelAutoria.add(lblAutor3);
-
-		// JPanel "panelFinal"
-		panelFinal = new JPanel();
-		panelFinal.setBounds(0, 0, 1400, 900);
-		contentPane.add(panelFinal);
-		panelFinal.setLayout(null);
-
-		// Elementos del JPanel "panelFinal"
-		lblActuacionGanador = new JLabel("");
-		lblActuacionGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblActuacionGanador.setBounds(312, 97, 356, 277);
-		panelFinal.add(lblActuacionGanador);
-
-		lblNombreGanador = new JLabel("");
-		lblNombreGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombreGanador.setBounds(372, 380, 246, 43);
-		lblNombreGanador.setFont(new Font("Impact", Font.PLAIN, 30));
-		panelFinal.add(lblNombreGanador);
-
-		lblCancionGanador = new JLabel("");
-		lblCancionGanador.setFont(new Font("Goudy Old Style", Font.PLAIN, 18));
-		lblCancionGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCancionGanador.setBounds(353, 433, 282, 43);
-		panelFinal.add(lblCancionGanador);
-
-		lblPaisGanador = new JLabel("");
-		lblPaisGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPaisGanador.setFont(new Font("Impact", Font.PLAIN, 40));
-		lblPaisGanador.setBounds(312, 10, 356, 85);
-		panelFinal.add(lblPaisGanador);
-		panelFinal.setVisible(false);
-
 		// JMenuBar "menuBar" con sus respectivos JMenu "mnMenu" y JItemMenu
 		// "itemMenuInformacion"
 		menuBar = new JMenuBar();
