@@ -141,7 +141,7 @@ public class Controlador implements ActionListener {
 		
 		// Acciones a realizar al pulsar el JButton "btnComenzarVotaciones"
 		else if (e.getSource() == vista.btnComenzarVotaciones) {
-			
+			reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/pointsGoTo.wav");
 			// Se actualizan los booleanos que controlan la perspectiva en la que se
 			// encuentra el usuario
 			this.panel1_activo = false;
@@ -323,7 +323,21 @@ public class Controlador implements ActionListener {
 			}
 		}
 	}
+	private void mostrarImagenPorPais(String nombrePais) {
+	    String nombreImagen;
 
+	    switch (nombrePais) {
+	        case "Polonia":
+	        	 vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/votaciones/votacion_polonia.jpg"));
+	            break;
+	        case "Francia":
+	        	 vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/votaciones/Francia.jpg"));
+	            break;
+	        // Agrega más casos según tus necesidades
+	        default:
+	            nombreImagen = "default.png";
+	    }
+	}
 	/**
 	 * Funcionalidad que carga la informacion que va actualizandose en el
 	 * diccionario en los JLabels del JPanel "panelPaisesPuntos". Hace uso del
@@ -357,6 +371,8 @@ public class Controlador implements ActionListener {
 				 * puntos que se encuentran en la lista de valores ordenados
 				 */
 				label.setText(listaClaves.get(i) + " " + listaValores.get(i));
+				
+				
 			}
 		}
 		// Iteramos sobre el JPanel "panelBanderas" para asignar las banderas a su
@@ -365,6 +381,7 @@ public class Controlador implements ActionListener {
 			Component componente = vista.panelBanderas.getComponent(i);
 			if (componente instanceof JLabel) {
 				String nombrePais = listaClaves.get(i);
+				mostrarImagenPorPais(nombrePais);
 				String nombreImagen = nombrePais.replace(" ", "") + ".png";
 				JLabel label = (JLabel) componente;
 

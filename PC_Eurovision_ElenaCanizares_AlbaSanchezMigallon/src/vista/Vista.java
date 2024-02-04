@@ -41,7 +41,7 @@ public class Vista extends JFrame {
 			lblTaylorPaElena, lblAutor1, lblAutor2, lblAutor3, lblPosicion1, lblPosicion2, lblPosicion3, lblPosicion4,
 			lblPosicion5, lblPosicion6, lblPosicion7, lblPosicion8, lblPosicion9, lblPosicion10, lblPaisGanador,
 			lblBandera1, lblBandera2, lblBandera3, lblBandera4, lblBandera5, lblBandera6, lblBandera7, lblBandera8,
-			lblBandera9, lblBandera10, lblCarrusel, lblFondoTaylor,lblImagenPresentador;
+			lblBandera9, lblBandera10, lblCarrusel, lblFondoTaylor,lblImagenPresentador,lblFondoPanelVotaciones;
 	// JButton
 	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo, btnVolver, btnCarruselAnterior,
 			btnCarruselSiguiente;
@@ -72,9 +72,10 @@ public class Vista extends JFrame {
 		// JPanel "panelVotaciones"
 		panelVotaciones = new JPanel();
 		panelVotaciones.setBounds(0, 0, 1400, 900);
+		
 		contentPane.add(panelVotaciones);
 		panelVotaciones.setLayout(null);
-
+		
 		// Elementos del JPanel "panelVotaciones"
 		btnRefrescarInfo = new JButton("VOTACIONES");
 		btnRefrescarInfo.setBounds(578, 751, 214, 36);
@@ -182,11 +183,17 @@ public class Vista extends JFrame {
 		panelBanderas.add(lblBandera10);
 
 		lblImagenPresentador = new JLabel("");
-		lblImagenPresentador.setBounds(674, 42, 612, 635);
+		lblImagenPresentador.setBounds(526, 42, 850, 599);
 		lblImagenPresentador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/taylor/taylor2.png"));
 		panelVotaciones.add(lblImagenPresentador);
 		panelVotaciones.setLayout(null);
+		
+
+		lblFondoPanelVotaciones = new JLabel("");
+		lblFondoPanelVotaciones.setBounds(0, 0, 1400, 900);
+		lblFondoPanelVotaciones.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/fondo.jpg"));
+		panelVotaciones.add(lblFondoPanelVotaciones);
 		
 		// JPanel "panelInicial"
 		panelInicial = new JPanel();
