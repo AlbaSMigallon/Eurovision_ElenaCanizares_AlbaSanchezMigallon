@@ -74,6 +74,7 @@ public class Controlador implements ActionListener {
 
 	private int contadorCarrusel = 1;
 
+	private static Clip clip;
 	/**
 	 * Constructor de la clase "Controlador"
 	 */
@@ -666,14 +667,19 @@ public class Controlador implements ActionListener {
 	 * main con una instancia Controlador
 	 */
 	private static void reproducirSonido(String rutaAudio) {
-		try {
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(rutaAudio).getAbsoluteFile());
-			Clip clip = AudioSystem.getClip();
-			clip.open(audioInputStream);
-			clip.start();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	    try {
+	        // Detener el sonido actual si está reproduciéndose
+	        if (clip != null && clip.isRunning()) {
+	            clip.stop();
+	        }
+
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(rutaAudio).getAbsoluteFile());
+	        clip = AudioSystem.getClip();
+	        clip.open(audioInputStream);
+	        clip.start();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	public void iniciarVista() {
