@@ -142,7 +142,7 @@ public class Controlador implements ActionListener {
 
 		// Acciones a realizar al pulsar el JButton "btnComenzarVotaciones"
 		else if (e.getSource() == vista.btnComenzarVotaciones) {
-			reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/pointsGoTo.wav");
+			reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/inAFewSeconds_join.wav");
 			// Se actualizan los booleanos que controlan la perspectiva en la que se
 			// encuentra el usuario
 			this.panel1_activo = false;
@@ -160,10 +160,11 @@ public class Controlador implements ActionListener {
 		}
 		// Acciones a realizar al pulsar el JButton "btnRefrescarInfo"
 		else if (e.getSource() == vista.btnRefrescarInfo) {
+			
 			// Controlamos que texto tiene el JButton "btnRefrescarInfo" para saber cuando
 			// es el primer clic
 			if (vista.btnRefrescarInfo.getText().equals("COMENZAR")) {
-
+				reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/pointsGoTo.wav");
 				// Hacemos visibles los JPanel que tienen las banderas y los paises con sus
 				// puntos
 				vista.panelBanderas.setVisible(true);
@@ -645,7 +646,7 @@ public class Controlador implements ActionListener {
 					timerCronometro.stop();
 					// Volvemos a mostrar el JMenuBar cuando acaba el gif de transicion
 					vista.menuBar.setVisible(true);
-					reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/bienvenida.wav");
+					reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/Welcome_join.wav");
 
 					// Volvemos a darle el valor original de tiempo a "tiempoTransicion" aunque no
 					// hace falta porque no se usara mas
