@@ -133,13 +133,15 @@ public class Controlador implements ActionListener {
 			// Se inicia el Timer que controla el tiempo del gif de transicion entre el
 			// primer JPanel y el segundo
 			iniciarCronometroTransicion();
-
+			
 			// Se inicia el Timer que controla el tiempo hasta la disponibilidad del JButon
 			// "btnComenzarVotaciones"
 			// iniciarCronometroVotacionesEurovision();
 		}
+		
 		// Acciones a realizar al pulsar el JButton "btnComenzarVotaciones"
 		else if (e.getSource() == vista.btnComenzarVotaciones) {
+			
 			// Se actualizan los booleanos que controlan la perspectiva en la que se
 			// encuentra el usuario
 			this.panel1_activo = false;
@@ -603,7 +605,7 @@ public class Controlador implements ActionListener {
 		reproducirSonido(System.getProperty("user.dir") + "/resources/introEuroSonido.wav");
 		// Se inicializa la instancia y se especifica que se dispare cada segundo (1000
 		// milisegundos) y anade un escuchador
-		timerCronometro = new Timer(2445, new ActionListener() {
+		timerCronometro = new Timer(2440, new ActionListener() {
 			// En el actionPerformed redefinido se controlara el atributo de instancia
 			// "tiempoTransicion" y su valor
 			@Override
@@ -622,6 +624,8 @@ public class Controlador implements ActionListener {
 					timerCronometro.stop();
 					// Volvemos a mostrar el JMenuBar cuando acaba el gif de transicion
 					vista.menuBar.setVisible(true);
+					reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/bienvenida.wav");
+					
 					// Volvemos a darle el valor original de tiempo a "tiempoTransicion" aunque no
 					// hace falta porque no se usara mas
 					tiempoTransicion = 2;

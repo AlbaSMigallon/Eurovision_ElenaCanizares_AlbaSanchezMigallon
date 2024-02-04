@@ -41,7 +41,7 @@ public class Vista extends JFrame {
 			lblTaylorPaElena, lblAutor1, lblAutor2, lblAutor3, lblPosicion1, lblPosicion2, lblPosicion3, lblPosicion4,
 			lblPosicion5, lblPosicion6, lblPosicion7, lblPosicion8, lblPosicion9, lblPosicion10, lblPaisGanador,
 			lblBandera1, lblBandera2, lblBandera3, lblBandera4, lblBandera5, lblBandera6, lblBandera7, lblBandera8,
-			lblBandera9, lblBandera10, lblCarrusel, lblFondoTaylor;
+			lblBandera9, lblBandera10, lblCarrusel, lblFondoTaylor,lblImagenPresentador;
 	// JButton
 	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo, btnVolver, btnCarruselAnterior,
 			btnCarruselSiguiente;
@@ -69,6 +69,125 @@ public class Vista extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		// JPanel "panelVotaciones"
+		panelVotaciones = new JPanel();
+		panelVotaciones.setBounds(0, 0, 1400, 900);
+		contentPane.add(panelVotaciones);
+		panelVotaciones.setLayout(null);
+
+		// Elementos del JPanel "panelVotaciones"
+		btnRefrescarInfo = new JButton("VOTACIONES");
+		btnRefrescarInfo.setBounds(578, 751, 214, 36);
+		panelVotaciones.add(btnRefrescarInfo);
+		panelVotaciones.setVisible(false);
+
+		textAreaPrueba = new JTextArea();
+		textAreaPrueba.setBounds(850, 688, 496, 99);
+		panelVotaciones.add(textAreaPrueba);
+
+		// JPanel "panelPaisesPuntos"
+		panelPaisesPuntos = new JPanel();
+		panelPaisesPuntos.setBounds(220, 25, 270, 380);
+		panelVotaciones.add(panelPaisesPuntos);
+		panelPaisesPuntos.setLayout(null);
+		panelPaisesPuntos.setVisible(false);
+
+		// Elementos del JPanel "panelPaisesPuntos"
+		lblPosicion1 = new JLabel("1");
+		lblPosicion1.setBounds(10, 10, 253, 19);
+		panelPaisesPuntos.add(lblPosicion1);
+
+		lblPosicion2 = new JLabel("2");
+		lblPosicion2.setBounds(10, 42, 253, 19);
+		panelPaisesPuntos.add(lblPosicion2);
+
+		lblPosicion3 = new JLabel("3");
+		lblPosicion3.setBounds(10, 71, 253, 21);
+		panelPaisesPuntos.add(lblPosicion3);
+
+		lblPosicion4 = new JLabel("4");
+		lblPosicion4.setBounds(10, 102, 253, 19);
+		panelPaisesPuntos.add(lblPosicion4);
+
+		lblPosicion5 = new JLabel("5");
+		lblPosicion5.setBounds(10, 131, 253, 19);
+		panelPaisesPuntos.add(lblPosicion5);
+
+		lblPosicion6 = new JLabel("6");
+		lblPosicion6.setBounds(10, 164, 253, 19);
+		panelPaisesPuntos.add(lblPosicion6);
+
+		lblPosicion7 = new JLabel("7");
+		lblPosicion7.setBounds(10, 193, 253, 19);
+		panelPaisesPuntos.add(lblPosicion7);
+
+		lblPosicion8 = new JLabel("8");
+		lblPosicion8.setBounds(10, 227, 253, 19);
+		panelPaisesPuntos.add(lblPosicion8);
+
+		lblPosicion9 = new JLabel("9");
+		lblPosicion9.setBounds(10, 266, 253, 19);
+		panelPaisesPuntos.add(lblPosicion9);
+
+		lblPosicion10 = new JLabel("10");
+		lblPosicion10.setBounds(10, 305, 253, 19);
+		panelPaisesPuntos.add(lblPosicion10);
+
+		// JPanel "panelBanderas"
+		panelBanderas = new JPanel();
+		panelBanderas.setBounds(66, 25, 67, 389);
+		panelVotaciones.add(panelBanderas);
+		panelBanderas.setLayout(null);
+		panelBanderas.setVisible(false);
+
+		// Elementos del JPanel "panelBanderas"
+		lblBandera1 = new JLabel("Bandera1");
+		lblBandera1.setBounds(0, 10, 67, 20);
+		panelBanderas.add(lblBandera1);
+
+		lblBandera2 = new JLabel("Bandera2");
+		lblBandera2.setBounds(0, 40, 67, 20);
+		panelBanderas.add(lblBandera2);
+
+		lblBandera3 = new JLabel("Bandera3");
+		lblBandera3.setBounds(0, 70, 67, 20);
+		panelBanderas.add(lblBandera3);
+
+		lblBandera4 = new JLabel("Bandera4");
+		lblBandera4.setBounds(0, 100, 67, 20);
+		panelBanderas.add(lblBandera4);
+
+		lblBandera5 = new JLabel("Bandera5");
+		lblBandera5.setBounds(0, 132, 67, 20);
+		panelBanderas.add(lblBandera5);
+
+		lblBandera6 = new JLabel("Bandera6");
+		lblBandera6.setBounds(0, 162, 67, 20);
+		panelBanderas.add(lblBandera6);
+
+		lblBandera7 = new JLabel("Bandera7");
+		lblBandera7.setBounds(0, 192, 67, 20);
+		panelBanderas.add(lblBandera7);
+
+		lblBandera8 = new JLabel("Bandera8");
+		lblBandera8.setBounds(0, 228, 67, 20);
+		panelBanderas.add(lblBandera8);
+
+		lblBandera9 = new JLabel("Bandera9");
+		lblBandera9.setBounds(0, 265, 67, 20);
+		panelBanderas.add(lblBandera9);
+
+		lblBandera10 = new JLabel("Bandera10");
+		lblBandera10.setBounds(0, 304, 67, 20);
+		panelBanderas.add(lblBandera10);
+
+		lblImagenPresentador = new JLabel("");
+		lblImagenPresentador.setBounds(674, 42, 612, 635);
+		lblImagenPresentador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/taylor/taylor2.png"));
+		panelVotaciones.add(lblImagenPresentador);
+		panelVotaciones.setLayout(null);
+		
 		// JPanel "panelInicial"
 		panelInicial = new JPanel();
 		panelInicial.setBounds(0, 0, 1400, 900);
@@ -110,17 +229,30 @@ public class Vista extends JFrame {
 		panelVotacionesNacionales.add(lblTaylorPaElena);
 		panelVotacionesNacionales.setLayout(null);
 		/*--------------CARRUSEL--------------*/
-
-		btnCarruselAnterior = new JButton("<");
-		btnCarruselAnterior.setBounds(10, 235, 32, 23);
+		
+		btnCarruselAnterior = new JButton("");
+		btnCarruselAnterior.setBounds(40, 296, 61, 68);
+		btnCarruselAnterior.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/anterior.png"));
+		btnCarruselAnterior.setOpaque(false);
+		btnCarruselAnterior.setContentAreaFilled(false);
+		btnCarruselAnterior.setBorderPainted(true);
+		
+		btnCarruselAnterior.setFocusPainted(false);
+		btnCarruselAnterior.setContentAreaFilled(false);
+		
 		panelVotacionesNacionales.add(btnCarruselAnterior);
-
-		btnCarruselSiguiente = new JButton(">");
-		btnCarruselSiguiente.setBounds(1280, 235, 32, 23);
+		
+		
+		btnCarruselSiguiente = new JButton("");
+		btnCarruselSiguiente.setBounds(1280, 296, 61, 68);
+		btnCarruselSiguiente.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/siguiente.png"));
+		btnCarruselSiguiente.setOpaque(false);
+		btnCarruselSiguiente.setContentAreaFilled(false);
+		btnCarruselSiguiente.setBorderPainted(true);
 		panelVotacionesNacionales.add(btnCarruselSiguiente);
 
 		lblCarrusel = new JLabel("");
-		lblCarrusel.setBounds(63, 25, 1200, 700);
+		lblCarrusel.setBounds(20, 25, 1343, 700);
 		lblCarrusel.setHorizontalAlignment(SwingConstants.CENTER);
 		imagenCarrusel = new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/1.gif");
 		lblCarrusel.setIcon(imagenCarrusel);
@@ -267,118 +399,6 @@ public class Vista extends JFrame {
 		 * lblTlfGrecia.setBounds(476, 475, 159, 14);
 		 * panelVotacionesNacionales.add(lblTlfGrecia);
 		 */
-
-		// JPanel "panelVotaciones"
-		panelVotaciones = new JPanel();
-		panelVotaciones.setBounds(0, 0, 1400, 900);
-		contentPane.add(panelVotaciones);
-		panelVotaciones.setLayout(null);
-
-		// Elementos del JPanel "panelVotaciones"
-		btnRefrescarInfo = new JButton("VOTACIONES");
-		btnRefrescarInfo.setBounds(411, 516, 214, 36);
-		panelVotaciones.add(btnRefrescarInfo);
-		panelVotaciones.setVisible(false);
-
-		textAreaPrueba = new JTextArea();
-		textAreaPrueba.setBounds(253, 415, 496, 99);
-		panelVotaciones.add(textAreaPrueba);
-
-		// JPanel "panelPaisesPuntos"
-		panelPaisesPuntos = new JPanel();
-		panelPaisesPuntos.setBounds(355, 25, 270, 380);
-		panelVotaciones.add(panelPaisesPuntos);
-		panelPaisesPuntos.setLayout(null);
-		panelPaisesPuntos.setVisible(false);
-
-		// Elementos del JPanel "panelPaisesPuntos"
-		lblPosicion1 = new JLabel("1");
-		lblPosicion1.setBounds(10, 10, 253, 19);
-		panelPaisesPuntos.add(lblPosicion1);
-
-		lblPosicion2 = new JLabel("2");
-		lblPosicion2.setBounds(10, 42, 253, 19);
-		panelPaisesPuntos.add(lblPosicion2);
-
-		lblPosicion3 = new JLabel("3");
-		lblPosicion3.setBounds(10, 71, 253, 21);
-		panelPaisesPuntos.add(lblPosicion3);
-
-		lblPosicion4 = new JLabel("4");
-		lblPosicion4.setBounds(10, 102, 253, 19);
-		panelPaisesPuntos.add(lblPosicion4);
-
-		lblPosicion5 = new JLabel("5");
-		lblPosicion5.setBounds(10, 131, 253, 19);
-		panelPaisesPuntos.add(lblPosicion5);
-
-		lblPosicion6 = new JLabel("6");
-		lblPosicion6.setBounds(10, 164, 253, 19);
-		panelPaisesPuntos.add(lblPosicion6);
-
-		lblPosicion7 = new JLabel("7");
-		lblPosicion7.setBounds(10, 193, 253, 19);
-		panelPaisesPuntos.add(lblPosicion7);
-
-		lblPosicion8 = new JLabel("8");
-		lblPosicion8.setBounds(10, 227, 253, 19);
-		panelPaisesPuntos.add(lblPosicion8);
-
-		lblPosicion9 = new JLabel("9");
-		lblPosicion9.setBounds(10, 266, 253, 19);
-		panelPaisesPuntos.add(lblPosicion9);
-
-		lblPosicion10 = new JLabel("10");
-		lblPosicion10.setBounds(10, 305, 253, 19);
-		panelPaisesPuntos.add(lblPosicion10);
-
-		// JPanel "panelBanderas"
-		panelBanderas = new JPanel();
-		panelBanderas.setBounds(253, 25, 67, 389);
-		panelVotaciones.add(panelBanderas);
-		panelBanderas.setLayout(null);
-		panelBanderas.setVisible(false);
-
-		// Elementos del JPanel "panelBanderas"
-		lblBandera1 = new JLabel("Bandera1");
-		lblBandera1.setBounds(0, 10, 67, 20);
-		panelBanderas.add(lblBandera1);
-
-		lblBandera2 = new JLabel("Bandera2");
-		lblBandera2.setBounds(0, 40, 67, 20);
-		panelBanderas.add(lblBandera2);
-
-		lblBandera3 = new JLabel("Bandera3");
-		lblBandera3.setBounds(0, 70, 67, 20);
-		panelBanderas.add(lblBandera3);
-
-		lblBandera4 = new JLabel("Bandera4");
-		lblBandera4.setBounds(0, 100, 67, 20);
-		panelBanderas.add(lblBandera4);
-
-		lblBandera5 = new JLabel("Bandera5");
-		lblBandera5.setBounds(0, 132, 67, 20);
-		panelBanderas.add(lblBandera5);
-
-		lblBandera6 = new JLabel("Bandera6");
-		lblBandera6.setBounds(0, 162, 67, 20);
-		panelBanderas.add(lblBandera6);
-
-		lblBandera7 = new JLabel("Bandera7");
-		lblBandera7.setBounds(0, 192, 67, 20);
-		panelBanderas.add(lblBandera7);
-
-		lblBandera8 = new JLabel("Bandera8");
-		lblBandera8.setBounds(0, 228, 67, 20);
-		panelBanderas.add(lblBandera8);
-
-		lblBandera9 = new JLabel("Bandera9");
-		lblBandera9.setBounds(0, 265, 67, 20);
-		panelBanderas.add(lblBandera9);
-
-		lblBandera10 = new JLabel("Bandera10");
-		lblBandera10.setBounds(0, 304, 67, 20);
-		panelBanderas.add(lblBandera10);
 
 		// JPanel "panelAutoria"
 		panelAutoria = new JPanel();
