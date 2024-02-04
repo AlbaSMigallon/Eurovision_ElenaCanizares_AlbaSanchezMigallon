@@ -32,7 +32,7 @@ public class Vista extends JFrame {
 	private static final long serialVersionUID = 1L;
 	// JPanel
 	public JPanel contentPane, panelInicial, panelVotacionesNacionales, panelVotaciones, panelResultados, panelAutoria,
-			panelBanderas, panelFinal, panelPaisesPuntos;
+			panelBanderas, panelFinal, panelPaisesPuntos, panelTf;
 	// JLabel
 	public JLabel lblActuacionEspania, lblActuacionAlemania, lblActuacionFrancia, lblActuacionItalia,
 			lblActuacionPortugal, lblActuacionReinoUnido, lblActuacionPolonia, lblActuacionPaisesBajos,
@@ -315,6 +315,96 @@ public class Vista extends JFrame {
 		lblApano10.setVisible(false);
 		panelVotaciones.add(lblApano10);
 
+		panelTf = new JPanel();
+		panelTf.setBounds(10, 11, 738, 707);
+		panelTf.setLayout(null);
+		panelTf.setOpaque(false);
+		panelTf.setVisible(false);
+		panelVotaciones.add(panelTf);
+
+		// Elementos del JPanel "panelVotacionesNacionales"
+		lblActuacionEspania = new JLabel("Actuacion Espania");
+		lblActuacionEspania.setBounds(10, 11, 256, 177);
+		lblActuacionEspania.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActuacionEspania
+				.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/Grecia.gif"));
+		lblActuacionEspania.setOpaque(true);
+		panelTf.add(lblActuacionEspania);
+
+		lblActuacionFrancia = new JLabel("Actuacion Francia");
+		lblActuacionFrancia.setBounds(10, 241, 256, 177);
+		lblActuacionFrancia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActuacionFrancia
+				.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/Polonia.gif"));
+		lblActuacionFrancia.setOpaque(true);
+		panelTf.add(lblActuacionFrancia);
+
+		lblActuacionAlemania = new JLabel("Actuacion Alemania");
+		lblActuacionAlemania.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActuacionAlemania.setBounds(379, 11, 256, 177);
+		lblActuacionAlemania
+				.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/PaisesBajos.gif"));
+		lblActuacionAlemania.setOpaque(true);
+		// lblActuacionAlemania.setVisible(false);
+		panelTf.add(lblActuacionAlemania);
+
+		// JLabels de tlf para votar
+		lblTlfEspania = new JLabel("tlfno Espania: 678-987-543");
+		lblTlfEspania.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTlfEspania.setForeground(Color.WHITE);
+		lblTlfEspania.setBounds(43, 199, 159, 14);
+		panelTf.add(lblTlfEspania);
+
+		lblTlfAlemania = new JLabel("tlfno Alemania: 765-345-789");
+		lblTlfAlemania.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTlfAlemania.setForeground(Color.WHITE);
+		lblTlfAlemania.setBounds(434, 199, 159, 14);
+		panelTf.add(lblTlfAlemania);
+
+		lblTlfFrancia = new JLabel("tlfno Francia: 879-654-321");
+		lblTlfFrancia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTlfFrancia.setForeground(Color.WHITE);
+		lblTlfFrancia.setBounds(43, 442, 159, 14);
+		panelTf.add(lblTlfFrancia);
+
+		lblActuacionItalia = new JLabel("Actuacion Italia");
+		lblActuacionItalia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActuacionItalia.setBounds(379, 241, 256, 177);
+		lblActuacionItalia.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/Italia.gif"));
+		panelTf.add(lblActuacionItalia);
+
+		lblTlfItalia = new JLabel("tlfno Italia: 876-543-212");
+		lblTlfItalia.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTlfItalia.setForeground(Color.WHITE);
+		lblTlfItalia.setBounds(434, 442, 159, 14);
+		panelTf.add(lblTlfItalia);
+
+		lblActuacionPortugal = new JLabel("Actuacion Portugal");
+		lblActuacionPortugal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActuacionPortugal.setBounds(10, 478, 256, 177);
+		lblActuacionPortugal
+				.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/Portugal.gif"));
+		panelTf.add(lblActuacionPortugal);
+
+		lblTlfPortugal = new JLabel("tlfno Portugal: 789-876-654");
+		lblTlfPortugal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTlfPortugal.setForeground(Color.WHITE);
+		lblTlfPortugal.setBounds(43, 666, 159, 14);
+		panelTf.add(lblTlfPortugal);
+
+		lblActuacionReinoUnido = new JLabel("Actuacion ReinoUnido");
+		lblActuacionReinoUnido.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActuacionReinoUnido.setBounds(379, 478, 256, 177);
+		lblActuacionReinoUnido
+				.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/actuaciones/ReinoUnido.gif"));
+		panelTf.add(lblActuacionReinoUnido);
+
+		lblTlfReinoUnido = new JLabel("tlfno ReinoUnido: 897-765-789");
+		lblTlfReinoUnido.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTlfReinoUnido.setForeground(Color.WHITE);
+		lblTlfReinoUnido.setBounds(434, 666, 159, 14);
+		panelTf.add(lblTlfReinoUnido);
+
 		lblFondoPanelVotaciones = new JLabel("");
 		lblFondoPanelVotaciones.setBounds(0, 0, 1400, 900);
 		lblFondoPanelVotaciones.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/fondo.jpg"));
@@ -443,50 +533,6 @@ public class Vista extends JFrame {
 		panelVotacionesNacionales.add(lblFondoTaylor);
 
 		/*
-		 * // Elementos del JPanel "panelVotacionesNacionales" // JLabels de las
-		 * actuaciones de los distintos paises lblActuacionEspania = new
-		 * JLabel("Actuacion Espania");
-		 * lblActuacionEspania.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblActuacionEspania.setBounds(22, 27, 196, 123);
-		 * lblActuacionEspania.setIcon(new ImageIcon(System.getProperty("user.dir") +
-		 * "/resources/actuaciones/Espania.gif"));
-		 * panelVotacionesNacionales.add(lblActuacionEspania);
-		 * 
-		 * lblActuacionAlemania = new JLabel("Actuacion Alemania");
-		 * lblActuacionAlemania.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblActuacionAlemania.setBounds(249, 27, 196, 123);
-		 * lblActuacionAlemania.setIcon(new ImageIcon(System.getProperty("user.dir") +
-		 * "/resources/actuaciones/Alemania.gif"));
-		 * panelVotacionesNacionales.add(lblActuacionAlemania);
-		 * 
-		 * lblActuacionFrancia = new JLabel("Actuacion Francia");
-		 * lblActuacionFrancia.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblActuacionFrancia.setBounds(455, 27, 196, 123);
-		 * lblActuacionFrancia.setIcon(new ImageIcon(System.getProperty("user.dir") +
-		 * "/resources/actuaciones/Francia.gif"));
-		 * panelVotacionesNacionales.add(lblActuacionFrancia);
-		 * 
-		 * lblActuacionItalia = new JLabel("Actuacion Italia");
-		 * lblActuacionItalia.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblActuacionItalia.setBounds(668, 27, 196, 123);
-		 * lblActuacionItalia.setIcon(new ImageIcon(System.getProperty("user.dir") +
-		 * "/resources/actuaciones/Italia.gif"));
-		 * panelVotacionesNacionales.add(lblActuacionItalia);
-		 * 
-		 * lblActuacionPortugal = new JLabel("Actuacion Portugal");
-		 * lblActuacionPortugal.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblActuacionPortugal.setBounds(32, 185, 196, 123);
-		 * lblActuacionPortugal.setIcon(new ImageIcon(System.getProperty("user.dir") +
-		 * "/resources/actuaciones/Portugal.gif"));
-		 * panelVotacionesNacionales.add(lblActuacionPortugal);
-		 * 
-		 * lblActuacionReinoUnido = new JLabel("Actuacion ReinoUnido");
-		 * lblActuacionReinoUnido.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblActuacionReinoUnido.setBounds(249, 185, 196, 123);
-		 * lblActuacionReinoUnido.setIcon(new ImageIcon(System.getProperty("user.dir") +
-		 * "/resources/actuaciones/ReinoUnido.gif"));
-		 * panelVotacionesNacionales.add(lblActuacionReinoUnido);
-		 * 
 		 * lblActuacionPolonia = new JLabel("Actuacion Polonia");
 		 * lblActuacionPolonia.setHorizontalAlignment(SwingConstants.CENTER);
 		 * lblActuacionPolonia.setBounds(455, 185, 196, 123);
@@ -514,38 +560,9 @@ public class Vista extends JFrame {
 		 * lblActuacionGrecia.setIcon(new ImageIcon(System.getProperty("user.dir") +
 		 * "/resources/actuaciones/Grecia.gif"));
 		 * panelVotacionesNacionales.add(lblActuacionGrecia);
-		 * 
-		 * // JLabels de tlf para votar lblTlfEspania = new
-		 * JLabel("tlfno Espania: 678-987-543");
-		 * lblTlfEspania.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblTlfEspania.setBounds(43, 160, 159, 14);
-		 * panelVotacionesNacionales.add(lblTlfEspania);
-		 * 
-		 * lblTlfAlemania = new JLabel("tlfno Alemania: 765-345-789");
-		 * lblTlfAlemania.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblTlfAlemania.setBounds(259, 160, 159, 14);
-		 * panelVotacionesNacionales.add(lblTlfAlemania);
-		 * 
-		 * lblTlfFrancia = new JLabel("tlfno Francia: 879-654-321");
-		 * lblTlfFrancia.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblTlfFrancia.setBounds(476, 160, 159, 14);
-		 * panelVotacionesNacionales.add(lblTlfFrancia);
-		 * 
-		 * lblTlfItalia = new JLabel("tlfno Italia: 876-543-212");
-		 * lblTlfItalia.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblTlfItalia.setBounds(688, 160, 159, 14);
-		 * panelVotacionesNacionales.add(lblTlfItalia);
-		 * 
-		 * lblTlfPortugal = new JLabel("tlfno Portugal: 789-876-654");
-		 * lblTlfPortugal.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblTlfPortugal.setBounds(54, 318, 159, 14);
-		 * panelVotacionesNacionales.add(lblTlfPortugal);
-		 * 
-		 * lblTlfReinoUnido = new JLabel("tlfno ReinoUnido: 897-765-789");
-		 * lblTlfReinoUnido.setHorizontalAlignment(SwingConstants.CENTER);
-		 * lblTlfReinoUnido.setBounds(259, 318, 176, 14);
-		 * panelVotacionesNacionales.add(lblTlfReinoUnido);
-		 * 
+		 */
+
+		/*
 		 * lblTlfPolonia = new JLabel("tlfno Polonia: 987-987-567");
 		 * lblTlfPolonia.setHorizontalAlignment(SwingConstants.CENTER);
 		 * lblTlfPolonia.setBounds(476, 318, 159, 14);

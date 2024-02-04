@@ -154,14 +154,14 @@ public class Controlador implements ActionListener {
 			// Hacemos visible el segundo JPanel y ocula
 			vista.panelVotacionesNacionales.setVisible(false);
 			vista.panelVotaciones.setVisible(true);
-
+			vista.panelTf.setVisible(true);
 			// Cargamos la JList "listaResultadosFaseNacional"
 			listaResultadosFaseNacional = gBD.getResultadosFaseNacional();
 			vista.btnRefrescarInfo.setText("COMENZAR");
 		}
 		// Acciones a realizar al pulsar el JButton "btnRefrescarInfo"
 		else if (e.getSource() == vista.btnRefrescarInfo) {
-			
+			vista.panelTf.setVisible(false);
 			// Controlamos que texto tiene el JButton "btnRefrescarInfo" para saber cuando
 			// es el primer clic
 			if (vista.btnRefrescarInfo.getText().equals("COMENZAR")) {
