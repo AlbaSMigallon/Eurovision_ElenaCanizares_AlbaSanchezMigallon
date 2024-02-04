@@ -221,6 +221,7 @@ public class Controlador implements ActionListener {
 				vista.lblNombreGanador.setText(cantanteGanador.getNombre());
 				// Mostramos el nombre de la cancion ganadora
 				vista.lblCancionGanador.setText("Cancion: " + cantanteGanador.getNombreCancion());
+				gBD.cerrarPoolConexiones();
 			}
 		}
 		// Acciones a realizar al pulsar el JItemMenu "itemMenuInformacion"
