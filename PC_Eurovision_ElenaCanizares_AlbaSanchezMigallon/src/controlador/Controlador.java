@@ -133,12 +133,12 @@ public class Controlador implements ActionListener {
 			// Se inicia el Timer que controla el tiempo del gif de transicion entre el
 			// primer JPanel y el segundo
 			iniciarCronometroTransicion();
-			
+
 			// Se inicia el Timer que controla el tiempo hasta la disponibilidad del JButon
 			// "btnComenzarVotaciones"
 			// iniciarCronometroVotacionesEurovision();
 		}
-		
+
 		// Acciones a realizar al pulsar el JButton "btnComenzarVotaciones"
 		else if (e.getSource() == vista.btnComenzarVotaciones) {
 			reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/pointsGoTo.wav");
@@ -323,21 +323,7 @@ public class Controlador implements ActionListener {
 			}
 		}
 	}
-	private void mostrarImagenPorPais(String nombrePais) {
-	    String nombreImagen;
 
-	    switch (nombrePais) {
-	        case "Polonia":
-	        	 vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/votaciones/votacion_polonia.jpg"));
-	            break;
-	        case "Francia":
-	        	 vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/votaciones/Francia.jpg"));
-	            break;
-	        // Agrega más casos según tus necesidades
-	        default:
-	            nombreImagen = "default.png";
-	    }
-	}
 	/**
 	 * Funcionalidad que carga la informacion que va actualizandose en el
 	 * diccionario en los JLabels del JPanel "panelPaisesPuntos". Hace uso del
@@ -371,8 +357,6 @@ public class Controlador implements ActionListener {
 				 * puntos que se encuentran en la lista de valores ordenados
 				 */
 				label.setText(listaClaves.get(i) + " " + listaValores.get(i));
-				
-				
 			}
 		}
 		// Iteramos sobre el JPanel "panelBanderas" para asignar las banderas a su
@@ -381,7 +365,7 @@ public class Controlador implements ActionListener {
 			Component componente = vista.panelBanderas.getComponent(i);
 			if (componente instanceof JLabel) {
 				String nombrePais = listaClaves.get(i);
-				mostrarImagenPorPais(nombrePais);
+				//mostrarImagenPorPais(nombrePais);
 				String nombreImagen = nombrePais.replace(" ", "") + ".png";
 				JLabel label = (JLabel) componente;
 
@@ -490,6 +474,10 @@ public class Controlador implements ActionListener {
 				vista.btnRefrescarInfo
 						.setText(listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais());
 				// Si el indice ya no es menor o igual al tamanio pasado como parametro entra
+				String nombrePais1=listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais();
+				nombrePais1=nombrePais1.replace(" ", "");
+				vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/votaciones/"+nombrePais1+".jpg"));
+				//mostrarImagenPorPais(nombrePais);
 			} else {
 				// Cambiamos el texto del JButton "btnRefrescarInfo" para saber que el siguiente
 				// clic cambiara el JPanel
@@ -642,7 +630,7 @@ public class Controlador implements ActionListener {
 					// Volvemos a mostrar el JMenuBar cuando acaba el gif de transicion
 					vista.menuBar.setVisible(true);
 					reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/bienvenida.wav");
-					
+
 					// Volvemos a darle el valor original de tiempo a "tiempoTransicion" aunque no
 					// hace falta porque no se usara mas
 					tiempoTransicion = 2;
