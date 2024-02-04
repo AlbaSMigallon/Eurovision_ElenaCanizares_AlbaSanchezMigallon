@@ -25,6 +25,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import persistencias.Cantantes;
 import persistencias.ResultadosEurovision;
@@ -100,7 +101,7 @@ public class Controlador implements ActionListener {
 
 		Controlador.vista.btnCarruselAnterior.addActionListener(this);
 		Controlador.vista.btnCarruselSiguiente.addActionListener(this);
-
+		
 		// Asignamos escuchador al JMenuItem
 		vista.itemMenuInformacion.addActionListener(this);
 
@@ -167,7 +168,17 @@ public class Controlador implements ActionListener {
 				// puntos
 				vista.panelBanderas.setVisible(true);
 				vista.panelPaisesPuntos.setVisible(true);
-
+				vista.lblApano.setVisible(true);
+				vista.lblApano2.setVisible(true);
+				vista.lblApano3.setVisible(true);
+				vista.lblApano4.setVisible(true);
+				vista.lblApano5.setVisible(true);
+				vista.lblApano6.setVisible(true);
+				vista.lblApano7.setVisible(true);
+				vista.lblApano8.setVisible(true);
+				vista.lblApano9.setVisible(true);
+				vista.lblApano10.setVisible(true);
+				vista.textAreaPrueba.setVisible(true);
 				// En el primer clic el texto del JButton "btnRefrescarInfo" cambia al primer
 				// nombre de la lista "listaResultadosFaseNacional"
 				vista.btnRefrescarInfo.setText(listaResultadosFaseNacional.get(0).getPais());
@@ -357,7 +368,12 @@ public class Controlador implements ActionListener {
 				 * caso el nombre del pais que se encuentra en la lista de claves ordenada y los
 				 * puntos que se encuentran en la lista de valores ordenados
 				 */
+				
 				label.setText(listaClaves.get(i) + " " + listaValores.get(i));
+				
+				//label.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/barras/ejemploLabel.png"));
+				
+				
 			}
 		}
 		// Iteramos sobre el JPanel "panelBanderas" para asignar las banderas a su
@@ -372,17 +388,17 @@ public class Controlador implements ActionListener {
 
 				// Cargar la imagen
 				ImageIcon icono = new ImageIcon(System.getProperty("user.dir") + "/resources/banderas/" + nombreImagen);
-				Image imagen = icono.getImage();
+				//Image imagen = icono.getImage();
 
 				// Obtener las dimensiones del JLabel
-				int anchoLabel = label.getWidth();
-				int altoLabel = label.getHeight();
+				//int anchoLabel = label.getWidth();
+				//int altoLabel = label.getHeight();
 
 				// Redimensionar la imagen al tamaño del JLabel
-				Image imagenRedimensionada = imagen.getScaledInstance(anchoLabel, altoLabel, Image.SCALE_SMOOTH);
+				//Image imagenRedimensionada = imagen.getScaledInstance(anchoLabel, altoLabel, Image.SCALE_SMOOTH);
 
 				// Asignar la imagen redimensionada al JLabel
-				label.setIcon(new ImageIcon(imagenRedimensionada));
+				label.setIcon(icono);
 			}
 		}
 	}
@@ -478,7 +494,6 @@ public class Controlador implements ActionListener {
 				String nombrePais1=listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais();
 				nombrePais1=nombrePais1.replace(" ", "");
 				vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/votaciones/"+nombrePais1+".jpg"));
-				//mostrarImagenPorPais(nombrePais);
 			} else {
 				// Cambiamos el texto del JButton "btnRefrescarInfo" para saber que el siguiente
 				// clic cambiara el JPanel
