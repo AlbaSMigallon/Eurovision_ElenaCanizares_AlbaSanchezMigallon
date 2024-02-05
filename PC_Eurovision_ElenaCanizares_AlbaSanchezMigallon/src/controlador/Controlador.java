@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -75,6 +76,8 @@ public class Controlador implements ActionListener {
 	private int contadorCarrusel = 1;
 
 	private static Clip clip;
+	
+	private boolean primerClick;
 	/**
 	 * Constructor de la clase "Controlador"
 	 */
@@ -93,7 +96,7 @@ public class Controlador implements ActionListener {
 		this.panel4_activo = false;
 		this.indiceListaResultadosNacionales = 0;
 		this.paisGanador = "";
-
+		this.primerClick = false;
 		// Asignamos escuchadores a los JButton
 		Controlador.vista.btnComenzarInicio.addActionListener(this);
 		Controlador.vista.btnComenzarVotaciones.addActionListener(this);
@@ -130,7 +133,7 @@ public class Controlador implements ActionListener {
 			this.panel2_activo = true;
 
 			// Le asignamos un archivo .gif al JLabel "lblLogoInicio".
-			vista.lblLogoInicio.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/introEuroGif.gif"));
+			vista.lblLogoInicio.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/introEuroGiftGrande_out.gif"));
 
 			// Se inicia el Timer que controla el tiempo del gif de transicion entre el
 			// primer JPanel y el segundo
@@ -154,37 +157,59 @@ public class Controlador implements ActionListener {
 			// Hacemos visible el segundo JPanel y ocula
 			vista.panelVotacionesNacionales.setVisible(false);
 			vista.panelVotaciones.setVisible(true);
-			vista.panelTf.setVisible(true);
+			//vista.panelTf.setVisible(true);
 			// Cargamos la JList "listaResultadosFaseNacional"
 			listaResultadosFaseNacional = gBD.getResultadosFaseNacional();
 			vista.btnRefrescarInfo.setText("COMENZAR");
+			
+			vista.panelBanderas.setVisible(true);
+			vista.panelPaisesPuntos.setVisible(true);
+			vista.lblApano.setVisible(true);
+			vista.lblApano2.setVisible(true);
+			vista.lblApano3.setVisible(true);
+			vista.lblApano4.setVisible(true);
+			vista.lblApano5.setVisible(true);
+			vista.lblApano6.setVisible(true);
+			vista.lblApano7.setVisible(true);
+			vista.lblApano8.setVisible(true);
+			vista.lblApano9.setVisible(true);
+			vista.lblApano10.setVisible(true);
+			//vista.textAreaPrueba.setVisible(true);
+			
+			vista.lblPaisActual.setVisible(false);
+			// En el primer clic el texto del JButton "btnRefrescarInfo" cambia al primer
+			// nombre de la lista "listaResultadosFaseNacional"
+			//vista.btnRefrescarInfo.setText(listaResultadosFaseNacional.get(0).getPais());
+			
+			// En el primer clic cargamos los nombres de los paises participantes y sus
+			// puntos inicialmente 0 el mapa "diccionarioPaisesPuntos"
+			cargarDiccionario();
+
+			// En el primer clic ya cargamos la informacion del mapa en los labels, con
+			// puntos 0 aun
+			cargarJLabels();
 		}
 		// Acciones a realizar al pulsar el JButton "btnRefrescarInfo"
 		else if (e.getSource() == vista.btnRefrescarInfo) {
-			vista.panelTf.setVisible(false);
+			//vista.panelTf.setVisible(false);
 			// Controlamos que texto tiene el JButton "btnRefrescarInfo" para saber cuando
 			// es el primer clic
+			if(primerClick==true) {
+                this.indiceListaResultadosNacionales++;
+                //vista.textAreaPrueba.setVisible(true);
+            }
 			if (vista.btnRefrescarInfo.getText().equals("COMENZAR")) {
-				reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/pointsGoTo.wav");
 				// Hacemos visibles los JPanel que tienen las banderas y los paises con sus
 				// puntos
-				vista.panelBanderas.setVisible(true);
-				vista.panelPaisesPuntos.setVisible(true);
-				vista.lblApano.setVisible(true);
-				vista.lblApano2.setVisible(true);
-				vista.lblApano3.setVisible(true);
-				vista.lblApano4.setVisible(true);
-				vista.lblApano5.setVisible(true);
-				vista.lblApano6.setVisible(true);
-				vista.lblApano7.setVisible(true);
-				vista.lblApano8.setVisible(true);
-				vista.lblApano9.setVisible(true);
-				vista.lblApano10.setVisible(true);
-				vista.textAreaPrueba.setVisible(true);
+				//vista.btnRefrescarInfo.setText(listaResultadosFaseNacional.get(0).getPais());
+				vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir")+ "/resources/votaciones/Alemania.jpg"));
+				
+				
+				
 				// En el primer clic el texto del JButton "btnRefrescarInfo" cambia al primer
 				// nombre de la lista "listaResultadosFaseNacional"
-				vista.btnRefrescarInfo.setText(listaResultadosFaseNacional.get(0).getPais());
-
+				vista.btnRefrescarInfo.setText("Siguiente");
+				
 				// En el primer clic cargamos los nombres de los paises participantes y sus
 				// puntos inicialmente 0 el mapa "diccionarioPaisesPuntos"
 				cargarDiccionario();
@@ -192,7 +217,20 @@ public class Controlador implements ActionListener {
 				// En el primer clic ya cargamos la informacion del mapa en los labels, con
 				// puntos 0 aun
 				cargarJLabels();
+				vista.lblPaisActual.setText(listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais());
+				
+				int tamanio = listaResultadosFaseNacional.size() - 1;
+
+				/*
+				 * Tras el primer clic se empiezan a sumar los puntos asignados a cada pais y se
+				 * muestra la informacion Se hara uso de metodos privados para actualizar el
+				 * diccionario ordenarlo e incrementar el indice
+				 * "indiceListaResultadosNacionales"
+				 */
+				mostrarSiguienteResultado(tamanio);
 			} else {
+				
+				
 				// Obtenemos el tamanio de "listaResultadosFaseNacional" para usarlo como
 				// indicativo del numero de clics necesarios en la votacion
 				int tamanio = listaResultadosFaseNacional.size() - 1;
@@ -205,12 +243,23 @@ public class Controlador implements ActionListener {
 				 */
 				mostrarSiguienteResultado(tamanio);
 			}
+		
 			/*
 			 * Si el texto del JButton "btnRefrescarInfo" ha cambiado, significara que la
 			 * votacion ha terminado y el insert en la tabla "RESULTADOS_EUROVISION" se ha
 			 * realizado, teniendo a su vez un ganador designado
 			 */
-			if (vista.btnRefrescarInfo.getText().equals("ACTUACION GANADORA")) {
+			if(vista.btnRefrescarInfo.getText().equals("Fin")){
+				vista.btnRefrescarInfo.setText("ACTUACION GANADORA");
+				//vista.lblPaisActual.setVisible(false);
+				//vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/taylor/taylor2.png"));
+				this.panel1_activo = false;
+				this.panel2_activo = false;
+				this.panel3_activo = false;
+				this.panel4_activo = true;
+			}
+			else if (vista.btnRefrescarInfo.getText().equals("ACTUACION GANADORA")) {
+				reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/andTheWinnerIs.wav");
 				// Se actualizan los booleanos que controlan la perspectiva en la que se
 				// encuentra el usuario
 				this.panel1_activo = false;
@@ -439,6 +488,8 @@ public class Controlador implements ActionListener {
 	 * @param tamanio
 	 */
 	private void mostrarSiguienteResultado(int tamanio) {
+		primerClick =true;
+		//vista.textAreaPrueba.setVisible(true);
 		// Se borra el texto asociado al textArea "textAreaPrueba" con cada clic
 		vista.textAreaPrueba.setText("");
 		// Si el tamanio pasado como parametro es mayor o igual al indice atributo de
@@ -470,7 +521,7 @@ public class Controlador implements ActionListener {
 			info += "\tVota como segundo cantante con 10 points a " + cantanteSegundo + " (" + paisCantante2 + ")\n";
 			info += "\tVota como tercer cantante con 8 points a " + cantanteTercero + " (" + paisCantante3 + ")\n";
 			vista.textAreaPrueba.setText(info);
-
+		
 			// Se hace uso del metodo "actualizarDiccionario" para ir sumando los puntos
 			// asociados a cada pais
 			actualizarDiccionario(paisCantante1, 15);
@@ -483,26 +534,42 @@ public class Controlador implements ActionListener {
 
 			// IMPORTANTE IMPORTANTISIMO IMPORTANTERRIMO incrementar el indice que en cada
 			// clic para acceder al siguiente item
-			this.indiceListaResultadosNacionales++;
+			//this.indiceListaResultadosNacionales++;
 
 			// Si el indice sigue siendo menor o igual al tamanio pasado como parametro
 			// entra
-			if (indiceListaResultadosNacionales <= tamanio) {
+			if (indiceListaResultadosNacionales < tamanio) {
 				// En cada clic mostramos el siguiente nombre del pais que vota en el JButton
 				// "btnRefrescarInfo"
-				vista.btnRefrescarInfo
-						.setText(listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais());
+				/*vista.btnRefrescarInfo
+						.setText(listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais());*/
+				vista.lblPaisActual.setText(listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais());
 				// Si el indice ya no es menor o igual al tamanio pasado como parametro entra
 				String nombrePais1=listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais();
 				nombrePais1=nombrePais1.replace(" ", "");
 				vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/votaciones/"+nombrePais1+".jpg"));
-			} else {
+				vista.lblPaisConsultaVotaciones1.setText(paisCantante1);
+				vista.lblPaisConsultaVotaciones1.setBackground(Color.WHITE);
+				vista.lblPaisConsultaVotaciones1.setVisible(true);
+				vista.lbl15.setVisible(true);
+				vista.lblPaisConsultaVotaciones2.setText(paisCantante2);
+				vista.lblPaisConsultaVotaciones2.setVisible(true);
+				vista.lbl10.setVisible(true);
+				vista.lblPaisConsultaVotaciones3.setText(paisCantante3);
+				vista.lblPaisConsultaVotaciones3.setVisible(true);
+				vista.lbl8.setVisible(true);
+				vista.lblPaisActual.setVisible(true);
+			} if(indiceListaResultadosNacionales == tamanio) {
+				vista.lblPaisActual.setVisible(true);
+				vista.lblPaisActual.setText(listaResultadosFaseNacional.get(indiceListaResultadosNacionales).getPais());
+				vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/votaciones/"+nombrePais+".jpg"));
 				// Cambiamos el texto del JButton "btnRefrescarInfo" para saber que el siguiente
 				// clic cambiara el JPanel
-				vista.btnRefrescarInfo.setText("ACTUACION GANADORA");
+				vista.btnRefrescarInfo.setText("Fin");
 				// Se realiza un insert en la tabla "RESULTADOS_EUROVISION" al terminar las
 				// votaciones
 				guardarResultadosEurovision();
+				vista.menuBar.setVisible(false);
 			}
 			// Si el indice ya no es menor o igual al tamanio pasado como parametro lo
 			// mostramos en el textArea como traza
@@ -628,7 +695,7 @@ public class Controlador implements ActionListener {
 		reproducirSonido(System.getProperty("user.dir") + "/resources/introEuroSonido.wav");
 		// Se inicializa la instancia y se especifica que se dispare cada segundo (1000
 		// milisegundos) y anade un escuchador
-		timerCronometro = new Timer(2440, new ActionListener() {
+		timerCronometro = new Timer(2200, new ActionListener() {
 			// En el actionPerformed redefinido se controlara el atributo de instancia
 			// "tiempoTransicion" y su valor
 			@Override
