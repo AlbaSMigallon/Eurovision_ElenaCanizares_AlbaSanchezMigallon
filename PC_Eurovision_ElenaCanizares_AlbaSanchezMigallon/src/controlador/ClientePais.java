@@ -36,7 +36,7 @@ public class ClientePais extends Thread {
 	 */
 	// objeto obtenido de la consulta para calcular porcentajes por rango de edad
 	private PorcentajesRangoedad porcentajes;
-	// estructura de datos en la que se almacenaran los resultados de los votos que
+	// estructura de datos en la que se almacenaran los resultados de los votos que.
 
 	private HashMap<String, Integer> votaciones;
 	private List<Cantantes> cantantes;
