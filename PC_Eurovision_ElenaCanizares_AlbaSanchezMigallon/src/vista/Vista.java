@@ -470,11 +470,11 @@ public class Vista extends JFrame {
 		lblNombreGanador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombreGanador.setBounds(598, 457, 246, 43);
 		lblNombreGanador.setForeground(Color.WHITE);
-		lblNombreGanador.setFont(new Font("Impact", Font.PLAIN, 30));
+		lblNombreGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
 		panelFinal.add(lblNombreGanador);
 
 		lblCancionGanador = new JLabel("");
-		lblCancionGanador.setFont(new Font("Goudy Old Style", Font.PLAIN, 18));
+		lblCancionGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
 		lblCancionGanador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCancionGanador.setForeground(Color.WHITE);
 		lblCancionGanador.setBounds(580, 536, 282, 43);
@@ -482,7 +482,7 @@ public class Vista extends JFrame {
 
 		lblPaisGanador = new JLabel("");
 		lblPaisGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPaisGanador.setFont(new Font("Impact", Font.PLAIN, 40));
+		lblPaisGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 40));
 		lblPaisGanador.setForeground(Color.WHITE);
 		lblPaisGanador.setBounds(542, 11, 356, 85);
 		panelFinal.add(lblPaisGanador);
@@ -501,7 +501,7 @@ public class Vista extends JFrame {
 
 		// Elementos del JPanel "panelInicial"
 		btnComenzarInicio = new JButton("COMENZAR");
-		btnComenzarInicio.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+		btnComenzarInicio.setFont(new Font("Segoe UI Emoji", Font.BOLD, 20));
 		btnComenzarInicio.setBounds(620, 700, 181, 51);
 		panelInicial.add(btnComenzarInicio);
 
@@ -567,7 +567,7 @@ public class Vista extends JFrame {
 		ImageIcon imagenFondo = new ImageIcon(System.getProperty("user.dir") + "/resources/fondo.jpg");
 
 		btnComenzarVotaciones = new JButton("ESPERANDO");
-		btnComenzarVotaciones.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+		btnComenzarVotaciones.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 20));
 		btnComenzarVotaciones.setBounds(550, 782, 272, 33);
 		btnComenzarVotaciones.setEnabled(false);
 		panelVotacionesNacionales.add(btnComenzarVotaciones);
@@ -654,28 +654,28 @@ public class Vista extends JFrame {
 		lblCabecera.setBounds(443, 11, 530, 77);
 		lblCabecera.setBackground(Color.WHITE);
 		lblCabecera.setForeground(Color.WHITE);
-		lblCabecera.setFont(new Font("Impact", Font.PLAIN, 30));
+		lblCabecera.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
 		panelAutoria.add(lblCabecera);
 
 		lblAutor1 = new JLabel("Alba Sanchez-Migallón Arias");
 		lblAutor1.setBounds(613, 196, 233, 28);
 		lblAutor1.setBackground(Color.WHITE);
 		lblAutor1.setForeground(Color.WHITE);
-		lblAutor1.setFont(new Font("Impact", Font.PLAIN, 15));
+		lblAutor1.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 15));
 		panelAutoria.add(lblAutor1);
 
 		lblAutor2 = new JLabel("Elena Cañizares Jimenez");
 		lblAutor2.setBounds(625, 144, 233, 28);
 		lblAutor2.setBackground(Color.WHITE);
 		lblAutor2.setForeground(Color.WHITE);
-		lblAutor2.setFont(new Font("Impact", Font.PLAIN, 15));
+		lblAutor2.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 15));
 		panelAutoria.add(lblAutor2);
 
 		lblAutor3 = new JLabel("Carlos Guerrero Caro");
 		lblAutor3.setBounds(636, 99, 233, 28);
 		lblAutor3.setBackground(Color.WHITE);
 		lblAutor3.setForeground(Color.WHITE);
-		lblAutor3.setFont(new Font("Impact", Font.PLAIN, 15));
+		lblAutor3.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 15));
 		panelAutoria.add(lblAutor3);
 
 		lblFondoAutoria = new JLabel("");
