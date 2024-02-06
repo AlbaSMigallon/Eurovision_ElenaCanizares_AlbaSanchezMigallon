@@ -73,7 +73,7 @@ public class GestionDeDatos {
 				query.setParameter("variableNombre", nombreParametro);
 				Cantantes cantante = (Cantantes) query.getSingleResult();
 				 pais = cantante.getPais();
-				session.getTransaction().commit();
+				
 			}
 			catch(HibernateException e) {
 				e.printStackTrace();
@@ -162,7 +162,8 @@ public class GestionDeDatos {
 			try {
 				session = this.sessionFactory.getCurrentSession();
 				session.beginTransaction();
-				session.saveOrUpdate(resultado);
+				System.out.println("INSERT FINAL: "+ resultado);
+				session.saveOrUpdate(resultado);// Cambios Elena y Alba martes
 				session.getTransaction().commit();
 			} catch (HibernateException e) {
 				e.printStackTrace();
@@ -253,7 +254,7 @@ public class GestionDeDatos {
 				Query<String> query = session.createSQLQuery(sb.toString());
 				ganador = query.uniqueResult();
 				System.out.println("Ganador gala anterior: " + ganador);
-				session.getTransaction().commit();
+				
 			} catch (HibernateException e) {
 				e.printStackTrace();
 				if (null != session) {
@@ -282,7 +283,7 @@ public class GestionDeDatos {
 	            session.beginTransaction();
 	            Query<ResultadosFaseNacional> query = session.createQuery("FROM ResultadosFaseNacional", ResultadosFaseNacional.class);
 	            resultados = query.getResultList();
-	            session.getTransaction().commit();
+	          
 	        } catch (HibernateException e) {
 	            e.printStackTrace();
 	            if (null != session) {

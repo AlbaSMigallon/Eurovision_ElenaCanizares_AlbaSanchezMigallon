@@ -608,7 +608,8 @@ public class Controlador implements ActionListener {
 			// Si el pais coincide con su respectivo nombre se hara un set de ese pais
 			// anadiendole los puntos de la gala
 			if (clavePais.equals("Espania")) {
-				resultado.setAlemania(valorPuntos);
+				resultado.setEspania(valorPuntos);// Cambios Elena y Alba martes
+				System.out.println("Traza espania: "+ valorPuntos);
 			} else if (clavePais.equals("Alemania")) {
 				resultado.setAlemania(valorPuntos);
 			} else if (clavePais.equals("Francia")) {
@@ -634,6 +635,7 @@ public class Controlador implements ActionListener {
 		resultado.setFechaGala(fechaActual);
 		// Insertamos el objeto resultado haciendo uso del metodo
 		// "insertResultadoEurovision" de la clase "gestionDeDatos"
+		System.out.println("INSERT FINAL: "+ resultado);
 		gBD.insertResultadosEurovision(resultado);
 		// Traza
 		System.out.println("DATOS GUARDADOS EN TABLA EUROVISION");
@@ -695,7 +697,7 @@ public class Controlador implements ActionListener {
 		reproducirSonido(System.getProperty("user.dir") + "/resources/introEuroSonido.wav");
 		// Se inicializa la instancia y se especifica que se dispare cada segundo (1000
 		// milisegundos) y anade un escuchador
-		timerCronometro = new Timer(2200, new ActionListener() {
+		timerCronometro = new Timer(2000, new ActionListener() {
 			// En el actionPerformed redefinido se controlara el atributo de instancia
 			// "tiempoTransicion" y su valor
 			@Override

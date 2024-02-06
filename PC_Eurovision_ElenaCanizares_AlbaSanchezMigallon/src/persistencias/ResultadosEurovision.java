@@ -151,4 +151,14 @@ public class ResultadosEurovision implements java.io.Serializable {
 		this.paisGanador = paisGanador;
 	}
 
+	@Override
+	public String toString() {
+		return "ResultadosEurovision [espania=" + espania + ", alemania=" + alemania + ", francia=" + francia
+				+ ", italia=" + italia + ", portugal=" + portugal + ", reinoUnido=" + reinoUnido + ", polonia="
+				+ polonia + ", paisesBajos=" + paisesBajos + ", rumania=" + rumania + ", grecia=" + grecia
+				+ ", paisGanador=" + paisGanador + "]";
+	}
+	
+	
+
 }
