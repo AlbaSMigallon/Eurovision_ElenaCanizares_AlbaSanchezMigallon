@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -631,8 +632,11 @@ public class Controlador implements ActionListener {
 			}
 		}
 		// Creamos la fecha actual para settearla en el objeto "resultado"
-		Date fechaActual = Calendar.getInstance().getTime();
-		resultado.setFechaGala(fechaActual);
+		Date date= new Date();
+		String strDateFormat = "hh:mm:ss a dd-MMM-yyyy"; //Date format is Specified
+		SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
+		objSDF.format(date);
+		resultado.setFechaGala(date);
 		// Insertamos el objeto resultado haciendo uso del metodo
 		// "insertResultadoEurovision" de la clase "gestionDeDatos"
 		System.out.println("INSERT FINAL: "+ resultado);

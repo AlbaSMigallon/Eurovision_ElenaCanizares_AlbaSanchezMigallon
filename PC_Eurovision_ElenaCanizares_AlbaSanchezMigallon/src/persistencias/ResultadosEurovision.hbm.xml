@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Generated 29 ene 2024 20:56:30 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6 feb 2024 10:19:21 by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class catalog="censo_europa" name="persistencias.ResultadosEurovision" optimistic-lock="none" table="resultados_eurovision">
         <id name="idResultadosEurovision" type="int">
             <column name="ID_RESULTADOS_EUROVISION"/>
             <generator class="assigned"/>
         </id>
-        <property name="fechaGala" type="date">
-            <column length="10" name="FECHA_GALA">
+        <property name="fechaGala" type="timestamp">
+            <column length="19" name="FECHA_GALA">
                 <comment>Fecha de la Gala de Eurovision</comment>
             </column>
         </property>

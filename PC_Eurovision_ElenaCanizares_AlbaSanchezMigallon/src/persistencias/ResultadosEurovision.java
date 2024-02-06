@@ -1,5 +1,5 @@
 package persistencias;
-// Generated 29 ene 2024 20:56:30 by Hibernate Tools 5.4.33.Final
+// Generated 6 feb 2024 10:19:20 by Hibernate Tools 5.4.33.Final
 
 import java.util.Date;
 
@@ -150,15 +150,5 @@ public class ResultadosEurovision implements java.io.Serializable {
 	public void setPaisGanador(String paisGanador) {
 		this.paisGanador = paisGanador;
 	}
-
-	@Override
-	public String toString() {
-		return "ResultadosEurovision [espania=" + espania + ", alemania=" + alemania + ", francia=" + francia
-				+ ", italia=" + italia + ", portugal=" + portugal + ", reinoUnido=" + reinoUnido + ", polonia="
-				+ polonia + ", paisesBajos=" + paisesBajos + ", rumania=" + rumania + ", grecia=" + grecia
-				+ ", paisGanador=" + paisGanador + "]";
-	}
-	
-	
 
 }

@@ -83,7 +83,7 @@ VALUES ('Espania', 'Joel', 'Un elefante se balanceaba'),
 /*Se cre una tabla de RESULTADOS FINALES DE LA GALA EUROVISION para guardar los resultados de todos los paises*/
 CREATE TABLE RESULTADOS_EUROVISION (
 	ID_RESULTADOS_EUROVISION INT AUTO_INCREMENT NOT NULL COMMENT 'ID de resultados de EurovisiOn',
-    FECHA_GALA DATE NULL COMMENT 'Fecha de la Gala de Eurovision',
+    FECHA_GALA TIMESTAMP NULL COMMENT 'Fecha de la Gala de Eurovision',
     ESPANIA INT NULL COMMENT 'Puntacion final de Espania',
     ALEMANIA INT NULL COMMENT 'Puntacion final de Alemania',
     FRANCIA INT NULL COMMENT 'Puntacion final de Francia',
