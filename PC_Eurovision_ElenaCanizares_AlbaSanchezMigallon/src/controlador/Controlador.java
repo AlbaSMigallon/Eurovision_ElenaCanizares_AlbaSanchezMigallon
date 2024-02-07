@@ -134,7 +134,7 @@ public class Controlador implements ActionListener {
 			this.panel2_activo = true;
 
 			// Le asignamos un archivo .gif al JLabel "lblLogoInicio".
-			vista.lblLogoInicio.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/introEuroGiftGrande_out.gif"));
+			vista.lblLogoInicio.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/introEuroGiftGrande_out3.gif"));
 
 			// Se inicia el Timer que controla el tiempo del gif de transicion entre el
 			// primer JPanel y el segundo
@@ -261,6 +261,7 @@ public class Controlador implements ActionListener {
 			}
 			else if (vista.btnRefrescarInfo.getText().equals("ACTUACION GANADORA")) {
 				reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/andTheWinnerIs.wav");
+				vista.lblTaylorFinal.setVisible(true);
 				// Se actualizan los booleanos que controlan la perspectiva en la que se
 				// encuentra el usuario
 				this.panel1_activo = false;
@@ -339,11 +340,11 @@ public class Controlador implements ActionListener {
 		 * vista.lblCarrusel.setIcon(vista.imagenCarrusel);
 		 */
 
-		// Load the GIF
+		// Cargar el gif
 		String gifPath = System.getProperty("user.dir") + "/resources/actuaciones/" + contadorCarrusel + ".gif";
 		vista.imagenCarrusel = new ImageIcon(gifPath);
 
-		// Resize the GIF to fit the JLabel
+		// Redimensionarlo
 		Image img = vista.imagenCarrusel.getImage();
 		Image newImg = img.getScaledInstance(vista.lblCarrusel.getWidth(), vista.lblCarrusel.getHeight(),
 				Image.SCALE_DEFAULT);
@@ -701,7 +702,7 @@ public class Controlador implements ActionListener {
 		reproducirSonido(System.getProperty("user.dir") + "/resources/introEuroSonido.wav");
 		// Se inicializa la instancia y se especifica que se dispare cada segundo (1000
 		// milisegundos) y anade un escuchador
-		timerCronometro = new Timer(2000, new ActionListener() {
+		timerCronometro = new Timer(2100, new ActionListener() {
 			// En el actionPerformed redefinido se controlara el atributo de instancia
 			// "tiempoTransicion" y su valor
 			@Override

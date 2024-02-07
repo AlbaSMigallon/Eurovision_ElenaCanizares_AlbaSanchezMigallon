@@ -45,7 +45,7 @@ public class Vista extends JFrame {
 			lblBandera9, lblBandera10, lblCarrusel, lblFondoTaylor, lblImagenPresentador, lblFondoPanelVotaciones,
 			lblApano, lblApano2, lblApano3, lblApano4, lblApano5, lblApano6, lblApano7, lblApano8, lblApano9,
 			lblFondoAutoria, lblApano10, lblFondoFinal, lblPaisActual, lblPaisConsultaVotaciones1,
-			lblPaisConsultaVotaciones2, lblPaisConsultaVotaciones3, lbl15, lbl10, lbl8;
+			lblPaisConsultaVotaciones2, lblPaisConsultaVotaciones3, lbl15, lbl10, lbl8,lblTaylorFinal;
 	// JButton
 	public JButton btnComenzarInicio, btnComenzarVotaciones, btnRefrescarInfo, btnVolver, btnCarruselAnterior,
 			btnCarruselSiguiente;
@@ -59,6 +59,7 @@ public class Vista extends JFrame {
 	public JMenuItem itemMenuInformacion;
 
 	public ImageIcon imagenCarrusel;
+
 	/**
 	 * Constructor de la clase "Vista".
 	 */
@@ -73,6 +74,52 @@ public class Vista extends JFrame {
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
 
+		// JPanel "panelFinal"
+		panelFinal = new JPanel();
+		panelFinal.setBounds(0, 0, 1400, 900);
+		contentPane.add(panelFinal);
+		panelFinal.setLayout(null);
+
+		// Elementos del JPanel "panelFinal"
+		lblActuacionGanador = new JLabel("");
+		lblActuacionGanador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblActuacionGanador.setBounds(527, 152, 356, 277);
+		lblActuacionGanador.setForeground(Color.WHITE);
+		panelFinal.add(lblActuacionGanador);
+
+		lblNombreGanador = new JLabel("");
+		lblNombreGanador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombreGanador.setBounds(580, 456, 246, 43);
+		lblNombreGanador.setForeground(Color.WHITE);
+		lblNombreGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
+		panelFinal.add(lblNombreGanador);
+
+		lblCancionGanador = new JLabel("");
+		lblCancionGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
+		lblCancionGanador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCancionGanador.setForeground(Color.WHITE);
+		lblCancionGanador.setBounds(567, 534, 282, 43);
+		panelFinal.add(lblCancionGanador);
+
+		lblPaisGanador = new JLabel("");
+		lblPaisGanador.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPaisGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 40));
+		lblPaisGanador.setForeground(Color.WHITE);
+		lblPaisGanador.setBounds(527, 11, 356, 85);
+		panelFinal.add(lblPaisGanador);
+		panelFinal.setVisible(false);
+
+		lblTaylorFinal = new JLabel("");
+		lblTaylorFinal.setBounds(883, 290, 493, 599);
+		lblTaylorFinal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTaylorFinal.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/taylor/taylor2.png"));
+		panelFinal.add(lblTaylorFinal);
+		
+		lblFondoFinal = new JLabel("");
+		lblFondoFinal.setBounds(0, 0, 1400, 900);
+		lblFondoFinal.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/fondo2.jpg"));
+		panelFinal.add(lblFondoFinal);
+		
 		// JPanel "panelVotaciones"
 		panelVotaciones = new JPanel();
 		panelVotaciones.setBounds(0, 0, 1400, 900);
@@ -83,6 +130,7 @@ public class Vista extends JFrame {
 		// Elementos del JPanel "panelVotaciones"
 		btnRefrescarInfo = new JButton("VOTACIONES");
 		btnRefrescarInfo.setBounds(578, 751, 214, 36);
+		btnRefrescarInfo.setFocusPainted(false);
 		panelVotaciones.add(btnRefrescarInfo);
 		panelVotaciones.setVisible(false);
 
@@ -262,7 +310,7 @@ public class Vista extends JFrame {
 		lblApano5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblApano5.setForeground(Color.WHITE);
 		lblApano5.setBackground(new Color(255, 0, 128));
-		lblApano5.setBounds(394, 344, 46, 28);
+		lblApano5.setBounds(394, 345, 46, 28);
 		lblApano5.setVisible(false);
 		panelVotaciones.add(lblApano5);
 
@@ -395,16 +443,19 @@ public class Vista extends JFrame {
 		 */
 
 		lblPaisActual = new JLabel("");
-		lblPaisActual.setBounds(943, 666, 104, 55);
+		lblPaisActual.setBounds(961, 610, 150, 70);
 		lblPaisActual.setOpaque(false);
 		lblPaisActual.setBackground(Color.WHITE);
 		lblPaisActual.setForeground(Color.WHITE);
+		lblPaisActual.setFont(new Font("Segoe UI Emoji", Font.BOLD, 20));
 		lblPaisActual.setHorizontalAlignment(SwingConstants.CENTER);
 		panelVotaciones.add(lblPaisActual);
 
 		lblPaisConsultaVotaciones1 = new JLabel("");
 		lblPaisConsultaVotaciones1.setBounds(1167, 610, 170, 44);
 		lblPaisConsultaVotaciones1.setOpaque(true);
+		lblPaisConsultaVotaciones1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPaisConsultaVotaciones1.setVerticalAlignment(SwingConstants.CENTER);
 		lblPaisConsultaVotaciones1.setBackground(Color.WHITE);
 		lblPaisConsultaVotaciones1.setVisible(false);
 		panelVotaciones.add(lblPaisConsultaVotaciones1);
@@ -412,6 +463,8 @@ public class Vista extends JFrame {
 		lblPaisConsultaVotaciones2 = new JLabel("");
 		lblPaisConsultaVotaciones2.setBounds(1165, 677, 170, 44);
 		lblPaisConsultaVotaciones2.setOpaque(true);
+		lblPaisConsultaVotaciones2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPaisConsultaVotaciones2.setVerticalAlignment(SwingConstants.CENTER);
 		lblPaisConsultaVotaciones2.setVisible(false);
 		lblPaisConsultaVotaciones2.setBackground(Color.WHITE);
 		panelVotaciones.add(lblPaisConsultaVotaciones2);
@@ -419,6 +472,8 @@ public class Vista extends JFrame {
 		lblPaisConsultaVotaciones3 = new JLabel("");
 		lblPaisConsultaVotaciones3.setBounds(1167, 743, 170, 44);
 		lblPaisConsultaVotaciones3.setOpaque(true);
+		lblPaisConsultaVotaciones3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPaisConsultaVotaciones3.setVerticalAlignment(SwingConstants.CENTER);
 		lblPaisConsultaVotaciones3.setBackground(Color.WHITE);
 		lblPaisConsultaVotaciones3.setVisible(false);
 		panelVotaciones.add(lblPaisConsultaVotaciones3);
@@ -453,46 +508,6 @@ public class Vista extends JFrame {
 		lblFondoPanelVotaciones.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/fondo.jpg"));
 		panelVotaciones.add(lblFondoPanelVotaciones);
 
-		// JPanel "panelFinal"
-		panelFinal = new JPanel();
-		panelFinal.setBounds(0, 0, 1400, 900);
-		contentPane.add(panelFinal);
-		panelFinal.setLayout(null);
-
-		// Elementos del JPanel "panelFinal"
-		lblActuacionGanador = new JLabel("");
-		lblActuacionGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblActuacionGanador.setBounds(542, 154, 356, 277);
-		lblActuacionGanador.setForeground(Color.WHITE);
-		panelFinal.add(lblActuacionGanador);
-
-		lblNombreGanador = new JLabel("");
-		lblNombreGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNombreGanador.setBounds(598, 457, 246, 43);
-		lblNombreGanador.setForeground(Color.WHITE);
-		lblNombreGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 30));
-		panelFinal.add(lblNombreGanador);
-
-		lblCancionGanador = new JLabel("");
-		lblCancionGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
-		lblCancionGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCancionGanador.setForeground(Color.WHITE);
-		lblCancionGanador.setBounds(580, 536, 282, 43);
-		panelFinal.add(lblCancionGanador);
-
-		lblPaisGanador = new JLabel("");
-		lblPaisGanador.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPaisGanador.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 40));
-		lblPaisGanador.setForeground(Color.WHITE);
-		lblPaisGanador.setBounds(542, 11, 356, 85);
-		panelFinal.add(lblPaisGanador);
-		panelFinal.setVisible(false);
-
-		lblFondoFinal = new JLabel("");
-		lblFondoFinal.setBounds(0, 0, 1400, 900);
-		lblFondoFinal.setIcon(new ImageIcon(System.getProperty("user.dir") + "/resources/fondo2.jpg"));
-		panelFinal.add(lblFondoFinal);
-
 		// JPanel "panelInicial"
 		panelInicial = new JPanel();
 		panelInicial.setBounds(0, 0, 1400, 900);
@@ -502,6 +517,7 @@ public class Vista extends JFrame {
 		// Elementos del JPanel "panelInicial"
 		btnComenzarInicio = new JButton("COMENZAR");
 		btnComenzarInicio.setFont(new Font("Segoe UI Emoji", Font.BOLD, 20));
+		btnComenzarInicio.setFocusPainted(false);
 		btnComenzarInicio.setBounds(620, 700, 181, 51);
 		panelInicial.add(btnComenzarInicio);
 
@@ -570,6 +586,7 @@ public class Vista extends JFrame {
 		btnComenzarVotaciones.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 20));
 		btnComenzarVotaciones.setBounds(550, 782, 272, 33);
 		btnComenzarVotaciones.setEnabled(false);
+		btnComenzarVotaciones.setFocusPainted(false);
 		panelVotacionesNacionales.add(btnComenzarVotaciones);
 		// JLabel para mostrar la imagen
 		lblFondoTaylor = new JLabel("");
@@ -641,6 +658,7 @@ public class Vista extends JFrame {
 		// Elementos del JPanel "panelAutoria"
 		btnVolver = new JButton("Volver");
 		btnVolver.setBackground(Color.WHITE);
+		btnVolver.setFocusPainted(false);
 		btnVolver.setBounds(656, 708, 102, 28);
 		panelAutoria.add(btnVolver);
 
