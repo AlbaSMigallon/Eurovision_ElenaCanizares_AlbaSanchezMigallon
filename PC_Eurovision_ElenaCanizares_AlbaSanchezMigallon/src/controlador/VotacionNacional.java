@@ -68,7 +68,7 @@ public class VotacionNacional extends Thread {
 			 * podemos habilitar el boton para pasar a la siguiente fase sin que nos de
 			 * error y salir del bucle.
 			 */
-			while (!salir) {
+			while (!salir) {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				int contador = 0;
 				for (int i = 0; i < clientesPais.size(); i++) {
 					if (clientesPais.get(i).isEsFinCliente()) {
@@ -81,7 +81,7 @@ public class VotacionNacional extends Thread {
 					vista.btnComenzarVotaciones.setText("COMENZAR VOTACIONES");
 					vista.btnComenzarVotaciones.setEnabled(true);
 					salir = true;
-					System.out.println("BOOOOOTONNNN");
+					//System.out.println("BOOOOOTONNNN");
 				}
 
 			}

@@ -53,15 +53,6 @@ public class HiloVotante extends Thread {
 
 		generarRandom();// genera resultado del voto
 
-		// hilo duerme 0,2
-		// segundos/////////////////////////////////////////////////////////////////////////////////////
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	private void generarRandom() {
@@ -85,6 +76,15 @@ public class HiloVotante extends Thread {
 			this.voto = obtenerResultado66(random);
 			break;
 
+		}
+
+		// hilo duerme 0,2
+		// segundos
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

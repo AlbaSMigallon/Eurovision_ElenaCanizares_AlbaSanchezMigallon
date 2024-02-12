@@ -634,7 +634,7 @@ public class Controlador implements ActionListener {
 		}
 		// Creamos la fecha actual para settearla en el objeto "resultado"
 		Date date= new Date();
-		String strDateFormat = "hh:mm:ss a dd-MMM-yyyy"; //Date format is Specified
+		String strDateFormat = "hh:mm:ss a dd-MMM-yyyy"; 
 		SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
 		objSDF.format(date);
 		resultado.setFechaGala(date);

@@ -187,10 +187,12 @@ public class ClientePais extends Thread {
 			}
 		}
 
+		/*
 		System.out.println("Las votaciones en " + porcentajes.getNombrePais() + " son:");
 		System.out.println("15 puntos para " + getCantanteVotoPrimero());
 		System.out.println("10 puntos para " + getCantanteVotoSegundo());
 		System.out.println("8 puntos para " + getCantanteVotoTercero());
+		*/
 
 	}
 
@@ -303,7 +305,10 @@ public class ClientePais extends Thread {
 	 * @param args
 	 * @throws IOException
 	 */
-	private void enviarVotosNacionales() throws Exception {
+	private void enviarVotosNacionales() throws Exception {////////////////////////////////////////////////////////////////////////////////
+		/*
+		 * Enviamos al servidor de eurovision el objeto preparado para el insert
+		 */
 		Socket socket = null;
 		ObjectOutputStream objectOutputStream = null;
 		BufferedReader bufferedReader = null;
@@ -322,8 +327,9 @@ public class ClientePais extends Thread {
 			InputStreamReader isr = new InputStreamReader(socket.getInputStream());
 			bufferedReader = new BufferedReader(isr);
 			String respuestaServidor = bufferedReader.readLine();
-			System.out.println(respuestaServidor);
-			this.esFinCliente = true;
+			//System.out.println(respuestaServidor);
+			this.esFinCliente = true;//cuando tengamos respuesta del servidor tras el inser
+			// seteamos el boolean que indica que el cliente ya termino
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -388,7 +394,7 @@ public class ClientePais extends Thread {
 		numeroVotos4165();
 		numeroVotosMas66();
 
-		// fija los ganadores por pais
+		// fija los ganadores por pais gestionando empate
 		fijarGanadores();
 
 		// enviamos el resultado al servidor de eurovision
