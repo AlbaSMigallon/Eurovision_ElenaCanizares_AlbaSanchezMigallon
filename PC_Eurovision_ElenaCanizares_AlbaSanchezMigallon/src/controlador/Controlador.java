@@ -254,10 +254,10 @@ public class Controlador implements ActionListener {
 				vista.btnRefrescarInfo.setText("ACTUACION GANADORA");
 				//vista.lblPaisActual.setVisible(false);
 				//vista.lblImagenPresentador.setIcon(new ImageIcon(System.getProperty("user.dir")+"/resources/taylor/taylor2.png"));
-				this.panel1_activo = false;
+				/*this.panel1_activo = false;
 				this.panel2_activo = false;
 				this.panel3_activo = false;
-				this.panel4_activo = true;
+				this.panel4_activo = true;*/
 			}
 			else if (vista.btnRefrescarInfo.getText().equals("ACTUACION GANADORA")) {
 				reproducirSonido(System.getProperty("user.dir") + "/resources/taylor/andTheWinnerIs.wav");
@@ -571,7 +571,7 @@ public class Controlador implements ActionListener {
 				// Se realiza un insert en la tabla "RESULTADOS_EUROVISION" al terminar las
 				// votaciones
 				guardarResultadosEurovision();
-				vista.menuBar.setVisible(false);
+				vista.menuBar.setVisible(true);//////////////////////////////////////////////////////7
 			}
 			// Si el indice ya no es menor o igual al tamanio pasado como parametro lo
 			// mostramos en el textArea como traza
@@ -654,6 +654,7 @@ public class Controlador implements ActionListener {
 		vista.panelInicial.setVisible(false);
 		vista.panelVotacionesNacionales.setVisible(false);
 		vista.panelVotaciones.setVisible(false);
+		vista.panelFinal.setVisible(false);
 		if (this.panel4_activo == true) {
 			vista.lblActuacionGanador.setVisible(false);
 		}
