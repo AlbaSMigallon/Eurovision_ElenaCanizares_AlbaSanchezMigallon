@@ -700,10 +700,10 @@ public class Controlador implements ActionListener {
 	 * el tiempo que es visible el archivo .gif asociado al JLabel "lblLogoInicio"
 	 */
 	private static void iniciarCronometroTransicion() {
-		reproducirSonido(System.getProperty("user.dir") + "/resources/introEuroSonido.wav");
+		reproducirSonido(System.getProperty("user.dir") + "/resources/eurovisionIntroUlt.wav");
 		// Se inicializa la instancia y se especifica que se dispare cada segundo (1000
 		// milisegundos) y anade un escuchador
-		timerCronometro = new Timer(2100, new ActionListener() {
+		timerCronometro = new Timer(2200, new ActionListener() {
 			// En el actionPerformed redefinido se controlara el atributo de instancia
 			// "tiempoTransicion" y su valor
 			@Override
