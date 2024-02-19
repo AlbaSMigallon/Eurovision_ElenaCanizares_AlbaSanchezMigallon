@@ -52,7 +52,7 @@ public class HiloEurovision extends Thread {
 			// Enviar respuesta al cliente y seteamos para indicar que este cliente ha
 			// terminado, paro luego gestionar el boton
 			printWriter = new PrintWriter(socket.getOutputStream(), true);
-			printWriter.println("Estamos ok");
+			printWriter.println("Insert ok");
 
 			
 		} catch (IOException e) {
