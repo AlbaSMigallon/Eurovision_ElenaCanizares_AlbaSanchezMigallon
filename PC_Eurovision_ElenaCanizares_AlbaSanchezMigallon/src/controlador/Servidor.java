@@ -23,9 +23,9 @@ public class Servidor {
 			while (true) {
 				try {
 					Socket conexion = socketEscucha.accept();
-					HiloEurovision hilo = new HiloEurovision(conexion);// crea hilo votante
+					HiloEurovision hilo = new HiloEurovision(conexion);
 					hilo.start();
-					// hilo.join();
+				
 				} catch (IOException e) {
 					e.printStackTrace();
 					throw e;
